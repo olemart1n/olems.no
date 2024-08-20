@@ -1,16 +1,17 @@
 import { component$ } from "@builder.io/qwik";
 import type { DocumentHead } from "@builder.io/qwik-city";
+import { Banner } from "~/components";
 
 export default component$(() => {
   return (
-    <>
-      <h1>Hi 👋</h1>
-      <div>
-        Can't wait to see what you build with qwik!
+    <main class="text-white">
+      <h1 class="text-white">Hi 👋</h1>
+      <div class="flex justify-around">
+        <p>Hei. Mitt navn er Ole Martin</p>
         <br />
-        Happy coding.
+        <Banner />
       </div>
-    </>
+    </main>
   );
 });
 

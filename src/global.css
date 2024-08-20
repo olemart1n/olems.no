@@ -1,0 +1,19 @@
+/**
+ * Tailwind CSS imports
+ * View the full documentation at https://tailwindcss.com
+ */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  background-color: rgb(30, 29, 29);
+}
+
+body {
+  display: grid;
+  grid-template-rows: 10% auto 10%;
+  min-height: 100vh;
+  max-width: 1700px;
+  margin: auto;
+}
