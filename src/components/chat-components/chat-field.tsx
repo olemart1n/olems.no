@@ -1,19 +1,20 @@
-import { component$, type Signal } from "@builder.io/qwik";
+import { component$ } from "@builder.io/qwik";
 export interface ChatFieldProps {
-  messages: Signal<string[]>;
+  // messages: Signal<string[]>;
+  messages: string[];
 }
 
-export const ChatField = component$<ChatFieldProps>(() => {
+export const ChatField = component$<ChatFieldProps>(({ messages }) => {
   return (
     <div class="flex-grow overflow-y-auto p-4">
-      {/* {messages.value.map((message, index) => (
+      {messages.map((message, index) => (
         <div
-            key={index}
-            class="mb-2 p-2 rounded bg-blue-500 text-white max-w-xs self-start"
+          key={index}
+          class="mb-2 max-w-xs self-start rounded bg-blue-500 p-2 text-white"
         >
-            {message}
+          {message}
         </div>
-    ))} */}
+      ))}
     </div>
   );
 });
