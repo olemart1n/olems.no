@@ -17,7 +17,7 @@ export const GoServerShowcase = component$(() => {
         {mdGoFiles.map((file, index) => (
           <button
             key={index}
-            class={`rounded-sm p-1 ${tabIndex.value === index ? "bg-slate-300" : ""}`}
+            class={`rounded-sm p-1 ${tabIndex.value === index ? "bg-slate-300 text-slate-950" : ""}`}
             onClick$={async () => {
               tabIndex.value = index;
               content.value = await serverGetMdGo(index);

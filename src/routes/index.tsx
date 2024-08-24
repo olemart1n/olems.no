@@ -4,10 +4,9 @@ import { Banner } from "~/components";
 
 export default component$(() => {
   return (
-    <main class="text-white">
-      <h1 class="text-white">Hi 👋</h1>
+    <main class="flex flex-col justify-around text-white">
       <div class="flex justify-around">
-        <p>Hei. Mitt navn er Ole Martin</p>
+        <h1>Hei. Mitt navn er Ole Martin</h1>
         <br />
         <Banner />
       </div>

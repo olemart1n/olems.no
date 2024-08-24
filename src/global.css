@@ -12,8 +12,12 @@ html {
 
 body {
   display: grid;
-  grid-template-rows: auto auto 10%;
-  min-height: 100vh;
+  grid-template-rows: auto 1fr auto;
+  min-height: 100dvh;
   max-width: 1700px;
   margin: auto;
+}
+
+main {
+  overflow-y: auto;
 }

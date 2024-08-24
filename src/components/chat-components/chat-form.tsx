@@ -5,10 +5,7 @@ interface ChatFormProps {
 }
 export const ChatForm = component$<ChatFormProps>(({ inputForm }) => {
   return (
-    <form
-      ref={inputForm}
-      class="flex items-center border-t border-gray-300 p-4"
-    >
+    <form ref={inputForm} class="flex h-1/6 items-center  p-4">
       <input
         type="text"
         name="message"

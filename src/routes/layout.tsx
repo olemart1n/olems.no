@@ -17,6 +17,7 @@ export default component$(() => {
     <>
       <Header />
       <Slot />
+      <footer class="text-white">__Ole M</footer>
     </>
   );
 });
