@@ -19,6 +19,13 @@ export default component$(() => {
   const visitorCount = useSignal(0);
   const username = useSignal<string>("");
   const setUsernameFlag = useSignal<HTMLDivElement>();
+  const messageEndRef = useSignal<HTMLDivElement>();
+  const scrollToBottom = $(() => {
+    setTimeout(() => {
+      messageEndRef.value?.scrollIntoView({ behavior: "smooth" });
+    }, 10);
+  });
+
   useOnDocument(
     "DOMContentLoaded",
     $(() => {
@@ -27,6 +34,7 @@ export default component$(() => {
           ? "wss://api.olems.no/ws"
           : "ws://localhost:8080/ws";
       const conn = new WebSocket(serverSockerURL);
+
       conn.addEventListener("message", (e) => {
         const data = JSON.parse(e.data);
         switch (data.name) {
@@ -34,7 +42,11 @@ export default component$(() => {
             visitorCount.value = data.payload.visitorCount;
             break;
           case "message":
-            messages.push(data.payload.message);
+            messages.push({
+              message: data.payload.message as string,
+              from: data.payload.from,
+            });
+            scrollToBottom();
             break;
           default:
             break;
@@ -64,6 +76,7 @@ export default component$(() => {
           from: username.value,
         });
         inputForm.value?.reset();
+        scrollToBottom();
       };
     }),
   );
@@ -107,7 +120,10 @@ export default component$(() => {
         <div class="h-fit">
           <i class="-translate-y-7">Visitors: {visitorCount.value}</i>
           <div class="relative h-72 border border-slate-100 p-2">
-            <ChatField messages={messages} />
+            <div class="h-5/6 overflow-y-scroll p-2">
+              <ChatField messages={messages} messageEndRefDiv={messageEndRef} />
+            </div>
+
             <ChatForm inputForm={inputForm} />
             <div
               class="absolute bottom-0 left-0 h-16 w-full bg-slate-100 text-center text-black"
