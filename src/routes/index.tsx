@@ -1,6 +1,6 @@
 import { component$ } from "@builder.io/qwik";
 import type { DocumentHead } from "@builder.io/qwik-city";
-import { Banner } from "~/components";
+import { Banner, HandlelistaLink } from "~/components";
 
 export default component$(() => {
   return (
@@ -10,16 +10,22 @@ export default component$(() => {
         <br />
         <Banner />
       </div>
+      <div class="my-8 flex w-full flex-col text-center">
+        <a class="m-0 p-0 text-sm" href="https://handlelista.no">
+          link: www.handlelista.no
+        </a>
+        <HandlelistaLink />
+      </div>
     </main>
   );
 });
 
 export const head: DocumentHead = {
-  title: "Welcome to Qwik",
+  title: "Ole M",
   meta: [
     {
       name: "description",
-      content: "Qwik site description",
+      content: "Hjemmeside, homesite, blog, chat",
     },
   ],
 };

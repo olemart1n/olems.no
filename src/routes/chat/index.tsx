@@ -67,11 +67,12 @@ export default component$(() => {
       };
     }),
   );
-  const setUsername = $((e: any) => {
-    const un = Object.fromEntries(new FormData(e.target));
+  const setUsername = $((e: SubmitEvent) => {
+    const t = e.target as HTMLFormElement;
+    const un = Object.fromEntries(new FormData(t));
     username.value = un.username as string;
     setUsernameFlag.value?.remove();
-    e.target.remove();
+    t.remove();
   });
 
   return (
