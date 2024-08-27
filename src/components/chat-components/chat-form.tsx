@@ -11,6 +11,8 @@ export const ChatForm = component$<ChatFormProps>(({ inputForm }) => {
         name="message"
         class="flex-grow rounded border border-gray-300 bg-transparent p-2 focus:border-blue-300 focus:outline-none focus:ring"
         placeholder="Type a message..."
+        autoComplete="off"
+        autoCorrect="off"
       />
       <button class="text-gray ml-4  rounded border border-white px-4 py-2 text-white hover:bg-slate-800">
         Send

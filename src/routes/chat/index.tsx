@@ -1,10 +1,4 @@
-import {
-  component$,
-  useOnDocument,
-  useSignal,
-  $,
-  useStore,
-} from "@builder.io/qwik";
+import { component$, useSignal, $, useStore } from "@builder.io/qwik";
 
 import type { DocumentHead } from "@builder.io/qwik-city";
 import { ChatForm, ChatField, GoServerShowcase } from "~/components";
@@ -26,61 +20,60 @@ export default component$(() => {
     }, 10);
   });
 
-  useOnDocument(
-    "DOMContentLoaded",
-    $(() => {
-      const serverSockerURL =
-        import.meta.env.PUBLIC_ENV === "production"
-          ? "wss://api.olems.no/ws"
-          : "ws://localhost:8080/ws";
-      const conn = new WebSocket(serverSockerURL);
+  const connect = $(() => {
+    const serverSockerURL =
+      import.meta.env.PUBLIC_ENV === "production"
+        ? "wss://api.olems.no/ws"
+        : "ws://localhost:8080/ws";
+    const conn = new WebSocket(serverSockerURL);
 
-      conn.addEventListener("message", (e) => {
-        const data = JSON.parse(e.data);
-        switch (data.name) {
-          case "visitorCount":
-            visitorCount.value = data.payload.visitorCount;
-            break;
-          case "message":
-            messages.push({
-              message: data.payload.message as string,
-              from: data.payload.from,
-            });
-            scrollToBottom();
-            break;
-          default:
-            break;
-        }
+    conn.addEventListener("message", (e) => {
+      const data = JSON.parse(e.data);
+      switch (data.name) {
+        case "visitorCount":
+          visitorCount.value = data.payload.visitorCount;
+          break;
+        case "message":
+          messages.push({
+            message: data.payload.message as string,
+            from: data.payload.from,
+          });
+          scrollToBottom();
+          break;
+        default:
+          break;
+      }
+    });
+
+    conn.addEventListener("error", (err) => {
+      console.error("WebSocket error:", err);
+      console.log("why isnt it connecting?", { err });
+    });
+
+    conn.addEventListener("close", () => {
+      console.log("WebSocket connection closed");
+    });
+    inputForm.value!.onsubmit = (e) => {
+      e.preventDefault();
+
+      const input = Object.fromEntries(new FormData(inputForm.value));
+      conn.send(
+        JSON.stringify({
+          name: "message",
+          payload: { message: input.message, from: username.value },
+        }),
+      );
+      messages.push({
+        message: input.message as string,
+        from: username.value,
       });
+      inputForm.value?.reset();
+      scrollToBottom();
+    };
+  });
 
-      conn.addEventListener("error", (err) => {
-        console.error("WebSocket error:", err);
-        console.log("why isnt it connecting?", { err });
-      });
-
-      conn.addEventListener("close", () => {
-        console.log("WebSocket connection closed");
-      });
-      inputForm.value!.onsubmit = (e) => {
-        e.preventDefault();
-
-        const input = Object.fromEntries(new FormData(inputForm.value));
-        conn.send(
-          JSON.stringify({
-            name: "message",
-            payload: { message: input.message, from: username.value },
-          }),
-        );
-        messages.push({
-          message: input.message as string,
-          from: username.value,
-        });
-        inputForm.value?.reset();
-        scrollToBottom();
-      };
-    }),
-  );
-  const setUsername = $((e: SubmitEvent) => {
+  const setUsernameAndConnect = $((e: SubmitEvent) => {
+    connect();
     const t = e.target as HTMLFormElement;
     const un = Object.fromEntries(new FormData(t));
     username.value = un.username as string;
@@ -101,7 +94,7 @@ export default component$(() => {
           <form
             preventdefault:submit
             class="flex w-full justify-around text-black"
-            onSubmit$={setUsername}
+            onSubmit$={setUsernameAndConnect}
           >
             <input
               type="text"
