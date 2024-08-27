@@ -23,7 +23,7 @@ export default component$(() => {
     "DOMContentLoaded",
     $(() => {
       const serverSockerURL =
-        import.meta.env.PUBLIC_NETLIFY === true
+        import.meta.env.PUBLIC_ENV === "production"
           ? "wss://api.olems.no/ws"
           : "ws://localhost:8080/ws";
       const conn = new WebSocket(serverSockerURL);
