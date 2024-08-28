@@ -5,9 +5,9 @@ export const Banner = component$(() => {
       <img
         src="ProfileImage.jpg"
         alt="Bilde av meg"
-        height={200}
-        width={200}
-        class="block rounded-full object-cover"
+        height={180}
+        width={180}
+        class="block rounded-md object-cover"
       />
       {/* <ProfileImg /> */}
     </div>

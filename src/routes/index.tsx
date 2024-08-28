@@ -6,8 +6,13 @@ export default component$(() => {
   return (
     <main class="flex flex-col justify-around text-white">
       <div class="flex justify-around">
-        <h1>Hei. Mitt navn er Ole Martin</h1>
-        <br />
+        <div class="flex-col">
+          <h1 class="text-lg underline">Utvikler</h1>
+          <p>Typescript</p>
+          <p>Go-lang</p>
+          <p>React | Qwik</p>
+          <br />
+        </div>
         <Banner />
       </div>
       <div class="my-8 flex w-full flex-col text-center">
