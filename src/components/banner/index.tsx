@@ -1,15 +1,9 @@
 import { component$ } from "@builder.io/qwik";
+import ProfileImg from "../../../public/ProfileImage.jpg?jsx";
 export const Banner = component$(() => {
   return (
     <div>
-      <img
-        src="ProfileImage.jpg"
-        alt="Bilde av meg"
-        height={180}
-        width={180}
-        class="block rounded-md object-cover"
-      />
-      {/* <ProfileImg /> */}
+      <ProfileImg class="w-24 rounded md:w-52" alt="Bilde av meg" />
     </div>
   );
 });

@@ -28,16 +28,9 @@ export default component$(() => {
   const messageEndRefDiv = useSignal<HTMLDivElement>();
   const setUsernameForm = useSignal<HTMLFormElement>();
 
-  const setUsernameAndConnect = $((e: SubmitEvent) => {
-    const conn = connectWebSocket();
-    setSocketEventListeners(conn, visitorCount, messages, messageEndRefDiv);
-    setInputFormSubmitEvent(
-      inputForm,
-      conn,
-      username,
-      messages,
-      messageEndRefDiv,
-    );
+  const setUsername = $((e: SubmitEvent) => {
+    console.log("hello");
+
     const t = e.target as HTMLFormElement;
     const un = Object.fromEntries(new FormData(t));
     username.value = un.username as string;
@@ -48,8 +41,17 @@ export default component$(() => {
     "DOMContentLoaded",
     $(() => {
       setUsernameForm.value?.addEventListener("submit", (e) => {
-        setUsernameAndConnect(e);
+        setUsername(e);
       });
+      const conn = connectWebSocket();
+      setSocketEventListeners(conn, visitorCount, messages, messageEndRefDiv);
+      setInputFormSubmitEvent(
+        inputForm,
+        conn,
+        username,
+        messages,
+        messageEndRefDiv,
+      );
     }),
   );
 
@@ -79,7 +81,7 @@ export default component$(() => {
         <p>Meldinger blir ikke lagret.</p>
       </div>
 
-      <div class="mx-auto mt-10 text-xs md:w-10/12">
+      <div class="mx-auto mt-20 text-xs md:w-10/12">
         <GoServerShowcase />
       </div>
     </main>
