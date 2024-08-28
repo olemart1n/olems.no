@@ -1,6 +1,5 @@
 import { component$, type Signal } from "@builder.io/qwik";
 export interface ChatFieldProps {
-  // messages: Signal<string[]>;
   messages: ChatFieldPropsObj[];
   messageEndRefDiv: Signal<HTMLDivElement | undefined>;
 }
@@ -13,7 +12,7 @@ interface ChatFieldPropsObj {
 export const ChatField = component$<ChatFieldProps>(
   ({ messages, messageEndRefDiv }) => {
     return (
-      <>
+      <div ref={messageEndRefDiv}>
         {messages.map(
           (
             { message, from }: { message: string; from: string },
@@ -27,8 +26,7 @@ export const ChatField = component$<ChatFieldProps>(
             </div>
           ),
         )}
-        <div ref={messageEndRefDiv} class="h-1 w-full"></div>
-      </>
+      </div>
     );
   },
 );

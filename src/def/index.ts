@@ -3,11 +3,11 @@ export interface SocketMessage {
   payload: VisitorCount | MessageBroadcast;
 }
 
-interface VisitorCount {
+export interface VisitorCount {
   visitorCount: number;
 }
 
-interface MessageBroadcast {
+export interface MessageBroadcast {
   message: string;
   from: string;
 }
