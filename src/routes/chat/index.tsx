@@ -26,23 +26,11 @@ export default component$(() => {
   const visitorCount = useSignal(0);
   const username = useSignal<string>("");
   const messageEndRefDiv = useSignal<HTMLDivElement>();
-  const setUsernameForm = useSignal<HTMLFormElement>();
-
-  const setUsername = $((e: SubmitEvent) => {
-    console.log("hello");
-
-    const t = e.target as HTMLFormElement;
-    const un = Object.fromEntries(new FormData(t));
-    username.value = un.username as string;
-    t.remove();
-  });
 
   useOnDocument(
     "DOMContentLoaded",
     $(() => {
-      setUsernameForm.value?.addEventListener("submit", (e) => {
-        setUsername(e);
-      });
+      console.log("waiting");
       const conn = connectWebSocket();
       setSocketEventListeners(conn, visitorCount, messages, messageEndRefDiv);
       setInputFormSubmitEvent(
@@ -63,15 +51,15 @@ export default component$(() => {
           <i>Visitors: {visitorCount.value}</i>
           <i>{username.value}</i>
         </div>
-        <div class="relative h-80 rounded border border-slate-100 p-2">
-          <div class="no-scrollbar h-5/6 overflow-y-scroll p-2">
+        <div class="relative h-80  p-2">
+          <div class="no-scrollbar h-5/6 overflow-y-scroll rounded border border-slate-100 p-2">
             <ChatField
               messages={messages}
               messageEndRefDiv={messageEndRefDiv}
             />
           </div>
           <div class="h-1/6">
-            <ChatSetUsername form={setUsernameForm} />
+            <ChatSetUsername username={username} />
             <ChatForm inputForm={inputForm} />
           </div>
         </div>
