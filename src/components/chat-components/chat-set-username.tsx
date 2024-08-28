@@ -15,7 +15,7 @@ export const ChatSetUsername = component$<ChatSetUsernameProps>(
     return (
       <form
         preventdefault:submit
-        class="absolute bottom-0 left-0 flex w-full place-items-center justify-around bg-slate-300 p-2 text-slate-950"
+        class="absolute bottom-0 left-0 flex w-full place-items-center justify-around bg-slate-900 p-1 text-slate-950"
         onSubmit$={setUsername}
       >
         <input

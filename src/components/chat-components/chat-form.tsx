@@ -13,6 +13,7 @@ export const ChatForm = component$<ChatFormProps>(({ inputForm }) => {
         placeholder="Type a message..."
         autoComplete="off"
         autoCorrect="off"
+        preventdefault:scroll
       />
       <button class="text-gray ml-4  rounded border border-white px-4 py-2 text-white hover:bg-slate-800">
         Send

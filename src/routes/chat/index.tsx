@@ -47,9 +47,16 @@ export default component$(() => {
     <main class="p-2 text-slate-50">
       <h1 class="w-full text-center">Chat | WebSocket | Golang</h1>
       <div class="mx-auto my-6 flex w-full flex-col justify-around p-1 lg:w-2/3">
-        <div class="flex w-full -translate-y-2 justify-evenly">
+        <div class="flex w-full -translate-y-2 justify-between">
           <i>Visitors: {visitorCount.value}</i>
           <i>{username.value}</i>
+          <button
+            class="border-.5 h-6 w-6 rounded border border-slate-500 text-xs text-slate-500"
+            onClick$={() => document.documentElement.requestFullscreen()}
+          >
+            {" "}
+            &harr;
+          </button>
         </div>
         <div class="relative h-80  p-2">
           <div class="no-scrollbar h-5/6 overflow-y-scroll rounded border border-slate-100 p-2">
