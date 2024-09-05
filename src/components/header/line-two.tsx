@@ -1,21 +1,48 @@
 import { component$ } from "@builder.io/qwik";
-import { Link } from "@builder.io/qwik-city";
+import { useLocation } from "@builder.io/qwik-city";
 export const LineTwo = component$(() => {
+  const loc = useLocation();
   return (
-    <nav class="my-1 flex w-full justify-around">
-      <a
-        href="/chat"
-        class="rounded-sm bg-teal-700 px-5 py-1 font-extralight text-white"
+    <nav class="z-0 flex  w-full justify-around">
+      <div
+        class={
+          "bg-yellow-200 p-1  " +
+          (loc.prevUrl?.pathname.includes("chat") && "bg-blue-400 underline")
+        }
+        style={{
+          clipPath: "polygon(0 0, 100% 0, 90% 100%, 10% 100%)",
+        }}
       >
-        Chat
-      </a>
+        <a
+          href="/chat"
+          class=" background-color px-6 py-1 font-extralight text-white"
+          style={{
+            clipPath: "polygon(0 0, 100% 0, 90% 100%, 10% 100%)",
+          }}
+        >
+          Chat
+        </a>
+      </div>
 
-      <Link
-        href="/blog"
-        class="rounded-sm bg-teal-700 px-5 py-1 font-extralight text-white"
+      <div
+        class={
+          "bg-yellow-200 p-1 " +
+          (loc.prevUrl?.pathname.includes("blog") && "bg-blue-400 underline")
+        }
+        style={{
+          clipPath: "polygon(0 0, 100% 0, 90% 100%, 10% 100%)",
+        }}
       >
-        Blog
-      </Link>
+        <a
+          href="/blog"
+          class=" background-color px-6 py-1 font-extralight text-white"
+          style={{
+            clipPath: "polygon(0 0, 100% 0, 90% 100%, 10% 100%)",
+          }}
+        >
+          Blog
+        </a>
+      </div>
     </nav>
   );
 });

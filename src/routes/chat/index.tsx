@@ -30,7 +30,6 @@ export default component$(() => {
   useOnDocument(
     "DOMContentLoaded",
     $(() => {
-      console.log("waiting");
       const conn = connectWebSocket();
       setSocketEventListeners(conn, visitorCount, messages, messageEndRefDiv);
       setInputFormSubmitEvent(

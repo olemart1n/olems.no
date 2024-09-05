@@ -2,7 +2,7 @@ import { component$ } from "@builder.io/qwik";
 
 export const LineOne = component$(() => {
   return (
-    <nav class="flex justify-between bg-amber-200 p-2">
+    <nav class=" flex justify-between bg-amber-200 p-2">
       <a href="/" class="text-xl">
         <h1>Ole Martin Snoen | nett-utvikler</h1>
       </a>
