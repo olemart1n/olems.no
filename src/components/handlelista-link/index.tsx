@@ -1,5 +1,5 @@
 import { component$, useStylesScoped$ } from "@builder.io/qwik";
-
+import ImgHandlelista from "../../../public/handlelista.png?jsx";
 import styles from "./styles.css?inline";
 export const HandlelistaLink = component$(() => {
   useStylesScoped$(styles);
@@ -18,12 +18,7 @@ export const HandlelistaLink = component$(() => {
           <div class="col col_3"></div>
           <div class="col col_4"></div>
         </div>
-        <img
-          class="handlelista-screenshot"
-          src="/handlelista.png"
-          height={100}
-          width={100}
-        />
+        <ImgHandlelista class="handlelista-screenshot" />
         <div class="safari_bottom">
           <div class="safari_url_input">
             <p>handlelista.no</p>

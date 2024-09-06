@@ -35,3 +35,20 @@ main {
   -ms-overflow-style: none; /* For Internet Explorer and Edge */
   scrollbar-width: none; /* For Firefox */
 }
+
+@keyframes waveFade {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+    text-shadow: -1px 1px 10px yellow;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.waveFade {
+  animation: waveFade 9s ease-in-out infinite;
+}

@@ -6,8 +6,10 @@ export const LineTwo = component$(() => {
     <nav class="z-0 flex  w-full justify-around">
       <div
         class={
-          "bg-yellow-200 p-1  " +
-          (loc.prevUrl?.pathname.includes("chat") && "bg-blue-400 underline")
+          "p-1 " +
+          (loc.prevUrl?.pathname.includes("chat")
+            ? " bg-blue-400"
+            : "bg-yellow-200")
         }
         style={{
           clipPath: "polygon(0 0, 100% 0, 90% 100%, 10% 100%)",
@@ -15,7 +17,10 @@ export const LineTwo = component$(() => {
       >
         <a
           href="/chat"
-          class=" background-color px-6 py-1 font-extralight text-white"
+          class={
+            " background-color px-6 py-1 text-white " +
+            (loc.prevUrl?.pathname.includes("chat") && "waveFade")
+          }
           style={{
             clipPath: "polygon(0 0, 100% 0, 90% 100%, 10% 100%)",
           }}
@@ -26,8 +31,10 @@ export const LineTwo = component$(() => {
 
       <div
         class={
-          "bg-yellow-200 p-1 " +
-          (loc.prevUrl?.pathname.includes("blog") && "bg-blue-400 underline")
+          "p-1 " +
+          (loc.prevUrl?.pathname.includes("blog")
+            ? "bg-blue-400"
+            : "bg-yellow-200")
         }
         style={{
           clipPath: "polygon(0 0, 100% 0, 90% 100%, 10% 100%)",
@@ -35,7 +42,10 @@ export const LineTwo = component$(() => {
       >
         <a
           href="/blog"
-          class=" background-color px-6 py-1 font-extralight text-white"
+          class={
+            " background-color px-6 py-1 font-extralight text-white " +
+            (loc.prevUrl?.pathname.includes("blog") && "waveFade")
+          }
           style={{
             clipPath: "polygon(0 0, 100% 0, 90% 100%, 10% 100%)",
           }}
