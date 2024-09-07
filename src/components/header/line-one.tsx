@@ -8,7 +8,11 @@ export const LineOne = component$(() => {
       </a>
       <div class="flex gap-2">
         <div>
-          <a href="mailto:olesnoen@gmail.com">
+          <a
+            href="mailto:olesnoen@gmail.com"
+            target="_blank"
+            about="send a mail"
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="24"
@@ -27,7 +31,11 @@ export const LineOne = component$(() => {
           </a>
         </div>
         <div>
-          <a href="https://www.linkedin.com/in/ole-martin-snoen-86625a21a/">
+          <a
+            href="https://www.linkedin.com/in/ole-martin-snoen-86625a21a/"
+            target="_blank"
+            about="go to linked in profile"
+          >
             {" "}
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -48,7 +56,11 @@ export const LineOne = component$(() => {
           </a>
         </div>
         <div>
-          <a href="https://github.com/olemart1n">
+          <a
+            href="https://github.com/olemart1n"
+            target="_blank"
+            about="github profile"
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="24"

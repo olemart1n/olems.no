@@ -38,14 +38,13 @@ main {
 
 @keyframes waveFade {
   0% {
-    opacity: 1;
+    color: white;
   }
   50% {
-    opacity: 0.5;
-    text-shadow: -1px 1px 10px yellow;
+    color: rgb(198, 193, 193);
   }
   100% {
-    opacity: 1;
+    color: white;
   }
 }
 

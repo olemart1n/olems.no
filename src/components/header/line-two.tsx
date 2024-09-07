@@ -8,7 +8,7 @@ export const LineTwo = component$(() => {
         class={
           "p-1 " +
           (loc.prevUrl?.pathname.includes("chat")
-            ? " bg-blue-400"
+            ? " bg-blue-200"
             : "bg-yellow-200")
         }
         style={{
@@ -33,7 +33,7 @@ export const LineTwo = component$(() => {
         class={
           "p-1 " +
           (loc.prevUrl?.pathname.includes("blog")
-            ? "bg-blue-400"
+            ? "bg-blue-200"
             : "bg-yellow-200")
         }
         style={{
