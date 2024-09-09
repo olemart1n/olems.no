@@ -4,7 +4,7 @@ export const LineOne = component$(() => {
   return (
     <nav class=" flex justify-between bg-amber-200 p-2">
       <a href="/" class="text-xl">
-        <h1>Ole Martin Snoen | nett-utvikler</h1>
+        <h1>Ole Martin | nett-utvikler</h1>
       </a>
       <div class="flex gap-2">
         <div>

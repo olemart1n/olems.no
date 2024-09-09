@@ -1,5 +1,4 @@
 import { component$, useSignal, useStore, useTask$, $ } from "@builder.io/qwik";
-import { type DocumentHead } from "@builder.io/qwik-city";
 import { fullBody, lowerBody, upperBody } from "./exercies";
 import { ExDiv } from "~/components";
 
@@ -71,13 +70,3 @@ export default component$(() => {
     </main>
   );
 });
-
-export const head: DocumentHead = {
-  title: "Ole M | Trening",
-  meta: [
-    {
-      name: "description",
-      content: "Helps me keep track of progress",
-    },
-  ],
-};

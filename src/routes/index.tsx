@@ -26,11 +26,11 @@ export default component$(() => {
 });
 
 export const head: DocumentHead = {
-  title: "Ole M",
+  title: "Ole Martin",
   meta: [
     {
       name: "description",
-      content: "Hjemmeside, homesite, blog, chat",
+      content: "Hjemmeside, homesite",
     },
   ],
 };
