@@ -6,5 +6,5 @@ export const mesh = {
   wheel,
   landscape,
   gridHelper,
-  pyramid
+  pyramid, 
 };

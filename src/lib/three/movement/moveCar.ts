@@ -1,23 +1,27 @@
 import type { CarData } from "../state";
 import { mesh } from "../mesh";
+import { carRaycaster } from "./carRaycaster";
+import { wheelRaycaster } from "./wheelRaycaster";
 const frontLeftWheel = mesh.wheel.frontLeft;
 const frontRightWheel = mesh.wheel.frontRight;
-// const rearLeftWheel = mesh.wheel.rearLeft;
+const rearLeftWheel = mesh.wheel.rearLeft;
+const rearRightWheel = mesh.wheel.rearRight;
 // const rearLeftWheel = mesh.car.getObjectByName("rearLeftWheel")!;
 // const rearRightWheel = mesh.car.getObjectByName("rearRightWheel")!;
 
 let wheelRotation = 0;
 export function moveCar(carData: CarData) {
-  // rearLeftWheel.children[0].rotateY(0.01);
-  // IF FOWARD IS TRUE, ADD ACCELERATION VALUE TO SPEED
+  // FORWARD
   if (carData.direction.forward) {
     carData.speed += carData.acceleration;
+    spinWheels(carData.speed)
   }
-  // IF REVERSE IS TRUE SUBTRACT ACCELERATION VALUE FROM SPEED
+  // REVERSE
   if (carData.direction.reverse) {
     carData.speed -= carData.acceleration;
+    spinWheels(carData.speed, false)
   }
-  // IF SPEED IS GREATER THAN MAX SPEED, SET SPEED = MAXSPEED
+  // SPEED IS GREATER THAN MAX SPEED, SET SPEED = MAXSPEED
   if (carData.speed > carData.maxSpeed) {
     carData.speed = carData.maxSpeed;
   }
@@ -51,14 +55,17 @@ export function moveCar(carData: CarData) {
   }
 
   if (carData.direction.left && wheelRotation < 1) {
+    
     wheelRotation += 0.01;
-    frontLeftWheel.rotateX(0.01);
-    frontRightWheel.rotateX(0.01);
+    frontLeftWheel.rotateX(0.02);
+    
+    frontRightWheel.rotateX(0.02);
   }
   if (carData.direction.right && wheelRotation > -1) {
     wheelRotation -= 0.01;
-    frontLeftWheel.rotateX(-0.01);
-    frontRightWheel.rotateX(-0.01);
+    frontLeftWheel.rotateX(-0.02);
+    frontRightWheel.rotateX(-0.02);    
+    
   }
 
   if (
@@ -70,8 +77,21 @@ export function moveCar(carData: CarData) {
     frontRightWheel.rotation.set(0, 0, Math.PI / 2);
     wheelRotation = 0;
   }
-
+  
   mesh.car.position.x -= Math.sin(carData.angle) * carData.speed;
   mesh.car.position.z -= Math.cos(carData.angle) * carData.speed;
-  mesh.car.position.y = 0.5;
+  carRaycaster(mesh.car, mesh.landscape)
+  // wheelRaycaster(frontRightWheel, mesh.landscape)  
+  
+  // wheelRaycaster(frontLeftWheel, mesh.landscape)
+  // wheelRaycaster(rearRightWheel, mesh.landscape)
+  // wheelRaycaster(rearLeftWheel, mesh.landscape)
+}
+
+
+const spinWheels = (speed: number, forward: boolean = true ) => {
+  frontRightWheel.children[0].rotateY(forward ? speed : - .1)
+  frontLeftWheel.children[0].rotateY(forward ? speed : - .1)
+  rearRightWheel.children[0].rotateY(forward ? speed : - .1)
+  rearLeftWheel.children[0].rotateY(forward ? speed : - .1)
 }

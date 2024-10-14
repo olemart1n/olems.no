@@ -18,7 +18,7 @@ export const LineTwo = component$(() => {
         <a
           href="/chat"
           class={
-            " background-color px-6 py-1 text-white " +
+            " background-color block w-32 py-1 text-center text-white " +
             (loc.prevUrl?.pathname.includes("chat") && "waveFade")
           }
           style={{
@@ -32,7 +32,7 @@ export const LineTwo = component$(() => {
       <div
         class={
           "p-1 " +
-          (loc.prevUrl?.pathname.includes("blog")
+          (loc.prevUrl?.pathname.includes("animation")
             ? "bg-blue-200"
             : "bg-yellow-200")
         }
@@ -41,16 +41,16 @@ export const LineTwo = component$(() => {
         }}
       >
         <a
-          href="/blog"
+          href="/animation"
           class={
-            " background-color px-6 py-1 font-extralight text-white " +
-            (loc.prevUrl?.pathname.includes("blog") && "waveFade")
+            " background-color block w-32 py-1 text-center font-extralight text-white " +
+            (loc.prevUrl?.pathname.includes("animation") && "waveFade")
           }
           style={{
             clipPath: "polygon(0 0, 100% 0, 90% 100%, 10% 100%)",
           }}
         >
-          Blog
+          Animation
         </a>
       </div>
     </nav>
