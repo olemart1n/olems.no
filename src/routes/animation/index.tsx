@@ -25,7 +25,7 @@ export default component$(() => {
       <figure class="absolute bottom-6 z-10 mt-auto flex w-full flex-col gap-1 text-center sm:hidden">
         <div class="row-span-1">
           <button
-            class="h-10 w-10 rounded-full bg-gray-500 text-blue-300"
+            class="game-direction-button h-10 w-10 rounded-full bg-gray-500 text-blue-300"
             value={"forward"}
             onTouchStart$={() => (carData.direction.forward = true)}
             onTouchEnd$={() => (carData.direction.forward = false)}
@@ -35,7 +35,7 @@ export default component$(() => {
         </div>
         <div class="flex place-content-center gap-1">
           <button
-            class="h-10 w-10 rounded-full bg-gray-500 text-blue-300"
+            class="game-direction-button h-10 w-10 rounded-full bg-gray-500 text-blue-300"
             value={"forward"}
             onTouchStart$={() => (carData.direction.left = true)}
             onTouchEnd$={() => (carData.direction.left = false)}
@@ -43,7 +43,7 @@ export default component$(() => {
             &#x2190;
           </button>
           <button
-            class="h-10 w-10 rounded-full bg-gray-500 text-blue-300"
+            class="game-direction-button h-10 w-10 rounded-full bg-gray-500 text-blue-300"
             value={"forward"}
             onTouchStart$={() => (carData.direction.reverse = true)}
             onTouchEnd$={() => (carData.direction.reverse = false)}
@@ -51,7 +51,7 @@ export default component$(() => {
             &#x2193;
           </button>
           <button
-            class="h-10 w-10 rounded-full bg-gray-500 text-blue-300"
+            class="game-direction-button h-10 w-10 rounded-full bg-gray-500 text-blue-300"
             value={"forward"}
             onTouchStart$={() => (carData.direction.right = true)}
             onTouchEnd$={() => (carData.direction.right = false)}

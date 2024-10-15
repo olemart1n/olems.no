@@ -51,3 +51,9 @@ main {
 .waveFade {
   animation: waveFade 9s ease-in-out infinite;
 }
+
+.game-direction-button {
+  -webkit-user-select: none; /* Disable text selection on mobile (iOS/Android) */
+  -webkit-touch-callout: none; /* Disable long press context menu on iOS */
+  user-select: none; /* Disable text selection for all browsers */
+}
