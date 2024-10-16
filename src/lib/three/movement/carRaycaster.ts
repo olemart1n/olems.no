@@ -16,8 +16,7 @@ export const carRaycaster = (car: THREE.Mesh, landscape: THREE.Mesh) => {
     terrainNormal && car.up.copy(terrainNormal)
     car.position.y = intersects[0].point.y + .4
 
-    
-    if (terrainNormal) {
-        car.up.lerp(terrainNormal, .9);
-    }
+    // if (terrainNormal) {
+    //     car.up.lerp(terrainNormal, .9);
+    // }
 }

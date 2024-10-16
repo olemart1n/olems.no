@@ -1,16 +1,14 @@
-import type { CarData } from "../state";
+import { carData} from "../state";
 import { mesh } from "../mesh";
-import { carRaycaster } from "./carRaycaster";
 import { wheelRaycaster } from "./wheelRaycaster";
-const frontLeftWheel = mesh.wheel.frontLeft;
-const frontRightWheel = mesh.wheel.frontRight;
-const rearLeftWheel = mesh.wheel.rearLeft;
-const rearRightWheel = mesh.wheel.rearRight;
-// const rearLeftWheel = mesh.car.getObjectByName("rearLeftWheel")!;
-// const rearRightWheel = mesh.car.getObjectByName("rearRightWheel")!;
+import { carRaycaster } from "./carRaycaster";
+import { adjustPoles } from "./adjustPoles";
+const wheels = mesh.wheels
 
 let wheelRotation = 0;
-export function moveCar(carData: CarData) {
+
+export function moveCar() {
+
   // FORWARD
   if (carData.direction.forward) {
     carData.speed += carData.acceleration;
@@ -57,15 +55,14 @@ export function moveCar(carData: CarData) {
   if (carData.direction.left && wheelRotation < 1) {
     
     wheelRotation += 0.01;
-    frontLeftWheel.rotateX(0.02);
+    wheels.frontLeft.rotateX(0.02);
     
-    frontRightWheel.rotateX(0.02);
+    wheels.frontRight.rotateX(0.02);
   }
   if (carData.direction.right && wheelRotation > -1) {
     wheelRotation -= 0.01;
-    frontLeftWheel.rotateX(-0.02);
-    frontRightWheel.rotateX(-0.02);    
-    
+    wheels.frontLeft.rotateX(-0.02);
+    wheels.frontRight.rotateX(-0.02);    
   }
 
   if (
@@ -73,25 +70,27 @@ export function moveCar(carData: CarData) {
     !carData.direction.left &&
     wheelRotation !== 0
   ) {
-    frontLeftWheel.rotation.set(0, 0, Math.PI / 2);
-    frontRightWheel.rotation.set(0, 0, Math.PI / 2);
+    wheels.frontLeft.rotation.set(0, 0, Math.PI / 2);
+    wheels.frontRight.rotation.set(0, 0, Math.PI / 2);
     wheelRotation = 0;
   }
   
   mesh.car.position.x -= Math.sin(carData.angle) * carData.speed;
   mesh.car.position.z -= Math.cos(carData.angle) * carData.speed;
-  carRaycaster(mesh.car, mesh.landscape)
-  // wheelRaycaster(frontRightWheel, mesh.landscape)  
+
   
-  // wheelRaycaster(frontLeftWheel, mesh.landscape)
-  // wheelRaycaster(rearRightWheel, mesh.landscape)
-  // wheelRaycaster(rearLeftWheel, mesh.landscape)
+  carRaycaster(mesh.car, mesh.landscape)
+  wheelRaycaster(wheels.frontRight)  
+  wheelRaycaster(wheels.frontLeft)
+  wheelRaycaster(wheels.rearRight)
+  wheelRaycaster(wheels.rearLeft)
+  adjustPoles()
 }
 
 
 const spinWheels = (speed: number, forward: boolean = true ) => {
-  frontRightWheel.children[0].rotateY(forward ? speed : - .1)
-  frontLeftWheel.children[0].rotateY(forward ? speed : - .1)
-  rearRightWheel.children[0].rotateY(forward ? speed : - .1)
-  rearLeftWheel.children[0].rotateY(forward ? speed : - .1)
+  wheels.frontRight.children[0].rotateY(forward ? speed : - .1)
+  wheels.frontLeft.children[0].rotateY(forward ? speed : - .1)
+  wheels.rearRight.children[0].rotateY(forward ? speed : - .1)
+  wheels.rearLeft.children[0].rotateY(forward ? speed : - .1)
 }

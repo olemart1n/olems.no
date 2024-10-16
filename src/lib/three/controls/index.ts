@@ -1,20 +1,20 @@
-import { type Direction } from "../state";
 
-export function controls(direction: Direction) {
+import { carData } from "../state";
+export function controls() {
   document.onkeydown = (e) => {
     switch (e.key) {
       case "ArrowLeft":
-        direction.left = true;
+        carData.direction.left = true;
         break;
       case "ArrowRight":
-        direction.right = true;
+        carData.direction.right = true;
         break;
       case "ArrowUp":
-        direction.forward = true;
+        carData.direction.forward = true;
 
         break;
       case "ArrowDown":
-        direction.reverse = true;
+        carData.direction.reverse = true;
         break;
     }
   };
@@ -22,16 +22,16 @@ export function controls(direction: Direction) {
   document.onkeyup = (e) => {
     switch (e.key) {
       case "ArrowLeft":
-        direction.left = false;
+        carData.direction.left = false;
         break;
       case "ArrowRight":
-        direction.right = false;
+        carData.direction.right = false;
         break;
       case "ArrowUp":
-        direction.forward = false;
+        carData.direction.forward = false;
         break;
       case "ArrowDown":
-        direction.reverse = false;
+        carData.direction.reverse = false;
         break;
     }
   };
