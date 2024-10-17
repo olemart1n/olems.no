@@ -17,5 +17,5 @@ export const wheelRaycaster = (wheel: THREE.Mesh) => {
     const intersects = raycaster.intersectObject(mesh.landscape, true)  
     if(!intersects[0]) return
 
-    wheel.position.y = intersects[0].point.y
+    wheel.position.y = intersects[0].point.y + .3
 }

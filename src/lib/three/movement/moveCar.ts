@@ -1,8 +1,9 @@
 import { carData} from "../state";
 import { mesh } from "../mesh";
 import { wheelRaycaster } from "./wheelRaycaster";
-import { carRaycaster } from "./carRaycaster";
+import { adjustBody } from "./adjustBody";
 import { adjustPoles } from "./adjustPoles";
+import { carRaycaster } from "./carRaycaster";
 const wheels = mesh.wheels
 
 let wheelRotation = 0;
@@ -79,7 +80,7 @@ export function moveCar() {
   mesh.car.position.z -= Math.cos(carData.angle) * carData.speed;
 
   
-  carRaycaster(mesh.car, mesh.landscape)
+  adjustBody()
   wheelRaycaster(wheels.frontRight)  
   wheelRaycaster(wheels.frontLeft)
   wheelRaycaster(wheels.rearRight)

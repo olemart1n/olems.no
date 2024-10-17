@@ -4,9 +4,10 @@ import { type Signal } from "@builder.io/qwik";
 import { carData } from "./state";
 import { scene } from "./scene";
 import { animateFunction } from "./animateFunction";
-
+import { controls } from "./controls";
 
 const three = (mainEl: Signal<HTMLElement | undefined>) => {
+  controls()
   // CAMERA
   const camera = new THREE.PerspectiveCamera(
     75, 

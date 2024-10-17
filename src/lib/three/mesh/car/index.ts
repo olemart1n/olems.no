@@ -1,20 +1,23 @@
 import * as THREE from "three";
 import { wheels } from "./wheel";
 import { pole1, pole2 } from "./pole";
+import { body } from "./body";
 // CAR
-const boxGeometry = new THREE.BoxGeometry(2, 0.5, 4);
-const material = new THREE.MeshBasicMaterial({ color: 0xCCCCC9 });
+const focalPointGeometry = new THREE.CylinderGeometry(0.05, 0.05, 2.6 , 2);
+const material = new THREE.MeshBasicMaterial();
 
-const car = new THREE.Mesh(boxGeometry, material);
+const focalPoint = new THREE.Mesh(focalPointGeometry, material);
 
 
 // Add wheels to the scene or to the car object
 for (const property in wheels) {
     // @ts-ignore
-  car.add(wheels[property]);
+    focalPoint.add(wheels[property]);
 }
 
-car.add(pole1);
-car.add(pole2);
+focalPoint.add(pole1);
+focalPoint.add(pole2);
 
-export { car, wheels};
+focalPoint.add(body)
+
+export { focalPoint as car, wheels, body};
