@@ -1,26 +1,12 @@
-import * as THREE from 'three'
-import { TextGeometry } from 'three/addons/geometries/TextGeometry.js';
-import { FontData, FontLoader } from 'three/examples/jsm/loaders/FontLoader.js';
-import brighter from "./fonts/Brighter_Regular.json"
-const loader = new FontLoader();
+import createTextMesh from './createTextMesh';
 
-export function generateText (landscape: THREE.Mesh, fontData: any) {
-    const f = loader.parse(fontData)
-    
-        const geometry = new TextGeometry("three.js", {
-            font: f,
-            size: 7,
-            depth: 1,
-            curveSegments: 20,
-            bevelSize: 1,
-            bevelOffset: 0,
-        });
-    
-        const material = new THREE.MeshBasicMaterial({ color: 0x3f3f3f });
-        const textMesh = new THREE.Mesh(geometry, material);
-        textMesh.castShadow = true
-        // textMesh.rotateZ(-Math.PI/2)
-        textMesh.rotateX(Math.PI/2 - .3)
-        textMesh.position.set(-50,50,3)
-        landscape.add(textMesh);
+const threeJs = createTextMesh("three.js", 50, 20, 40)
+const javaScript = createTextMesh("JavaScript", 60, 40, 40)
+const typeScript = createTextMesh("TypeScript", 70, 50, 50)
+const css = createTextMesh("CSS", 70, 20, -50)
+const postgreSql = createTextMesh("postgreSQL", 10, 10, -100)
+const goLang = createTextMesh("goLang", 10, 30, 40)
+
+export const textMesh = {
+threeJs, javaScript, typeScript, css, postgreSql, goLang
 }

@@ -1,19 +1,19 @@
 
-import { carData } from "../state";
+import { carData, cameraData } from "../state";
 export function controls() {
   document.onkeydown = (e) => {
     switch (e.key) {
-      case "ArrowLeft":
+      case "a":
         carData.direction.left = true;
         break;
-      case "ArrowRight":
+      case "d":
         carData.direction.right = true;
         break;
-      case "ArrowUp":
+      case "w":
         carData.direction.forward = true;
 
         break;
-      case "ArrowDown":
+      case "s":
         carData.direction.reverse = true;
         break;
     }
@@ -21,18 +21,19 @@ export function controls() {
 
   document.onkeyup = (e) => {
     switch (e.key) {
-      case "ArrowLeft":
+      case "a":
         carData.direction.left = false;
         break;
-      case "ArrowRight":
+      case "d":
         carData.direction.right = false;
         break;
-      case "ArrowUp":
+      case "w":
         carData.direction.forward = false;
         break;
-      case "ArrowDown":
+      case "s":
         carData.direction.reverse = false;
         break;
     }
   };
+
 }

@@ -8,4 +8,13 @@ scene.add(mesh.landscape)
 scene.add(mesh.car)
 scene.add(light())
 scene.add(mesh.stars)
-// scene.fog = new THREE.Fog( 0x000, 1, 200)
+
+
+// Add wheels to the scene or to the car object
+for (const property in mesh.textMesh) {
+    // @ts-ignore
+    scene.add(mesh.textMesh[property])
+    
+}
+
+scene.fog = new THREE.Fog( 0x000, 1, 200)
