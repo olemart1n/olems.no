@@ -3,7 +3,7 @@ import { mesh } from "../mesh";
 import { wheelRaycaster } from "./wheelRaycaster";
 import { adjustBody } from "./adjustBody";
 import { adjustPoles } from "./adjustPoles";
-import { carRaycaster } from "./carRaycaster";
+import * as THREE from 'three'
 const wheels = mesh.wheels
 
 let wheelRotation = 0;
@@ -50,6 +50,8 @@ export function moveCar() {
     if (carData.direction.right) {
       carData.angle -= 0.03 * flip;
       mesh.car.rotateY(-0.03 * flip);
+      console.log(mesh.car.children[6])
+      console.log(mesh.car.children[6].getWorldPosition(new THREE.Vector3()))
     }
   }
 
@@ -64,6 +66,7 @@ export function moveCar() {
     wheelRotation -= 0.01;
     wheels.frontLeft.rotateX(-0.02);
     wheels.frontRight.rotateX(-0.02);    
+    
   }
 
   if (

@@ -5,13 +5,13 @@ import { carData } from "./state";
 import { scene } from "./scene";
 import { animateFunction } from "./animateFunction";
 import { controls } from "./controls";
-import { addMousemoveEvent } from "./utils";
+import { gameMouseEvent } from "./utils";
 
 const three = (mainEl: Signal<HTMLElement | undefined>) => {
 
 
   controls() // ADD EVENT LISTENERS FOR ARROW KEYS
-  addMousemoveEvent(mainEl) // ADD EVENT LISTENERS MOUSE (TO ADJUST CAMERA)
+  mainEl.value?.addEventListener("mousemove", gameMouseEvent)
   // CAMERA
   const camera = new THREE.PerspectiveCamera(
     75, 

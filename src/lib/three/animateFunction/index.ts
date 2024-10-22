@@ -15,7 +15,7 @@ export const animateFunction = (camera: THREE.PerspectiveCamera) => {
     const y = cameraData.radius * Math.cos(cameraData.phi);
     const z = cameraData.radius * Math.sin(cameraData.phi) * Math.sin(cameraData.theta);
     const carPosOffset = new THREE.Vector3(-x, y, z);
-    // const carPosOffset = new THREE.Vector3(0, 3.5, 9);
+    // -----NOT IN USE----- const carPosOffset = new THREE.Vector3(0, 3.5, 9);
 
     const cameraOffset = carPosOffset.applyMatrix4(mesh.car.matrixWorld);
     camera.position.copy(cameraOffset);

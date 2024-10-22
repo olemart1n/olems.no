@@ -7,6 +7,8 @@ const poleGeometry = new THREE.CylinderGeometry(0.05, 0.05, 2.6 , 10);
 const poleMaterial = new THREE.MeshStandardMaterial({ color: 0xbababa });
 export const pole1 = new THREE.Mesh(poleGeometry, poleMaterial);
 export const pole2 = pole1.clone();
+pole1.name = "pole1"
+pole2.name = "pole2"
 
 const frontMidPoint = {
     x: (wheels.frontLeft.position.x + wheels.frontRight.position.x) / 2,

@@ -9,13 +9,12 @@ export const wheelRaycaster = (wheel: THREE.Mesh) => {
 
     const rayOrigin = new THREE.Vector3(
         worldPosition.x,
-        worldPosition.y +3,
+        5,
         worldPosition.z
     );
     raycaster.set(rayOrigin, downDirection)
 
-    const intersects = raycaster.intersectObject(mesh.landscape, true)  
+    const intersects = raycaster.intersectObject(mesh.moonSurface)  
     if(!intersects[0]) return
-
     wheel.position.y = intersects[0].point.y + .3
 }

@@ -2,7 +2,7 @@
 import * as THREE from 'three'
 import { wheels } from "../mesh/car";
 import { pole1, pole2 } from "../mesh/car/pole";
-import { body } from '../mesh/car';
+import { body, car} from '../mesh/car';
 
 
 export const adjustBody = () => {
@@ -21,15 +21,18 @@ export const adjustBody = () => {
 
 
     // Step 2: Calculate direction vector and align the mesh
-        const direction = new THREE.Vector3(
-            frontMidPoint.x - rearMidPoint.x,
-            frontMidPoint.y - rearMidPoint.y,
-            frontMidPoint.z - rearMidPoint.z
-        ).normalize();
+    const direction = new THREE.Vector3(
+        frontMidPoint.x - rearMidPoint.x,
+        frontMidPoint.y - rearMidPoint.y,
+        frontMidPoint.z - rearMidPoint.z
+    ).normalize();
 
-        // Set the mesh orientation to align with the direction vector
-        const up = new THREE.Vector3(0, 0, -1); // Assuming 'up' vector is (0, 1, 0) for the mesh
-        const quaternion = new THREE.Quaternion().setFromUnitVectors(up, direction);
-        body.setRotationFromQuaternion(quaternion);
-        body.position.y = .4
+    // Set the mesh orientation to align with the direction vector
+    const up = new THREE.Vector3(0, 0, -1); // Assuming 'up' vector is (0, 1, 0) for the mesh
+    const quaternion = new THREE.Quaternion().setFromUnitVectors(up, direction);
+    body.setRotationFromQuaternion(quaternion);
+    body.position.y = (frontMidPoint.y + rearMidPoint.y) / 2
+
+    
+        
 }
