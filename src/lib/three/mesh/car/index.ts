@@ -1,7 +1,6 @@
 import * as THREE from "three";
 import { wheels } from "./wheel";
 import { pole1, pole2 } from "./pole";
-import { gun } from "./gun";
 import { body } from "./body";
 const car = new THREE.Group()
 
@@ -15,6 +14,5 @@ for (const property in wheels) {
 car.add(pole1);
 car.add(pole2);
 car.add(body)
-// focalPoint.add(gun)
 
 export { car,  wheels, body};

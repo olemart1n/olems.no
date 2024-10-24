@@ -28,6 +28,7 @@ export const Menu = component$<MenuProps>(({ isMenu }) => {
             <li class="line-through">mousemove | camera</li>
             <li>assets?</li>
             <li>gun + scope</li>
+            <li>skudd</li>
           </ul>
         </div>
       </div>

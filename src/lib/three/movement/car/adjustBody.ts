@@ -1,8 +1,8 @@
 
 import * as THREE from 'three'
-import { wheels } from "../mesh/car";
-import { pole1, pole2 } from "../mesh/car/pole";
-import { body, car} from '../mesh/car';
+import { wheels } from "../../mesh/car";
+import { pole1, pole2 } from "../../mesh/car/pole";
+import { body, car} from '../../mesh/car';
 
 
 export const adjustBody = () => {

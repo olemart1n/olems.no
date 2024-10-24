@@ -1,3 +1,5 @@
+import { Mesh } from "three";
+import * as THREE from 'three'
 export type CarData = {
   speed: number;
   acceleration: number;
@@ -33,3 +35,9 @@ export const cameraData = {
   theta: Math.PI / 2,   // Horizontal rotation angle
   phi: Math.PI / 3 // Vertical rotation angle (starting point)
 }
+
+interface FiredBulletsData {
+  bullet: Mesh;
+  direction: THREE.Vector3
+}
+export const firedBullets: FiredBulletsData[] = []

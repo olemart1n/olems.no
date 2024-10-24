@@ -1,5 +1,5 @@
 import * as THREE from 'three'
-import {mesh} from '../mesh'
+import {mesh} from '../../mesh'
 
 
 export const wheelRaycaster = (wheel: THREE.Mesh) => {

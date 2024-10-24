@@ -1,5 +1,5 @@
-import { carData} from "../state";
-import { mesh } from "../mesh";
+import { carData} from "../../state";
+import { mesh } from "../../mesh";
 import { wheelRaycaster } from "./wheelRaycaster";
 import { adjustBody } from "./adjustBody";
 import { adjustPoles } from "./adjustPoles";
@@ -50,8 +50,8 @@ export function moveCar() {
     if (carData.direction.right) {
       carData.angle -= 0.03 * flip;
       mesh.car.rotateY(-0.03 * flip);
-      console.log(mesh.car.children[6])
-      console.log(mesh.car.children[6].getWorldPosition(new THREE.Vector3()))
+      // console.log(mesh.car.children[6])
+      // console.log(mesh.car.children[6].getWorldPosition(new THREE.Vector3()))
     }
   }
 

@@ -1,7 +1,7 @@
 
 import * as THREE from 'three'
-import { wheels } from "../mesh/car";
-import { pole1, pole2 } from "../mesh/car/pole";
+import { wheels } from "../../mesh/car";
+import { pole1, pole2 } from "../../mesh/car/pole";
 
 
 

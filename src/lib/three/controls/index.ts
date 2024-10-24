@@ -1,6 +1,7 @@
 
 import { carData, cameraData } from "../state";
 export function controls() {
+
   document.onkeydown = (e) => {
     switch (e.key) {
       case "a":
@@ -35,5 +36,5 @@ export function controls() {
         break;
     }
   };
-
+  document.oncontextmenu = (e) => e.preventDefault()
 }

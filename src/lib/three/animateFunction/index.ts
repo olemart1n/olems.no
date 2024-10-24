@@ -1,12 +1,13 @@
 import * as THREE from 'three'
-import { moveCar } from '../movement/moveCar';
+import { moveCar } from '../movement/car';
+import { moveBullets } from '../movement/bullets';
 import {mesh} from '../mesh'
 import { cameraData } from '../state';
 
 
 export const animateFunction = (camera: THREE.PerspectiveCamera) => {
     moveCar();
-    
+    moveBullets()
 
 
 
