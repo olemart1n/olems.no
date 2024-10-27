@@ -39,5 +39,6 @@ export const cameraData = {
 interface FiredBulletsData {
   bullet: Mesh;
   direction: THREE.Vector3
+  raycaster: THREE.Raycaster
 }
 export const firedBullets: FiredBulletsData[] = []

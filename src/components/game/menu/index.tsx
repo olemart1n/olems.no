@@ -1,9 +1,11 @@
 import { component$, type Signal } from "@builder.io/qwik";
+
 export interface MenuProps {
   isMenu: Signal<boolean>;
+  mainEl: Signal<HTMLElement | undefined>;
 }
 
-export const Menu = component$<MenuProps>(({ isMenu }) => {
+export const Menu = component$<MenuProps>(({ isMenu, mainEl }) => {
   return (
     <div class="absolute -left-1/4 h-full w-1/2 text-white">
       <div
@@ -31,6 +33,15 @@ export const Menu = component$<MenuProps>(({ isMenu }) => {
             <li>skudd</li>
           </ul>
         </div>
+        <button
+          class="m-auto block bg-yellow-400 p-2 font-semibold text-black"
+          onClick$={() => {
+            mainEl.value?.requestPointerLock();
+            isMenu.value = false;
+          }}
+        >
+          Close Menu
+        </button>
       </div>
     </div>
   );

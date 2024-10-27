@@ -1,7 +1,5 @@
 import { cameraData } from "../state";
 import * as THREE from 'three'
-import { shootBullet } from "../shootEvent";
-import { scene } from "../scene";
 export const gameMouseEvent = (e: MouseEvent) => {
         // Map mouse movement to theta (horizontal) and phi (vertical) angles
         cameraData.theta -= e.movementX * 0.002;  // Adjust sensitivity as needed
@@ -11,8 +9,18 @@ export const gameMouseEvent = (e: MouseEvent) => {
         cameraData.phi = Math.max(0.1, Math.min(Math.PI - 0.1, cameraData.phi));
 }
 
-export const gamePointerEvent  = (e: PointerEvent) => {
-        e.preventDefault()
-        shootBullet(scene)
-}
 
+const getMeshPosition = (mesh: THREE.Mesh) => {
+        const position = new THREE.Vector3();  // Vector to store the direction
+        mesh.getWorldPosition(position);
+        return position;
+    };
+
+
+
+// const arrowHelper = new THREE.ArrowHelper(
+//     direction, // The direction the arrow should point
+//     gunAxle.position, // The starting position of the arrow (same as gun position)
+//     10, // Length of the arrow
+//     0xffff00 // Color of the arrow
+// );

@@ -3,12 +3,12 @@ import { moveCar } from '../movement/car';
 import { moveBullets } from '../movement/bullets';
 import {mesh} from '../mesh'
 import { cameraData } from '../state';
+import { setGunAxleAim } from '../movement/gunAxle';
 
-
-export const animateFunction = (camera: THREE.PerspectiveCamera) => {
+export const animateFunction = (camera: THREE.PerspectiveCamera, gunAxleRayCaster: THREE.Raycaster) => {
     moveCar();
     moveBullets()
-
+    setGunAxleAim(camera,gunAxleRayCaster)
 
 
       // Calculate the camera's new position in spherical coordinates
