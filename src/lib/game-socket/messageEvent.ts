@@ -6,11 +6,10 @@ export const messageEvent = (e: MessageEvent, game: GameContextStore) => {
         const data = JSON.parse(e.data);
 
         if(data.name === "carData") {
-            // const player = activePlayers.find((player) => player.username === data.payload.username)
-            // player?.car.position.copy(data.payload.carPositionVector)
-            // player?.car.lookAt(player?.car.position.clone().add(data.payload.carDirectionVector));   
+            const player = activePlayers.find((player) => player.username === data.payload.username)
+            player?.car.position.copy(data.payload.carPositionVector)
+            player?.car.lookAt(player?.car.position.clone().add(data.payload.carDirectionVector));   
 
-            // // FIGURE OUT HOW TO SET THE DIRECTION FOR THE GUN AXLE
             // const gunAxle = player?.car.getObjectByName("gun-axle")
             // gunAxle!.lookAt(gunAxle!.position.clone().add(data.payload))
             
@@ -31,7 +30,7 @@ export const messageEvent = (e: MessageEvent, game: GameContextStore) => {
                 //  
                 setTimeout(() => {
                     game.isNotification.value = false
-                }, 1000)
+                }, 2000)
 
         } else if (data.name === "leavingPlayer") {
             
@@ -40,6 +39,14 @@ export const messageEvent = (e: MessageEvent, game: GameContextStore) => {
             
             player?.car && scene.remove(player.car)
             activePlayers.splice(index, 1)
+
+            game.notificationMesssage = data.payload.value + " forlot spillet"
+            game.isNotification.value = true
+                setTimeout(() => {
+                    game.isNotification.value = false
+                }, 2000)
+
+
         } else if (data.name === "connectedPlayersLength") {
             game.connectedPlayersLength = data.payload.value
         }    

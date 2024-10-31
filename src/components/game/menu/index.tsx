@@ -15,7 +15,7 @@ export const Menu = component$(() => {
         }
       >
         {/* - - - - - - - - - - - - - - - -  */}
-        <button class="fixed left-full top-1 ml-1 h-7 w-7 rounded-sm bg-gray-300 bg-opacity-20 text-xs font-bold text-slate-100 ">
+        <button class="fixed left-full top-1 ml-1 h-7 w-7 rounded-sm bg-yellow-400 bg-opacity-80 text-xs font-bold text-slate-800 ">
           esc
         </button>
 
@@ -26,6 +26,17 @@ export const Menu = component$(() => {
         <Controllers />
 
         <UsernameForm />
+        <button
+          class={
+            "mx-auto mt-auto block rounded px-2 py-1 font-semibold text-black " +
+            (!gameStore.isConnectedToSocket
+              ? "scale-100 cursor-not-allowed bg-gray-400"
+              : "scale-110 cursor-pointer bg-yellow-400 outline outline-1")
+          }
+          onClick$={() => document.querySelector("main")?.requestPointerLock()}
+        >
+          Lukk meny
+        </button>
         <div class="mt-auto bg-slate-100 p-2 text-slate-700">
           <ConnectionDetails />
         </div>

@@ -3,7 +3,7 @@ import gameContext from "~/game-context";
 export const NotificationMessage = component$(() => {
   const c = useContext(gameContext);
   return (
-    <div class="absolute -top-1/4 left-1/2 h-1/2 w-1/2">
+    <div class="absolute -top-52 left-1/2 h-2/5 w-1/2 -translate-x-1/2">
       <div
         class={
           " flex h-1/2 w-full transform duration-300 ease-in-out " +
