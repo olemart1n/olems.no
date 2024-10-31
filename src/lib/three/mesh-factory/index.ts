@@ -1,15 +1,6 @@
-import * as THREE from 'three'
+import { bullet } from './bullet'
+import { car } from './car'
 
-
-const bullet = () => {
-    const bulletGeometry = new THREE.CapsuleGeometry(0.1,1, 32, 32);
-    const bulletMaterial = new THREE.MeshBasicMaterial({ color: 0xfffff0 });
-    const bullet = new THREE.Mesh(bulletGeometry, bulletMaterial);
-    
-    return bullet;
-};
-
-
-const meshFactory = {bullet}
+const meshFactory = {bullet, car}
 
 export default meshFactory

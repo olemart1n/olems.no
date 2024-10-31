@@ -1,5 +1,4 @@
 import * as THREE from 'three'
-import { gun } from '../mesh/car/gun';
 import { gunAxle } from '../mesh/car';
 import { firedBullets } from '../state';
 import { scene } from '../scene';
@@ -26,7 +25,6 @@ export const shootEvent = ( e: PointerEvent) => {
     bullet.applyQuaternion(rotation);
 
 
-    const raycaster = new THREE.Raycaster(position, direction.clone().normalize());
-    firedBullets.push({bullet, direction, raycaster})
+    firedBullets.push({bullet, direction})
     scene.add(bullet)
 };

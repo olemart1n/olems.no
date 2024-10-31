@@ -1,5 +1,5 @@
 import * as THREE from "three";
-import { wheels } from "./wheel";
+import { wheels } from "./wheels";
 import { pole1, pole2 } from "./pole";
 import { body } from "./body";
 import { gun } from "./gun";

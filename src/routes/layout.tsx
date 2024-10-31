@@ -17,7 +17,7 @@ export default component$(() => {
     <>
       <Header />
       <Slot />
-      <footer class="bg-yellow-200 ">2024</footer>
+      <footer class="bg-yellow-200 text-center ">2024</footer>
     </>
   );
 });

@@ -1,6 +1,5 @@
 import * as THREE from 'three'
 import {mesh} from '../../mesh'
-import { wheels } from '../../mesh/car';
 export const carRaycaster = () => {
     
     const raycaster = new THREE.Raycaster()

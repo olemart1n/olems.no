@@ -1,47 +1,34 @@
-import { component$, type Signal } from "@builder.io/qwik";
+import { component$, useContext } from "@builder.io/qwik";
+import { Controllers } from "./controllers";
+import { UsernameForm } from "./usernameForm";
+import { ConnectionDetails } from "./connectionDetails";
+import gameContext from "~/game-context";
 
-export interface MenuProps {
-  isMenu: Signal<boolean>;
-  mainEl: Signal<HTMLElement | undefined>;
-}
-
-export const Menu = component$<MenuProps>(({ isMenu, mainEl }) => {
+export const Menu = component$(() => {
+  const gameStore = useContext(gameContext);
   return (
     <div class="absolute -left-1/4 h-full w-1/2 text-white">
       <div
         class={
-          "translate-x h-full w-1/2 transform bg-slate-800/[.6] duration-300 ease-in-out " +
-          (isMenu.value ? "translate-x-full" : "translate-x-0")
+          "translate-x flex h-full w-1/2 transform flex-col bg-slate-800/[.6] duration-300 ease-in-out " +
+          (gameStore.isMenu.value ? "translate-x-full" : "translate-x-0")
         }
       >
+        {/* - - - - - - - - - - - - - - - -  */}
         <button class="fixed left-full top-1 ml-1 h-7 w-7 rounded-sm bg-gray-300 bg-opacity-20 text-xs font-bold text-slate-100 ">
           esc
         </button>
-        <div class="text-red-400">
+
+        <h1 class="text-center text-xl">Car Game</h1>
+        <div class="text-center text-red-400">
           <p class="underline">under utvikling</p>
-          <ul>
-            <li class="line-through">stjerner</li>
-            <li>earth ? mars?</li>
-            <li class="line-through">høydeforskjell</li>
-            <li>intersect pyramide</li>
-            <li>spor etter hjul</li>
-            <li>Variabel fart</li>
-            <li>Hopp, andre objekter</li>
-            <li class="line-through">mousemove | camera</li>
-            <li>assets?</li>
-            <li>gun + scope</li>
-            <li>skudd</li>
-          </ul>
         </div>
-        <button
-          class="m-auto block bg-yellow-400 p-2 font-semibold text-black"
-          onClick$={() => {
-            mainEl.value?.requestPointerLock();
-            isMenu.value = false;
-          }}
-        >
-          Close Menu
-        </button>
+        <Controllers />
+
+        <UsernameForm />
+        <div class="mt-auto bg-slate-100 p-2 text-slate-700">
+          <ConnectionDetails />
+        </div>
       </div>
     </div>
   );

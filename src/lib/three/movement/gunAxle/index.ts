@@ -7,6 +7,6 @@ export const setGunAxleAim = (camera: THREE.PerspectiveCamera, raycaster: THREE.
     raycaster.setFromCamera(crosshairNDC, camera)
     const interects = raycaster.intersectObjects(scene.children)
     if(interects.length > 0) {
-      gunAxle.lookAt(interects[0].point)
+      gunAxle.lookAt(interects[0].point)      
     }
   };

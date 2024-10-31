@@ -1,35 +1,35 @@
-import { carData } from "../state";
+import { carVariables } from "../state";
 export const carDirectionControls = (e: KeyboardEvent) => {
     if(e.type === "keydown"){
       switch (e.key) {
         case "a":
-          carData.direction.left = true;
+          carVariables.direction.left = true;
           break;
         case "d":
-          carData.direction.right = true;
+          carVariables.direction.right = true;
           break;
         case "w":
-          carData.direction.forward = true;
+          carVariables.direction.forward = true;
   
           break;
         case "s":
-          carData.direction.reverse = true;
+          carVariables.direction.reverse = true;
           break;
          }
     }
     if(e.type ==="keyup") {
       switch (e.key) {
         case "a":
-          carData.direction.left = false;
+          carVariables.direction.left = false;
           break;
         case "d":
-          carData.direction.right = false;
+          carVariables.direction.right = false;
           break;
         case "w":
-          carData.direction.forward = false;
+          carVariables.direction.forward = false;
           break;
         case "s":
-          carData.direction.reverse = false;
+          carVariables.direction.reverse = false;
           break;
       }
     }

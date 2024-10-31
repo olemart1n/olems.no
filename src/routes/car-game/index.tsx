@@ -1,12 +1,39 @@
-import { component$, useOnDocument, useSignal, $ } from "@builder.io/qwik";
+import {
+  component$,
+  useSignal,
+  useContextProvider,
+  useStore,
+  useOnDocument,
+  $,
+} from "@builder.io/qwik";
+import gameContext from "~/game-context";
 import { three, mesh } from "~/lib";
-import { PreGameLoader, GunScope, Menu } from "~/components/game";
+import {
+  GunScope,
+  Menu,
+  ErrorMessage,
+  PreGameLoader,
+  NotificationMessage,
+} from "~/components/game";
 import * as THREE from "three";
 import moonTexture from "./moonTexture.jpg";
+import { type GameContextStore } from "~/game-context";
 export default component$(() => {
-  const mainEl = useSignal<HTMLElement | undefined>();
-  const isMenu = useSignal<boolean>(true);
   const preLoader = useSignal<HTMLDivElement | undefined>();
+
+  const gameStore = useStore<GameContextStore>({
+    connectedPlayersLength: 0,
+    username: useSignal("Ola" + Math.round(Math.random() * 100).toString()),
+    isError: false,
+    errorMessage: "",
+    isNotification: useSignal(false),
+    notificationMesssage: "",
+    isMenu: useSignal(true),
+    isConnectedToSocket: false,
+    mainEl: useSignal<HTMLElement | undefined>(),
+  });
+  useContextProvider(gameContext, gameStore);
+
   useOnDocument(
     "DOMContentLoaded",
     $(() => {
@@ -19,16 +46,18 @@ export default component$(() => {
         mesh.moonSurface.material.map.repeat.x = 1 / texture1Ratio;
         mesh.moonSurface.material.map.offset.x = -(1 - texture1Ratio) / (2 * 1);
         mesh.moonSurface.material.map.needsUpdate = true;
-        three(mainEl, isMenu);
+        three(gameStore.mainEl);
       });
     }),
   );
 
   return (
-    <main ref={mainEl} class={"relative "}>
-      <Menu isMenu={isMenu} mainEl={mainEl} />
+    <main ref={gameStore.mainEl} class="relative ">
+      <Menu />
       <PreGameLoader preLoader={preLoader} />
       <GunScope />
+      <ErrorMessage />
+      <NotificationMessage />
     </main>
   );
 });

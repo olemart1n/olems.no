@@ -1,8 +1,7 @@
 
 import * as THREE from 'three'
 import { wheels } from "../../mesh/car";
-import { pole1, pole2 } from "../../mesh/car/pole";
-import { body, car} from '../../mesh/car';
+import { body} from '../../mesh/car';
 
 
 export const adjustBody = () => {
@@ -33,6 +32,4 @@ export const adjustBody = () => {
     body.setRotationFromQuaternion(quaternion);
     body.position.y = (frontMidPoint.y + rearMidPoint.y) / 2
 
-    
-        
 }

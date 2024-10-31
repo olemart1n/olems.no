@@ -1,12 +1,13 @@
 import * as THREE from "three";
 import { mesh } from "./mesh";
 import { type Signal } from "@builder.io/qwik";
-import { carData } from "./state";
+import { carVariables } from "./state";
 import { scene } from "./scene";
 import { animateFunction } from "./animateFunction";
 import { addControls } from "./controls";
+import { sendCarData } from "../game-socket";
 
-const three = (mainEl: Signal<HTMLElement | undefined>, isMenu: Signal<boolean | undefined>) => {
+const three = (mainEl: Signal<HTMLElement | undefined>) => {
   const camera = new THREE.PerspectiveCamera( // - - - CAMERA
     75, 
     mainEl.value!.clientWidth /
@@ -15,7 +16,8 @@ const three = (mainEl: Signal<HTMLElement | undefined>, isMenu: Signal<boolean |
     1000)
 
   const gunAxleRaycaster = new THREE.Raycaster()
-  addControls(mainEl, isMenu)
+
+  
 
   
   const renderer = new THREE.WebGLRenderer(); //  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - RENDERER - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -31,4 +33,4 @@ const three = (mainEl: Signal<HTMLElement | undefined>, isMenu: Signal<boolean |
 };
 
 
-export {mesh, three, carData}
+export {mesh, three, carVariables}

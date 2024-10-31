@@ -1,5 +1,5 @@
 import * as THREE from "three";
-import { wheels } from "./wheel";
+import { wheels } from "./wheels";
 
 
 

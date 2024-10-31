@@ -1,6 +1,6 @@
 import { Mesh } from "three";
 import * as THREE from 'three'
-export type CarData = {
+export type CarVariables = {
   speed: number;
   acceleration: number;
   friction: number;
@@ -15,7 +15,7 @@ export interface Direction {
   reverse: boolean;
   forward: boolean;
 }
-export const carData: CarData = {
+export const carVariables: CarVariables = {
   speed: 0,
   acceleration: 0.02,
   friction: 0.01,
@@ -39,6 +39,39 @@ export const cameraData = {
 interface FiredBulletsData {
   bullet: Mesh;
   direction: THREE.Vector3
-  raycaster: THREE.Raycaster
 }
 export const firedBullets: FiredBulletsData[] = []
+
+interface ActivePlayersData {
+  car: THREE.Group;
+  username: string
+}
+export const activePlayers: ActivePlayersData[] = []
+
+
+
+
+const carPositionVector = new THREE.Vector3()
+const carDirectionVector = new THREE.Vector3()
+const gunAxleDirectionVector = new THREE.Vector3()
+const poleFrontQuaternion = new THREE.Quaternion()
+const poleBackQuaternion = new THREE.Quaternion()
+export const carData: CarDataProps = {
+  carPositionVector,
+  carDirectionVector,
+  gunAxleDirectionVector,
+  poleFrontQuaternion,
+  poleBackQuaternion,
+  username: ""
+}
+
+
+
+export interface CarDataProps {
+  carPositionVector: THREE.Vector3;
+  carDirectionVector: THREE.Vector3;
+  gunAxleDirectionVector: THREE.Vector3;
+  poleFrontQuaternion: THREE.Quaternion;
+  poleBackQuaternion: THREE.Quaternion;
+  username: string;
+}
