@@ -12,7 +12,6 @@ export const addControls = (mainEl: Signal<HTMLElement | undefined>, isMenu: Sig
       mainEl.value?.addEventListener("pointerdown", shootEvent)
       isMenu.value = false
     } else {
-      
       document.removeEventListener("keydown", carDirectionControls)
       document.removeEventListener("keyup", carDirectionControls)
       mainEl.value?.removeEventListener("mousemove", gameMouseEvent)
