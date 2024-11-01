@@ -4,9 +4,9 @@ export const ConnectionDetails = component$(() => {
   const c = useContext(gameContext);
   return (
     <>
-      <p>Active players: {c.connectedPlayersLength}</p>
+      <p>Aktive spillere: {c.connectedPlayersLength}</p>
       <div class="flex place-items-center gap-2">
-        <p>Connection Status: </p>
+        <p>Nettverk status: </p>
         {c.isConnectedToSocket ? (
           <p class="h-3 w-3 rounded-full bg-green-500"></p>
         ) : (
