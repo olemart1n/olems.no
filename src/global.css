@@ -1,0 +1,64 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  background-color: rgb(30, 29, 29);
+}
+
+.bg-initial {
+  background-color: rgb(30, 29, 29);
+}
+
+body {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  min-height: 100dvh;
+  max-width: 1700px;
+  margin: auto;
+}
+
+main {
+  overflow-y: auto;
+}
+
+/* Add this CSS to your global styles or Tailwind's custom CSS file */
+.no-scrollbar::-webkit-scrollbar {
+  display: none; /* For Chrome, Safari, and Opera */
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none; /* For Internet Explorer and Edge */
+  scrollbar-width: none; /* For Firefox */
+}
+
+@keyframes waveFade {
+  0% {
+    color: white;
+  }
+  50% {
+    color: rgb(198, 193, 193);
+  }
+  100% {
+    color: white;
+  }
+}
+
+.waveFade {
+  animation: waveFade 9s ease-in-out infinite;
+}
+
+.game-direction-button {
+  -webkit-user-select: none; /* Disable text selection on mobile (iOS/Android) */
+  -webkit-touch-callout: none; /* Disable long press context menu on iOS */
+  user-select: none; /* Disable text selection for all browsers */
+}
+
+@keyframes spin-slow {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
