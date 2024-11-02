@@ -1,5 +1,5 @@
 import { mesh } from "./mesh";
-import { carVariables } from "./game-global";
+import { carVariables } from "../game-global";
 import { scene } from "./scene";
 import { animateFunction } from "./animate-function";
 

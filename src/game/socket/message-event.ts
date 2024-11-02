@@ -1,6 +1,6 @@
 import meshFactory from "../three/mesh-factory";
 import { scene } from "../three";
-import { activePlayers } from "../three/game-global";
+import { activePlayers } from "../game-global";
 import type { GameContextStore } from "../game-context";
 export const messageEvent = (e: MessageEvent, game: GameContextStore) => {
   const data = JSON.parse(e.data);

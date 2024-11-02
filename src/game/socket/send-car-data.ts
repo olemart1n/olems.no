@@ -1,5 +1,5 @@
 import { mesh } from "../three";
-import { carData } from "../three/game-global";
+import { carData } from "../game-global";
 
 export const sendCarData = (conn: WebSocket, username: string) => {
   carData.username = username;

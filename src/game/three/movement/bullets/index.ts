@@ -1,4 +1,4 @@
-import { firedBullets } from "../../game-global";
+import { firedBullets } from "../../../game-global";
 
 // Velocity or speed of the bullet
 const bulletSpeed = 0.5;

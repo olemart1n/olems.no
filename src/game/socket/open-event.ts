@@ -1,5 +1,5 @@
 import { sendCarData } from "./send-car-data";
-import { addControls } from "../three/controls";
+import { addControls } from "../controls";
 import type { GameContextStore } from "../game-context";
 export const openEvent = (
   e: Event,

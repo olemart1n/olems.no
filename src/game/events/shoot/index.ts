@@ -1,9 +1,9 @@
 import * as THREE from "three";
-import { gunAxle } from "../mesh/car";
-import { firedBullets } from "../game-global";
-import { scene } from "../scene";
-import meshFactory from "../mesh-factory";
-export const shootEvent = (e: PointerEvent) => {
+import { gunAxle } from "~/game/three/mesh/car";
+import { firedBullets } from "../../game-global";
+import { scene } from "~/game/three/scene";
+import meshFactory from "~/game/three/mesh-factory";
+export const shoot = (e: PointerEvent) => {
   e.preventDefault();
 
   const bullet = meshFactory.bullet();

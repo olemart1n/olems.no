@@ -1,5 +1,5 @@
 import { type GameContextStore } from "../game-context";
-import { addControls } from "../three/controls";
+import { addControls } from "../controls";
 export const closeEvent = (e: CloseEvent, gameStore: GameContextStore) => {
   console.log(e);
 

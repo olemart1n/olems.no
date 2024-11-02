@@ -1,7 +1,7 @@
 import * as THREE from "three";
 import { wheels } from "../../mesh/car";
 import { pole1, pole2 } from "../../mesh/car/poles";
-import { carData } from "../../game-global";
+import { carData } from "../../../game-global";
 
 export const adjustPoles = () => {
   const frontMidPoint = {
