@@ -1,5 +1,6 @@
 import { sendCarData } from "./send-car-data";
 import { addControls } from "../controls";
+import { carData } from "../game-global";
 import type { GameContextStore } from "../game-context";
 export const openEvent = (
   e: Event,
@@ -9,8 +10,8 @@ export const openEvent = (
   gameStore.isConnectedToSocket = true;
   addControls(gameStore.mainEl, gameStore.isMenu);
   gameStore.mainEl.value?.requestPointerLock();
-
+  carData.username = gameStore.username.value;
   setInterval(() => {
-    sendCarData(conn, gameStore.username.value);
+    sendCarData(conn);
   }, 50);
 };

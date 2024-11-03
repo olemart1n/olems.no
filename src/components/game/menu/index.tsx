@@ -28,12 +28,12 @@ export const Menu = component$(() => {
         <UsernameForm />
         <button
           class={
-            "mx-auto mt-auto block rounded px-2 py-1 font-semibold text-black " +
-            (!gameStore.isConnectedToSocket
-              ? "scale-100 cursor-not-allowed bg-gray-400"
-              : "scale-110 cursor-pointer bg-yellow-400 outline outline-1")
+            "mx-auto mt-auto block rounded-sm bg-gray-400 px-2 py-1 text-black "
+            // (gameStore.isConnectedToSocket
+            //   ? "scale-110 cursor-pointer bg-yellow-400 outline outline-1"
+            //   : "scale-100 cursor-not-allowed bg-gray-400")
           }
-          onClick$={() => document.querySelector("main")?.requestPointerLock()}
+          onClick$={() => gameStore.mainEl.value?.requestPointerLock()}
         >
           Lukk meny
         </button>

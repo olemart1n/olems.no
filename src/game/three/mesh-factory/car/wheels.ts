@@ -24,14 +24,15 @@ export const wheels = () => {
   rearLeft.position.set(-1.4, -0.1, 1.8);
   rearRight.position.set(1.4, -0.1, 1.8);
 
-  for (const property in wheels) {
-    // @ts-ignore
-    wheels[property].rotation.z = Math.PI / 2;
-  }
-  return {
+  const wheels = {
     frontLeft,
     frontRight,
     rearLeft,
     rearRight,
   };
+  for (const property in wheels) {
+    // @ts-ignore
+    wheels[property].rotation.z = Math.PI / 2;
+  }
+  return wheels;
 };

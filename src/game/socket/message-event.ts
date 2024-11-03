@@ -13,6 +13,11 @@ export const messageEvent = (e: MessageEvent, game: GameContextStore) => {
     player?.car.lookAt(
       player.car.position.clone().add(data.payload.carDirectionVector),
     );
+    player!.car.children[3].position.setY = data.payload.wheelsY.frontLeft;
+    console.log(player!.car.children[3].position.y);
+    // player!.car.children[4].position.setY = data.payload.wheelsY.frontRight;
+    // player!.car.children[5].position.setY = data.payload.wheelsY.rearLeft;
+    // player!.car.children[6].position.setY = data.payload.wheelsY.rearRight;
 
     // const gunAxle = player?.car.getObjectByName("gun-axle")
     // gunAxle!.lookAt(gunAxle!.position.clone().add(data.payload))
@@ -23,6 +28,15 @@ export const messageEvent = (e: MessageEvent, game: GameContextStore) => {
     // ));
     // gunAxle!.lookAt(lookAtPoint!);
     // player?.car.children[1].setRotationFromQuaternion(data.payload.pole1Quaternion)
+  } else if (data.name === "existingPlayers") {
+    console.log(data.payload);
+    const existingPlayers: string[] = data.payload.players;
+
+    existingPlayers.forEach((username) => {
+      const car = meshFactory.car();
+      activePlayers.push({ car: car, username });
+      scene.add(car);
+    });
   } else if (data.name === "newPlayer") {
     const car = meshFactory.car();
     activePlayers.push({ car: car, username: data.payload.value });

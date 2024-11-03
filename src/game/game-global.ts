@@ -58,6 +58,12 @@ export const carData: CarDataProps = {
   poleFrontQuaternion,
   poleBackQuaternion,
   username: "",
+  wheelsY: {
+    frontLeft: 0,
+    frontRight: 0,
+    rearLeft: 0,
+    rearRight: 0,
+  },
 };
 
 export interface CarDataProps {
@@ -67,4 +73,12 @@ export interface CarDataProps {
   poleFrontQuaternion: THREE.Quaternion;
   poleBackQuaternion: THREE.Quaternion;
   username: string;
+  wheelsY: WheelsY;
+}
+
+export interface WheelsY {
+  frontLeft: number;
+  frontRight: number;
+  rearLeft: number;
+  rearRight: number;
 }
