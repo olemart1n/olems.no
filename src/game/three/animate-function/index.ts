@@ -1,8 +1,8 @@
 import * as THREE from "three";
-import { moveBullets } from "../movement/bullets";
+import { moveBullets } from "../../movement/bullets";
 import { cameraData } from "../../game-global";
-import { setGunAxleAim } from "../movement/gun-axle";
-import { moveCar } from "../movement/car";
+import { setGunAxleAim } from "../../movement/gun-axle";
+import { moveCar } from "../../movement/car";
 import { mesh } from "../mesh";
 
 export const animateFunction = (

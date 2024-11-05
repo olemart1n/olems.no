@@ -1,5 +1,5 @@
-import { carVariables } from "../../../game-global";
-import { mesh } from "../../mesh";
+import { carVariables } from "../../game-global";
+import { mesh } from "../../three/mesh";
 import { wheelRaycaster } from "./wheel-raycaster";
 import { adjustBody } from "./body";
 import { adjustPoles } from "./poles";

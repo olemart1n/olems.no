@@ -1,33 +1,51 @@
 import meshFactory from "../three/mesh-factory";
 import { scene } from "../three";
 import { activePlayers } from "../game-global";
+import * as THREE from "three";
 import type { GameContextStore } from "../game-context";
+import { type CarDataProps, upVector } from "../game-global";
 export const messageEvent = (e: MessageEvent, game: GameContextStore) => {
   const data = JSON.parse(e.data);
-
+  const payload: CarDataProps = data.payload;
   if (data.name === "carData") {
     const player = activePlayers.find(
       (player) => player.username === data.payload.username,
     );
+    // SET CAR'S POSITION AND ROTATION
     player?.car.position.copy(data.payload.carPositionVector);
     player?.car.lookAt(
       player.car.position.clone().add(data.payload.carDirectionVector),
     );
-    player!.car.children[3].position.setY = data.payload.wheelsY.frontLeft;
-    console.log(player!.car.children[3].position.y);
-    // player!.car.children[4].position.setY = data.payload.wheelsY.frontRight;
-    // player!.car.children[5].position.setY = data.payload.wheelsY.rearLeft;
-    // player!.car.children[6].position.setY = data.payload.wheelsY.rearRight;
+    // WHEELS
+    player!.car.children[0].position.y = payload.wheelsY.frontLeft;
+    player!.car.children[1].position.y = payload.wheelsY.frontRight;
+    player!.car.children[2].position.y = payload.wheelsY.rearLeft;
+    player!.car.children[3].position.y = payload.wheelsY.rearRight;
 
-    // const gunAxle = player?.car.getObjectByName("gun-axle")
-    // gunAxle!.lookAt(gunAxle!.position.clone().add(data.payload))
+    // SET THE BODY'S ROTATION AND HEIGHT
+    const body = player!.car.children[4];
+    body.position.y = (payload.frontMidPoint.y + payload.rearMidPoint.y) / 2;
+    const direction = new THREE.Vector3(
+      payload.frontMidPoint.x - payload.rearMidPoint.x,
+      payload.frontMidPoint.y - payload.rearMidPoint.y,
+      payload.frontMidPoint.z - payload.rearMidPoint.z,
+    ).normalize();
+    const quaternion = new THREE.Quaternion().setFromUnitVectors(
+      upVector,
+      direction,
+    );
+    body.setRotationFromQuaternion(quaternion);
 
-    // gunAxle?.setRotationFromQuaternion(new THREE.Quaternion().setFromUnitVectors(
+    // SET THE gunAxles ROTATION
+    // const gunAxle = player!.car.getObjectByName("gun-axle");
+    // gunAxle!.matrixAutoUpdate = true;
+
+    // gunAxle?.setRotationFromQuaternion(
+    //   new THREE.Quaternion().setFromUnitVectors(
     //     new THREE.Vector3(0, 0, -1),
-    //     data.payload.gunAxleDirectionVector
-    // ));
-    // gunAxle!.lookAt(lookAtPoint!);
-    // player?.car.children[1].setRotationFromQuaternion(data.payload.pole1Quaternion)
+    //     payload.gunAxleWorldDirectionVector,
+    //   ),
+    // );
   } else if (data.name === "existingPlayers") {
     console.log(data.payload);
     const existingPlayers: string[] = data.payload.players;

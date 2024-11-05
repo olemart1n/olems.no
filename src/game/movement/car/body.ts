@@ -1,15 +1,16 @@
 import * as THREE from "three";
-import { wheels } from "../../mesh/car";
-import { body } from "../../mesh/car";
+import { wheels } from "~/game/three/mesh/car";
+import { body } from "~/game/three/mesh/car";
+import { carData, upVector } from "~/game/game-global";
 
 export const adjustBody = () => {
-  const frontMidPoint = {
+  carData.frontMidPoint = {
     x: (wheels.frontLeft.position.x + wheels.frontRight.position.x) / 2,
     y: (wheels.frontLeft.position.y + wheels.frontRight.position.y) / 2,
     z: (wheels.frontLeft.position.z + wheels.frontRight.position.z) / 2,
   };
 
-  const rearMidPoint = {
+  carData.rearMidPoint = {
     x: (wheels.rearLeft.position.x + wheels.rearRight.position.x) / 2,
     y: (wheels.rearLeft.position.y + wheels.rearRight.position.y) / 2,
     z: (wheels.rearLeft.position.z + wheels.rearRight.position.z) / 2,
@@ -17,14 +18,15 @@ export const adjustBody = () => {
 
   // Step 2: Calculate direction vector and align the mesh
   const direction = new THREE.Vector3(
-    frontMidPoint.x - rearMidPoint.x,
-    frontMidPoint.y - rearMidPoint.y,
-    frontMidPoint.z - rearMidPoint.z,
+    carData.frontMidPoint.x - carData.rearMidPoint.x,
+    carData.frontMidPoint.y - carData.rearMidPoint.y,
+    carData.frontMidPoint.z - carData.rearMidPoint.z,
   ).normalize();
 
-  // Set the mesh orientation to align with the direction vector
-  const up = new THREE.Vector3(0, 0, -1); // Assuming 'up' vector is (0, 1, 0) for the mesh
-  const quaternion = new THREE.Quaternion().setFromUnitVectors(up, direction);
+  const quaternion = new THREE.Quaternion().setFromUnitVectors(
+    upVector,
+    direction,
+  );
   body.setRotationFromQuaternion(quaternion);
-  body.position.y = (frontMidPoint.y + rearMidPoint.y) / 2;
+  body.position.y = (carData.frontMidPoint.y + carData.rearMidPoint.y) / 2;
 };

@@ -24,6 +24,11 @@ export const wheels = () => {
   rearLeft.position.set(-1.4, -0.1, 1.8);
   rearRight.position.set(1.4, -0.1, 1.8);
 
+  frontLeft.name = "wheel: front left";
+  frontRight.name = "wheel: front right";
+  rearLeft.name = "wheel: rear left";
+  rearRight.name = "wheel: rear right";
+
   const wheels = {
     frontLeft,
     frontRight,

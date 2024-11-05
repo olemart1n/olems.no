@@ -1,7 +1,6 @@
 import * as THREE from "three";
-import { scene } from "../../scene";
-import { gunAxle } from "../../mesh/car";
-
+import { scene } from "../../three/scene";
+import { gunAxle } from "../../three/mesh/car";
 export const setGunAxleAim = (
   camera: THREE.PerspectiveCamera,
   raycaster: THREE.Raycaster,
