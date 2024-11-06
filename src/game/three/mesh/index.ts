@@ -4,6 +4,7 @@ import { landscape, moonSurface } from "./landscape";
 import { pyramid } from "./pyramid";
 import { stars } from "./stars";
 import { textMesh } from "./text";
+
 export const mesh = {
   pole1,
   pole2,

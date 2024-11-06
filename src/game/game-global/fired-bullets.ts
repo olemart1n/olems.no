@@ -1,8 +1,7 @@
 import type * as THREE from "three";
-
-interface FiredBulletsData {
+export interface FiredBulletsData {
   bullet: THREE.Mesh;
   direction: THREE.Vector3;
-  bulletBoundingSphere: THREE.Sphere;
+  hasHitted: boolean;
 }
 export const firedBullets: FiredBulletsData[] = [];

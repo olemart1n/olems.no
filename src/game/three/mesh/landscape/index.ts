@@ -2,7 +2,7 @@ import * as THREE from "three";
 import { pyramid } from "../pyramid";
 import { createNoise2D } from "simplex-noise";
 import alea from "alea";
-const boxGeometry = new THREE.PlaneGeometry(300, 300, 50, 50);
+const moonSurfaceGeometry = new THREE.PlaneGeometry(300, 300, 50, 50);
 const material = new THREE.MeshStandardMaterial({
   metalness: 0,
   roughness: 0,
@@ -10,7 +10,7 @@ const material = new THREE.MeshStandardMaterial({
   emissiveIntensity: 0.2,
 });
 
-export const moonSurface = new THREE.Mesh(boxGeometry, material);
+export const moonSurface = new THREE.Mesh(moonSurfaceGeometry, material);
 moonSurface.name = "moonSurface";
 
 // GROUP
@@ -32,7 +32,7 @@ const { array } = moonSurface.geometry.attributes.position;
 // create a new random function based on the seed
 // USING SEED WILL MAKE THE SURFACE LOOK THE SAME ON ALL CLIENTS
 const prng = alea("moonSurfaceSeed");
-const noise2D = createNoise2D(prng);
+export const noise2D = createNoise2D(prng);
 // iterate over each z vertice
 for (let i = 2; i < array.length; i += 3) {
   // each z. [x, y, z...]
