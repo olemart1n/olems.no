@@ -8,6 +8,11 @@ export const shoot = (e: PointerEvent) => {
 
   const bullet = meshFactory.bullet();
 
+  //SPHERE
+  const bulletBoundingBox = new THREE.Box3().setFromObject(bullet);
+  const bulletBoundingSphere = new THREE.Sphere();
+  bulletBoundingBox.getBoundingSphere(bulletBoundingSphere);
+
   const position = new THREE.Vector3();
   gunAxle.getWorldPosition(position);
 
@@ -23,6 +28,6 @@ export const shoot = (e: PointerEvent) => {
   );
   bullet.applyQuaternion(rotation);
 
-  firedBullets.push({ bullet, direction });
+  firedBullets.push({ bullet, direction, bulletBoundingSphere });
   scene.add(bullet);
 };

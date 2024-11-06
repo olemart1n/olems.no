@@ -1,4 +1,4 @@
-import { carVariables } from "../game-global";
+import { carVariables } from "../three";
 export const carDirectionControls = (e: KeyboardEvent) => {
   if (e.type === "keydown") {
     switch (e.key) {

@@ -8,10 +8,10 @@ export const sendCarData = (conn: WebSocket) => {
   mesh.car.getWorldDirection(carData.carDirectionVector);
   mesh.gunAxle.getWorldDirection(carData.gunAxleWorldDirectionVector);
   carData.gunAxleRotationQuaternion = mesh.gunAxle.quaternion;
-  carData.wheelsY.frontLeft = mesh.wheels.frontLeft.position.y;
-  carData.wheelsY.frontRight = mesh.wheels.frontRight.position.y;
-  carData.wheelsY.rearLeft = mesh.wheels.rearLeft.position.y;
-  carData.wheelsY.rearRight = mesh.wheels.rearRight.position.y;
+  carData.wheelsPos.frontLeft = mesh.wheels.frontLeft.position;
+  carData.wheelsPos.frontRight = mesh.wheels.frontRight.position;
+  carData.wheelsPos.rearLeft = mesh.wheels.rearLeft.position;
+  carData.wheelsPos.rearRight = mesh.wheels.rearRight.position;
 
   conn.send(
     JSON.stringify({
