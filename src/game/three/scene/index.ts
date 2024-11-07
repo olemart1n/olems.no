@@ -7,6 +7,7 @@ export const scene = new THREE.Scene();
 scene.add(mesh.landscape);
 scene.add(mesh.car);
 scene.add(light());
+scene.add(mesh.sky);
 scene.add(mesh.stars);
 
 // Add wheels to the scene or to the car object

@@ -5,6 +5,7 @@ import { scene } from "~/game/three/scene";
 import meshFactory from "~/game/three/mesh-factory";
 import { bulletSpeed } from "../../game-global";
 import { explode } from "./explode";
+import { gunCoolDown } from "./gun-cool-down";
 export const shoot = (e: PointerEvent) => {
   e.preventDefault();
 
@@ -42,7 +43,7 @@ export const shoot = (e: PointerEvent) => {
     direction,
   );
   bullet.applyQuaternion(rotation);
-
+  gunCoolDown();
   firedBullets.push({ bullet, direction, hasHitted: false });
   scene.add(bullet);
 };

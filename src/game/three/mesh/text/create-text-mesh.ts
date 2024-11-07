@@ -1,14 +1,11 @@
 import * as THREE from "three";
 import { TextGeometry } from "three/addons/geometries/TextGeometry.js";
-import { FontLoader } from "three/examples/jsm/loaders/FontLoader.js";
-import brighter from "./fonts/Brighter_Regular.json";
 
-const loader = new FontLoader();
-const f = loader.parse(brighter);
+import { fontBrighter } from "./font-loader";
 
 const createTextMesh = (text: string, x: number, y: number, z: number) => {
   const geometry = new TextGeometry(text, {
-    font: f,
+    font: fontBrighter,
     size: 7,
     depth: 1,
     curveSegments: 20,
