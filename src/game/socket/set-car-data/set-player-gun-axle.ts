@@ -1,13 +1,10 @@
-import type { ActivePlayersData, CarDataProps } from "~/game/game-global";
+import type { CarDataProps } from "~/game/game-global";
 import * as THREE from "three";
 
-export const setPlayerGunAxle = (
-  player: ActivePlayersData,
-  payload: CarDataProps,
-) => {
+export const setPlayerGunAxle = (car: THREE.Group, payload: CarDataProps) => {
   // SET THE gunAxles ROTATION
   payload.gunAxleWorldDirectionVector.y *= -1;
-  const gunAxle = player!.car.getObjectByName("gun-axle");
+  const gunAxle = car.getObjectByName("gun-axle");
   const directionQuaternion = new THREE.Quaternion().setFromUnitVectors(
     new THREE.Vector3(0, 0, -1),
     payload.gunAxleWorldDirectionVector,

@@ -24,14 +24,18 @@ export const Menu = component$(() => {
           <p class="underline">under utvikling</p>
         </div>
         <Controllers />
-
+        {gameStore.isConnectedToSocket && (
+          <h3 class="mx-auto mt-4 w-fit rounded bg-yellow-300 p-2 text-slate-700">
+            Du heter: {gameStore.username}
+          </h3>
+        )}
         <UsernameForm />
         <button
           class={
-            "mx-auto mt-auto block rounded-sm bg-gray-400 px-2 py-1 text-black "
-            // (gameStore.isConnectedToSocket
-            //   ? "scale-110 cursor-pointer bg-yellow-400 outline outline-1"
-            //   : "scale-100 cursor-not-allowed bg-gray-400")
+            "mx-auto mt-auto block rounded-sm bg-gray-400 px-2 py-1 text-black " +
+            (gameStore.isConnectedToSocket
+              ? "scale-110 cursor-pointer bg-yellow-400 outline outline-1"
+              : "scale-100 cursor-not-allowed bg-gray-400")
           }
           onClick$={() => gameStore.mainEl.value?.requestPointerLock()}
         >

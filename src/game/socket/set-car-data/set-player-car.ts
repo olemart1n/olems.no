@@ -1,12 +1,7 @@
-import type { ActivePlayersData, CarDataProps } from "~/game/game-global";
-
-export const setPlayerCar = (
-  player: ActivePlayersData,
-  payload: CarDataProps,
-) => {
+import type { CarDataProps } from "~/game/game-global";
+import type * as THREE from "three";
+export const setPlayerCar = (car: THREE.Group, payload: CarDataProps) => {
   // SET CAR'S POSITION AND ROTATION
-  player.car.position.copy(payload.carPositionVector);
-  player.car.lookAt(
-    player.car.position.clone().add(payload.carDirectionVector),
-  );
+  car.position.copy(payload.carPositionVector);
+  car.lookAt(car.position.clone().add(payload.carDirectionVector));
 };

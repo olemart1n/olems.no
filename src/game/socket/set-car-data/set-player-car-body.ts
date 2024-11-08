@@ -1,12 +1,9 @@
-import type { ActivePlayersData, CarDataProps } from "~/game/game-global";
+import type { CarDataProps } from "~/game/game-global";
 import { upVector } from "~/game/game-global";
 import * as THREE from "three";
-export const setPlayerCarBody = (
-  player: ActivePlayersData,
-  payload: CarDataProps,
-) => {
+export const setPlayerCarBody = (car: THREE.Group, payload: CarDataProps) => {
   // SET THE BODY'S ROTATION AND HEIGHT
-  const body = player!.car.children[4];
+  const body = car.children[4];
   body.position.y = (payload.frontMidPoint.y + payload.rearMidPoint.y) / 2;
   const direction = new THREE.Vector3(
     payload.frontMidPoint.x - payload.rearMidPoint.x,

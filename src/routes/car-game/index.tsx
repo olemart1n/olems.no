@@ -23,7 +23,8 @@ export default component$(() => {
 
   const gameStore = useStore<GameContextStore>({
     connectedPlayersLength: 0,
-    username: useSignal("Ola" + Math.round(Math.random() * 100).toString()),
+    username: useSignal(""),
+    // username: useSignal("Ola" + Math.round(Math.random() * 100).toString()),
     isError: false,
     errorMessage: "",
     isNotification: useSignal(false),

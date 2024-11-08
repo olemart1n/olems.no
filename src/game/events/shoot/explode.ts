@@ -1,8 +1,13 @@
 import * as THREE from "three";
 import { firedBullets, type FiredBulletsData } from "~/game/game-global";
 import { scene } from "~/game/three";
-
-export const explode = (data: FiredBulletsData) => {
+import { damageRaycastPlayers } from "./damage-raycast-players";
+import type { GameContextStore } from "~/game/game-context";
+export const explode = (
+  data: FiredBulletsData,
+  gameStore: GameContextStore,
+) => {
+  damageRaycastPlayers(data, gameStore);
   data.bullet.geometry = new THREE.SphereGeometry(1, 32, 32);
   let startOpacitity = 1;
   const startSize = data.bullet.scale.x;
@@ -18,6 +23,7 @@ export const explode = (data: FiredBulletsData) => {
     data.bullet.scale.set(currentSize, currentSize, currentSize);
     const material = data.bullet.material as THREE.MeshStandardMaterial;
     material.opacity = startOpacitity;
+
     if (currentSize >= endSize) {
       firedBullets.splice(firedBullets.indexOf(data), 1);
       scene.remove(data.bullet);

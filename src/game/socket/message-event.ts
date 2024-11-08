@@ -10,7 +10,7 @@ import {
 import { setNewPlayer } from "./set-new-player";
 import { setExistingPlayers } from "./set-existing-players";
 import { setLeavingPlayer } from "./set-leaving-player";
-
+import { setShootData } from "./set-shoot-data";
 export const messageEvent = (e: MessageEvent, game: GameContextStore) => {
   const data = JSON.parse(e.data);
   const payload: CarDataProps = data.payload;
@@ -19,10 +19,13 @@ export const messageEvent = (e: MessageEvent, game: GameContextStore) => {
     const player = activePlayers.find(
       (player) => player.username === data.payload.username,
     );
-    setPlayerCar(player!, payload);
-    setPlayerWheels(player!, payload);
-    setPlayerCarBody(player!, payload);
-    setPlayerGunAxle(player!, payload);
+
+    setPlayerCar(player!.car, payload);
+    setPlayerWheels(player!.car, payload);
+    setPlayerCarBody(player!.car, payload);
+    setPlayerGunAxle(player!.car, payload);
+  } else if (data.name === "shootData") {
+    setShootData(data.payload, game);
   } else if (data.name === "existingPlayers") {
     setExistingPlayers(data.payload.players);
   } else if (data.name === "newPlayer") {

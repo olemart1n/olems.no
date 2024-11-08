@@ -22,7 +22,7 @@ export const addGameSocketEvents = (
   });
 
   conn.addEventListener("close", (e) => {
-    closeEvent(e, game);
+    closeEvent(e, game, conn);
   });
 
   conn.addEventListener("message", (e) => {

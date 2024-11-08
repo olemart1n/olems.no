@@ -5,3 +5,5 @@ export * from "./car-data";
 export * from "./up-vector";
 export * from "./camera-data";
 export * from "./bullet-speed";
+export * from "./gun-state";
+export * from "./shoot-data";

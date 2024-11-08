@@ -8,7 +8,7 @@ export const openEvent = (
   conn: WebSocket,
 ) => {
   gameStore.isConnectedToSocket = true;
-  addControls(gameStore.mainEl, gameStore.isMenu);
+  addControls(conn, gameStore);
   gameStore.mainEl.value?.requestPointerLock();
   carData.username = gameStore.username.value;
   setInterval(() => {
