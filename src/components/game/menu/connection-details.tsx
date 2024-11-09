@@ -6,7 +6,7 @@ export const ConnectionDetails = component$(() => {
     <>
       <p>Aktive spillere: {c.connectedPlayersLength}</p>
       <div class="flex place-items-center gap-2">
-        <p>Nettverk status: </p>
+        <p>Forbindelse: </p>
         {c.isConnectedToSocket ? (
           <p class="h-3 w-3 rounded-full bg-green-500"></p>
         ) : (

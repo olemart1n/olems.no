@@ -1,7 +1,7 @@
 import { component$ } from "@builder.io/qwik";
 export const Controllers = component$(() => {
   return (
-    <div class="ml-3 mt-3 w-52">
+    <div class="mx-auto mt-3 w-52">
       <h2 class="mx-auto w-fit text-lg">Styring</h2>
       <div class="flex flex-col gap-2">
         <div class="mx-auto flex flex-col place-content-center place-items-center">

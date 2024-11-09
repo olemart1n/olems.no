@@ -1,7 +1,7 @@
 import * as THREE from "three";
 import { gunAxle } from "~/game/three/mesh/car";
 import { firedBullets } from "../../game-global";
-import { scene } from "~/game/three/scene";
+import { scene } from "~/game/scene";
 import meshFactory from "~/game/three/mesh-factory";
 import { bulletSpeed } from "../../game-global";
 import { explode } from "./explode";

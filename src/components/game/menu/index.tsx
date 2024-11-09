@@ -19,7 +19,7 @@ export const Menu = component$(() => {
           esc
         </button>
 
-        <h1 class="text-center text-xl">Car Game</h1>
+        <h1 class="text-center text-xl">Bilspill</h1>
         <div class="text-center text-red-400">
           <p class="underline">under utvikling</p>
         </div>

@@ -5,8 +5,10 @@ import { pyramid } from "./pyramid";
 import { stars } from "./stars";
 import { textMesh } from "./text";
 import { sky } from "./sky";
+import { planet } from "./planet";
 
 export const mesh = {
+  planet,
   sky,
   pole1,
   pole2,

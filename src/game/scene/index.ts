@@ -1,6 +1,6 @@
 import * as THREE from "three";
-import { mesh } from "../mesh";
-import { light } from "../light";
+import { mesh } from "../three/mesh";
+import { light } from "../three/light";
 
 export const scene = new THREE.Scene();
 
@@ -9,11 +9,6 @@ scene.add(mesh.car);
 scene.add(light());
 scene.add(mesh.sky);
 scene.add(mesh.stars);
-
-// Add wheels to the scene or to the car object
-for (const property in mesh.textMesh) {
-  // @ts-ignore
-  scene.add(mesh.textMesh[property]);
-}
+scene.add(mesh.planet);
 
 scene.fog = new THREE.Fog(0x000, 1, 200);

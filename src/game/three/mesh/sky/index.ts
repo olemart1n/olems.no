@@ -8,4 +8,4 @@ const material = new THREE.MeshStandardMaterial({
 material.transparent = true;
 
 export const sky = new THREE.Mesh(skyGeometry, material);
-sky.name = "heaven";
+sky.name = "sky";

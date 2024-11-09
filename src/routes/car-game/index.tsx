@@ -20,10 +20,14 @@ import { type GameContextStore } from "~/game/game-context";
 import moonTexture from "./moon-texture.jpeg";
 export default component$(() => {
   const preLoader = useSignal<HTMLDivElement | undefined>();
-
+  const username =
+    import.meta.env.PUBLIC_ENV === "dev"
+      ? "Ola" + Math.round(Math.random() * 100).toString()
+      : "";
   const gameStore = useStore<GameContextStore>({
     connectedPlayersLength: 0,
-    username: useSignal(""),
+    username: useSignal(username),
+
     // username: useSignal("Ola" + Math.round(Math.random() * 100).toString()),
     isError: false,
     errorMessage: "",

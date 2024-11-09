@@ -9,7 +9,7 @@ const starMaterial = new THREE.PointsMaterial({
   fog: false,
 });
 
-const minDistance = 500;
+const minDistance = 700;
 const starVertices = [];
 for (let i = 0; i < 1000; i++) {
   let x, y, z, distance;
