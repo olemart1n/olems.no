@@ -1,16 +1,13 @@
 import { component$, $, useSignal, useOn, useContext } from "@builder.io/qwik";
-import { connectGameSocket, addGameSocketEvents } from "~/game/socket";
+import { connectToSocket } from "~/game/socket";
 import gameContext from "~/game/game-context";
-import { addUsernameToCar } from "~/game/three/mesh/text/add-username-to-car.ts";
 export const UsernameForm = component$(() => {
   const formRef = useSignal<HTMLFormElement>();
   const c = useContext(gameContext);
   useOn(
     "submit",
     $(() => {
-      addUsernameToCar(c.username.value);
-      const conn = connectGameSocket(c.username.value);
-      addGameSocketEvents(conn, c);
+      connectToSocket(c.username.value, c);
       formRef.value?.remove();
     }),
   );

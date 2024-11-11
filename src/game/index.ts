@@ -1,22 +1,23 @@
 import * as THREE from "three";
-import { type Signal } from "@builder.io/qwik";
 import { animateFunction, scene, carVariables, mesh } from "./three";
-
-const game = (mainEl: Signal<HTMLElement | undefined>) => {
+import type { GameContextStore } from "./game-context";
+const game = (gameStore: GameContextStore) => {
   const camera = new THREE.PerspectiveCamera( // - - - CAMERA
     75,
-    mainEl.value!.clientWidth / mainEl.value!.clientHeight,
+    gameStore.mainEl.value!.clientWidth / gameStore.mainEl.value!.clientHeight,
     0.1,
     1000,
   );
 
   const gunAxleRaycaster = new THREE.Raycaster();
-
   const renderer = new THREE.WebGLRenderer(); //  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - RENDERER - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  renderer.setSize(mainEl.value!.clientWidth, mainEl.value!.clientHeight);
+  renderer.setSize(
+    gameStore.mainEl.value!.clientWidth,
+    gameStore.mainEl.value!.clientHeight,
+  );
   renderer.setPixelRatio(devicePixelRatio);
 
-  mainEl.value?.appendChild(renderer.domElement); //  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - APPEND RENDERER
+  gameStore.mainEl.value?.appendChild(renderer.domElement); //  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - APPEND RENDERER
 
   renderer.setAnimationLoop(() => {
     //  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - ANIMATION LOOP

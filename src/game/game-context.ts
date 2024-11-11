@@ -11,6 +11,7 @@ export interface GameContextStore {
   isMenu: Signal<boolean>;
   isConnectedToSocket: boolean;
   mainEl: Signal<HTMLElement | undefined>;
+  hpPercent: number;
 }
 
 const gameContext = createContextId<GameContextStore>("gameContext");

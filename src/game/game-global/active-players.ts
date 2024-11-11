@@ -1,6 +1,7 @@
 import type * as THREE from "three";
-export interface ActivePlayersData {
+export interface ActivePlayers {
   car: THREE.Group;
   username: string;
 }
-export const activePlayers: ActivePlayersData[] = [];
+
+export const activePlayers: ActivePlayers[] = [];

@@ -6,6 +6,7 @@ import gameContext from "~/game/game-context";
 
 export const Menu = component$(() => {
   const gameStore = useContext(gameContext);
+
   return (
     <div class="absolute -left-1/4 h-full w-1/2 text-white">
       <div
@@ -15,7 +16,7 @@ export const Menu = component$(() => {
         }
       >
         {/* - - - - - - - - - - - - - - - -  */}
-        <button class="fixed left-full top-1 ml-1 h-7 w-7 rounded-sm bg-yellow-400 bg-opacity-80 text-xs font-bold text-slate-800 ">
+        <button class="absolute left-full top-1 ml-1 h-8 w-8 cursor-pointer rounded-sm bg-yellow-400 bg-opacity-80 text-xs font-bold text-slate-800 ">
           esc
         </button>
 
@@ -24,11 +25,6 @@ export const Menu = component$(() => {
           <p class="underline">under utvikling</p>
         </div>
         <Controllers />
-        {gameStore.isConnectedToSocket && (
-          <h3 class="mx-auto mt-4 w-fit rounded bg-yellow-300 p-2 text-slate-700">
-            Du heter: {gameStore.username}
-          </h3>
-        )}
         <UsernameForm />
         <button
           class={
@@ -37,6 +33,7 @@ export const Menu = component$(() => {
               ? "scale-110 cursor-pointer bg-yellow-400 outline outline-1"
               : "scale-100 cursor-not-allowed bg-gray-400")
           }
+          disabled={!gameStore.isConnectedToSocket}
           onClick$={() => gameStore.mainEl.value?.requestPointerLock()}
         >
           Lukk meny

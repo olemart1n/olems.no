@@ -13,10 +13,12 @@ export const connectGameSocket = (username: string) => {
   return conn;
 };
 
-export const addGameSocketEvents = (
-  conn: WebSocket,
-  game: GameContextStore,
-) => {
+export const connectToSocket = (username: string, game: GameContextStore) => {
+  const serverSocketURL =
+    import.meta.env.PUBLIC_ENV === "production"
+      ? "wss://api.olems.no/car-game"
+      : "ws://localhost:8080/car-game";
+  const conn = new WebSocket(`${serverSocketURL}?username=${username}`);
   conn.addEventListener("error", (e) => {
     errorEvent(e);
   });

@@ -1,10 +1,11 @@
 # olems.no
+
 ### Qwik City App ⚡️
+
 ---
 
-
-
 Directory structure
+
 ```
 ├── public/
 │   └── ...
@@ -14,7 +15,8 @@ Directory structure
     └── routes/
         └── ...
 ```
-___
+
+---
 
 packages used to work with md files
 

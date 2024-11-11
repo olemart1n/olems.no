@@ -11,9 +11,6 @@ export const damageRaycastPlayers = (
   activePlayers.forEach((player) => {
     const carBody = player.car.children[4];
 
-    console.log(carBody.position);
-    console.log(data.bullet.position);
-
     const bodyPosition = new THREE.Vector3();
     carBody.getWorldPosition(bodyPosition);
     const direction = data.bullet.position
@@ -23,7 +20,7 @@ export const damageRaycastPlayers = (
     raycaster.set(bodyPosition, direction);
 
     const intersects = raycaster.intersectObject(data.bullet);
-    console.log(intersects);
+
     if (intersects.length > 0) {
       if (intersects[0].distance > 7) return;
       game.notificationMesssage = `${player.username} got hit by ${data.shooter}`;

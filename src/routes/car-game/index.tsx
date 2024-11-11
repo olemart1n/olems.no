@@ -14,6 +14,7 @@ import {
   ErrorMessage,
   PreGameLoader,
   NotificationMessage,
+  HpBar,
 } from "~/components/game";
 import * as THREE from "three";
 import { type GameContextStore } from "~/game/game-context";
@@ -27,8 +28,6 @@ export default component$(() => {
   const gameStore = useStore<GameContextStore>({
     connectedPlayersLength: 0,
     username: useSignal(username),
-
-    // username: useSignal("Ola" + Math.round(Math.random() * 100).toString()),
     isError: false,
     errorMessage: "",
     isNotification: useSignal(false),
@@ -36,6 +35,7 @@ export default component$(() => {
     isMenu: useSignal(true),
     isConnectedToSocket: false,
     mainEl: useSignal<HTMLElement | undefined>(),
+    hpPercent: 100,
   });
   useContextProvider(gameContext, gameStore);
 
@@ -51,7 +51,7 @@ export default component$(() => {
         mesh.moonSurface.material.map.repeat.x = 1 / texture1Ratio;
         mesh.moonSurface.material.map.offset.x = -(1 - texture1Ratio) / (2 * 1);
         mesh.moonSurface.material.map.needsUpdate = true;
-        game(gameStore.mainEl);
+        game(gameStore);
       });
     }),
   );
@@ -63,6 +63,7 @@ export default component$(() => {
       <GunScope />
       <ErrorMessage />
       <NotificationMessage />
+      <HpBar hpPercent={gameStore.hpPercent} />
     </main>
   );
 });
