@@ -20,12 +20,27 @@ export const damageRaycastPlayers = (
     raycaster.set(bodyPosition, direction);
 
     const intersects = raycaster.intersectObject(data.bullet);
+    if (intersects.length === 0) return;
 
-    if (intersects.length > 0) {
-      if (intersects[0].distance > 7) return;
-      game.notificationMesssage = `${player.username} got hit by ${data.shooter}`;
-      game.isNotification.value = true;
-      setTimeout(() => (game.isNotification.value = false), 2000);
+    if (intersects[0].distance < 2) {
+      player.hp -= 30;
+      if (player.hp <= 0) {
+        game.notificationMesssage = `${player.username} was killed by ${data.shooter}`;
+        game.isNotification.value = true;
+        setTimeout(() => (game.isNotification.value = false), 2000);
+      }
     }
+    if (intersects[0].distance < 5) {
+      player.hp -= 5;
+      if (player.hp <= 0) {
+        game.notificationMesssage = `${player.username} was killed by ${data.shooter}`;
+        game.isNotification.value = true;
+        setTimeout(() => (game.isNotification.value = false), 2000);
+      }
+    }
+    if (intersects[0].distance > 7) return;
+    game.notificationMesssage = `${player.username} got hit by ${data.shooter}`;
+    game.isNotification.value = true;
+    setTimeout(() => (game.isNotification.value = false), 2000);
   });
 };

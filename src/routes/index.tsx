@@ -1,13 +1,13 @@
 import { component$ } from "@builder.io/qwik";
 import type { DocumentHead } from "@builder.io/qwik-city";
-import { ProfileImage } from "~/components/profile-image";
+// import { ProfileImage } from "~/components/profile-image";
 export default component$(() => {
   return (
     <main class="flex flex-col justify-around text-white">
       <div class="relative mx-auto aspect-square max-w-sm overflow-hidden rounded bg-slate-100 text-center shadow-lg md:w-96">
-        <div class="mx-auto mt-10 h-32 w-32 overflow-hidden rounded-full border-4 border-slate-200 shadow-lg">
+        {/* <div class="mx-auto mt-10 h-32 w-32 overflow-hidden rounded-full border-4 border-slate-200 shadow-lg">
           <ProfileImage />
-        </div>
+        </div> */}
 
         <h1 class="mt-6 text-2xl font-bold text-gray-800">Ole Martin</h1>
         <p class="text-gray-600">Nett utvikler</p>
@@ -30,7 +30,7 @@ export default component$(() => {
 });
 
 export const head: DocumentHead = {
-  title: "Ole Martin",
+  title: "Ole M",
   meta: [
     {
       name: "description",

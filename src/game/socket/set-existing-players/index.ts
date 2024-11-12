@@ -5,6 +5,6 @@ import { scene } from "~/game/three";
 export const setExistingPlayers = (players: string[]) =>
   players.forEach((username) => {
     const car = meshFactory.car();
-    activePlayers.push({ car: car, username });
+    activePlayers.push({ car: car, username, hp: 100 });
     scene.add(car);
   });

@@ -4,7 +4,7 @@ import type { GameContextStore } from "~/game/game-context";
 import { scene } from "~/game/three";
 export const setNewPlayer = (username: string, game: GameContextStore) => {
   const car = meshFactory.car();
-  activePlayers.push({ car: car, username: username });
+  activePlayers.push({ car: car, username: username, hp: 100 });
   scene.add(car);
   game.notificationMesssage = username + " ble med";
   game.isNotification.value = true;
