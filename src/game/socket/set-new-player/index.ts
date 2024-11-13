@@ -1,12 +1,17 @@
 import meshFactory from "~/game/three/mesh-factory";
-import { activePlayers } from "~/game/game-global";
+import { activePlayers, type Player } from "~/game/game-global";
 import type { GameContextStore } from "~/game/game-context";
 import { scene } from "~/game/three";
-export const setNewPlayer = (username: string, game: GameContextStore) => {
+export const setNewPlayer = (player: Player, game: GameContextStore) => {
   const car = meshFactory.car();
-  activePlayers.push({ car: car, username: username, hp: 100 });
+  activePlayers.push({
+    car: car,
+    username: player.username,
+    hp: 100,
+    id: player.id,
+  });
   scene.add(car);
-  game.notificationMesssage = username + " ble med";
+  game.notificationMesssage = player.username + " ble med";
   game.isNotification.value = true;
   //
   setTimeout(() => {

@@ -7,6 +7,7 @@ export const UsernameForm = component$(() => {
   useOn(
     "submit",
     $(() => {
+      if (c.username.value.length < 3) return;
       connectToSocket(c.username.value, c);
       formRef.value?.remove();
     }),

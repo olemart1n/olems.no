@@ -15,7 +15,7 @@ export const sendCarData = (conn: WebSocket) => {
 
   conn.send(
     JSON.stringify({
-      name: "carData",
+      name: "car_data",
       payload: carData,
     }),
   );

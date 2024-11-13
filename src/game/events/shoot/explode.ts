@@ -1,13 +1,13 @@
 import * as THREE from "three";
 import { firedBullets, type FiredBulletsData } from "~/game/game-global";
 import { scene } from "~/game/three";
-import { damageRaycastPlayers } from "./damage-raycast-players";
-import type { GameContextStore } from "~/game/game-context";
+// import { damageRaycastPlayers } from "./damage-raycast-players";
+// import type { GameContextStore } from "~/game/game-context";
 export const explode = (
   data: FiredBulletsData,
-  gameStore: GameContextStore,
+  // gameStore: GameContextStore,
 ) => {
-  damageRaycastPlayers(data, gameStore);
+  // damageRaycastPlayers(data, gameStore);
   data.bullet.geometry = new THREE.SphereGeometry(1, 32, 32);
   let startOpacitity = 1;
   const startSize = data.bullet.scale.x;

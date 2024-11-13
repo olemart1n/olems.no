@@ -1,11 +1,11 @@
-import { activePlayers, type FiredBulletsData } from "~/game/game-global";
+import {
+  activePlayers,
+  type FiredBullet,
+  hpDamageData,
+} from "~/game/game-global";
 import * as THREE from "three";
-import type { GameContextStore } from "~/game/game-context";
-
-export const damageRaycastPlayers = (
-  data: FiredBulletsData,
-  game: GameContextStore,
-) => {
+import { sendHpDamageData } from "~/game/socket/send-hp-damage-data";
+export const damageRaycastPlayers = (data: FiredBullet, conn: WebSocket) => {
   const raycaster = new THREE.Raycaster();
 
   activePlayers.forEach((player) => {
@@ -21,26 +21,13 @@ export const damageRaycastPlayers = (
 
     const intersects = raycaster.intersectObject(data.bullet);
     if (intersects.length === 0) return;
-
+    hpDamageData.receiverId = player.id;
+    hpDamageData.shooter = data.shooter;
     if (intersects[0].distance < 2) {
-      player.hp -= 30;
-      if (player.hp <= 0) {
-        game.notificationMesssage = `${player.username} was killed by ${data.shooter}`;
-        game.isNotification.value = true;
-        setTimeout(() => (game.isNotification.value = false), 2000);
-      }
+      hpDamageData.damage = 30;
+    } else if (intersects[0].distance < 5) {
+      hpDamageData.damage = 5;
     }
-    if (intersects[0].distance < 5) {
-      player.hp -= 5;
-      if (player.hp <= 0) {
-        game.notificationMesssage = `${player.username} was killed by ${data.shooter}`;
-        game.isNotification.value = true;
-        setTimeout(() => (game.isNotification.value = false), 2000);
-      }
-    }
-    if (intersects[0].distance > 7) return;
-    game.notificationMesssage = `${player.username} got hit by ${data.shooter}`;
-    game.isNotification.value = true;
-    setTimeout(() => (game.isNotification.value = false), 2000);
+    sendHpDamageData(conn);
   });
 };

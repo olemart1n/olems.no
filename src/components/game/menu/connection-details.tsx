@@ -1,7 +1,20 @@
-import { component$, useContext } from "@builder.io/qwik";
+import { component$, useContext, useOnDocument, $ } from "@builder.io/qwik";
 import gameContext from "~/game/game-context";
 export const ConnectionDetails = component$(() => {
   const c = useContext(gameContext);
+
+  useOnDocument(
+    "DOMContentLoaded",
+    $(() => {
+      const serverURL =
+        import.meta.env.PUBLIC_ENV === "production"
+          ? "https://api.olems.no/car-game-players"
+          : "http://localhost:8080/car-game-players";
+      fetch(serverURL)
+        .then((data) => data.json())
+        .then((data) => (c.connectedPlayersLength = data.payload.length));
+    }),
+  );
   return (
     <>
       {c.isConnectedToSocket ? (
@@ -9,15 +22,10 @@ export const ConnectionDetails = component$(() => {
       ) : (
         <p>Ditt brukernavn:</p>
       )}
-      <p>Aktive spillere: {c.connectedPlayersLength}</p>
-      <div class="flex place-items-center gap-2">
-        <p>Forbindelse: </p>
-        {c.isConnectedToSocket ? (
-          <p class="h-3 w-3 rounded-full bg-green-500"></p>
-        ) : (
-          <p class="h-3 w-3 rounded-full bg-red-400"></p>
-        )}
-      </div>
+      <p>
+        Aktive spillere:{" "}
+        {c.connectedPlayersLength > 0 ? c.connectedPlayersLength : "Ingen"}
+      </p>
     </>
   );
 });

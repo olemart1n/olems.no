@@ -4,11 +4,7 @@ import * as THREE from "three";
 import meshFactory from "~/game/three/mesh-factory";
 import { scene } from "~/game/three";
 import { explode } from "~/game/events/shoot/explode";
-import type { GameContextStore } from "~/game/game-context";
-export const setShootData = (
-  payload: ShootData,
-  gameStore: GameContextStore,
-) => {
+export const setShootData = (payload: ShootData) => {
   const bullet = meshFactory.bullet();
   const position = new THREE.Vector3(
     payload.bulletPosition.x,
@@ -35,7 +31,7 @@ export const setShootData = (
       const bullet = firedBullets[index];
       bullet.hasHitted = true;
       // Explode the bullet
-      explode(bullet, gameStore);
+      explode(bullet);
     }
   }, payload.timeUntilHit);
 

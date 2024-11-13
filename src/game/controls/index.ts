@@ -4,11 +4,10 @@ import { carDirectionControls } from "./car-direction-controls";
 import type { GameContextStore } from "../game-context";
 
 export const addControls = (conn: WebSocket, gameStore: GameContextStore) => {
-  const shootEvent = (e: PointerEvent) => events.shoot(e, conn, gameStore);
+  const shootEvent = (e: PointerEvent) => events.shoot(e, conn);
 
   document.addEventListener("pointerlockchange", () => {
     if (document.pointerLockElement === gameStore.mainEl.value) {
-      console.log("document.pointerLockElement === gameStore.mainEl.value");
       document.addEventListener("keydown", carDirectionControls);
       document.addEventListener("keyup", carDirectionControls);
       gameStore.mainEl.value.addEventListener("mousemove", gameMouseEvent);

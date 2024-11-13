@@ -9,12 +9,8 @@ import { gunCoolDown } from "./gun-cool-down";
 import { gunState } from "../../game-global";
 import { sendShootData } from "~/game/socket/send-shoot-data";
 import { shootData, carData } from "../../game-global";
-import type { GameContextStore } from "~/game/game-context";
-export const shoot = (
-  e: PointerEvent,
-  conn: WebSocket,
-  game: GameContextStore,
-) => {
+import { damageRaycastPlayers } from "./damage-raycast-players";
+export const shoot = (e: PointerEvent, conn: WebSocket) => {
   e.preventDefault();
   if (gunState.isCooling) return;
 
@@ -40,7 +36,8 @@ export const shoot = (
           const bullet = firedBullets[index];
           bullet.hasHitted = true;
           // Explode the bullet
-          explode(bullet, game);
+          explode(bullet);
+          damageRaycastPlayers(bullet, conn);
         }
       },
       calculateBulletHitTime(distance) * 600,

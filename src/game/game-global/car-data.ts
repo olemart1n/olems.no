@@ -27,6 +27,7 @@ export const carData: CarDataProps = {
   frontMidPoint: { x: 0, y: 0, z: 0 },
   rearMidPoint: { x: 0, y: 0, z: 0 },
   gunAxleWorldDirectionVector,
+  id: "",
 };
 
 export interface CarDataProps {
@@ -40,6 +41,7 @@ export interface CarDataProps {
   rearMidPoint: threeD;
   gunAxleWorldDirectionVector: THREE.Vector3;
   gunAxleRotationQuaternion: THREE.Quaternion;
+  id: string;
 }
 
 interface threeD {
