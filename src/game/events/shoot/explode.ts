@@ -1,10 +1,10 @@
 import * as THREE from "three";
-import { firedBullets, type FiredBulletsData } from "~/game/game-global";
+import { firedBullets, type FiredBullet } from "~/game/game-global";
 import { scene } from "~/game/three";
 // import { damageRaycastPlayers } from "./damage-raycast-players";
 // import type { GameContextStore } from "~/game/game-context";
 export const explode = (
-  data: FiredBulletsData,
+  data: FiredBullet,
   // gameStore: GameContextStore,
 ) => {
   // damageRaycastPlayers(data, gameStore);

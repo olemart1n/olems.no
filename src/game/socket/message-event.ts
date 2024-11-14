@@ -25,9 +25,7 @@ export const messageEvent = (e: MessageEvent, game: GameContextStore) => {
     payload: any;
   }
   const data: Message = JSON.parse(e.data);
-  if (data.name === "id") {
-    carData.id = data.payload;
-  } else if (data.name === "car_data") {
+  if (data.name === "car_data") {
     const payload: CarDataProps = data.payload;
     const player = activePlayers.find(
       (player) => player.id === data.payload.id,
@@ -51,5 +49,7 @@ export const messageEvent = (e: MessageEvent, game: GameContextStore) => {
   } else if (data.name === "leaving_player") {
     const player: Player = data.payload;
     setLeavingPlayer(player, game);
+  } else if (data.name === "id") {
+    carData.id = data.payload;
   }
 };

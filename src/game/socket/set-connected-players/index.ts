@@ -4,8 +4,6 @@ import { scene } from "~/game/three";
 
 export const setConnectedPlayers = (players: Player[]) => {
   players.forEach((player) => {
-    console.log(player.username + " - - - " + player.id);
-    console.log(carData.id);
     if (player.id === carData.id) return;
     const car = meshFactory.car();
     activePlayers.push({
@@ -16,6 +14,4 @@ export const setConnectedPlayers = (players: Player[]) => {
     });
     scene.add(car);
   });
-  console.log("activePlayers");
-  console.log(activePlayers);
 };

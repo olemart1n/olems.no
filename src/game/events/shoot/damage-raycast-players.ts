@@ -8,9 +8,8 @@ import { sendHpDamageData } from "~/game/socket/send-hp-damage-data";
 export const damageRaycastPlayers = (data: FiredBullet, conn: WebSocket) => {
   const raycaster = new THREE.Raycaster();
 
-  activePlayers.forEach((player) => {
-    const carBody = player.car.children[4];
-
+  activePlayers.forEach((raySender) => {
+    const carBody = raySender.car.children[4];
     const bodyPosition = new THREE.Vector3();
     carBody.getWorldPosition(bodyPosition);
     const direction = data.bullet.position
@@ -21,7 +20,7 @@ export const damageRaycastPlayers = (data: FiredBullet, conn: WebSocket) => {
 
     const intersects = raycaster.intersectObject(data.bullet);
     if (intersects.length === 0) return;
-    hpDamageData.receiverId = player.id;
+    hpDamageData.receiverId = raySender.id;
     hpDamageData.shooter = data.shooter;
     if (intersects[0].distance < 2) {
       hpDamageData.damage = 30;
