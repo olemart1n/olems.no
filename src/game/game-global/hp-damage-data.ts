@@ -1,11 +1,11 @@
 export interface HpDamageData {
   damage: number;
-  receiverId: string;
+  vitcimId: string;
   shooter: string;
 }
 
 export const hpDamageData: HpDamageData = {
   damage: 0,
-  receiverId: "",
+  vitcimId: "",
   shooter: "",
 };

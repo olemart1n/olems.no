@@ -9,7 +9,7 @@ export const carVariables: CarVariablesProps = {
   acceleration: 0.02,
   friction: 0.01,
   angle: 0,
-  maxSpeed: 0.2,
+  maxSpeed: 0.15,
   direction: {
     left: false,
     right: false,

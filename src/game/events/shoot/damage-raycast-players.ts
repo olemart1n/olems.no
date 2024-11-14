@@ -20,13 +20,14 @@ export const damageRaycastPlayers = (data: FiredBullet, conn: WebSocket) => {
 
     const intersects = raycaster.intersectObject(data.bullet);
     if (intersects.length === 0) return;
-    hpDamageData.receiverId = raySender.id;
+    hpDamageData.vitcimId = raySender.id;
     hpDamageData.shooter = data.shooter;
     if (intersects[0].distance < 2) {
       hpDamageData.damage = 30;
+      sendHpDamageData(conn);
     } else if (intersects[0].distance < 5) {
       hpDamageData.damage = 5;
+      sendHpDamageData(conn);
     }
-    sendHpDamageData(conn);
   });
 };
