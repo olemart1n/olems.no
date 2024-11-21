@@ -1,68 +1,68 @@
 import * as THREE from "three";
 import { gunAxle } from "~/game/three/mesh/car";
-import { firedBullets } from "../../game-global";
 import { scene } from "~/game/scene";
 import meshFactory from "~/game/three/mesh-factory";
-import { bulletSpeed } from "../../game-global";
+import { globalVar } from "../../global-var";
 import { explode } from "./explode";
 import { gunCoolDown } from "./gun-cool-down";
-import { gunState } from "../../game-global";
-import { sendShootData } from "~/game/socket/send-shoot-data";
-import { shootData, carData } from "../../game-global";
+import { send } from "~/game/socket/send";
 import { damageRaycastPlayers } from "./damage-raycast-players";
-export const shoot = (e: PointerEvent, conn: WebSocket) => {
+export const shoot = (e: PointerEvent) => {
   e.preventDefault();
-  if (gunState.isCooling) return;
+  if (globalVar.gunState.isCooling) return;
 
   const bullet = meshFactory.bullet();
-  gunAxle.getWorldPosition(shootData.bulletPosition);
-  bullet.position.copy(shootData.bulletPosition);
-  gunAxle.getWorldDirection(shootData.bulletDirection);
-  shootData.shooter = carData.username;
+  gunAxle.getWorldPosition(globalVar.shootData.bulletPosition);
+  bullet.position.copy(globalVar.shootData.bulletPosition);
+  gunAxle.getWorldDirection(globalVar.shootData.bulletDirection);
+  globalVar.shootData.shooter = globalVar.carData.username;
   // RAY
   const raycaster = new THREE.Raycaster(
-    shootData.bulletPosition,
-    shootData.bulletDirection,
+    globalVar.shootData.bulletPosition,
+    globalVar.shootData.bulletDirection,
   );
   const intersects = raycaster.intersectObjects(scene.children);
 
   if (intersects.length > 0) {
     const distance = intersects[0].distance;
-    shootData.timeUntilHit = calculateBulletHitTime(distance) * 600;
+    globalVar.shootData.timeUntilHit = calculateBulletHitTime(distance) * 600;
     setTimeout(
       () => {
-        const index = firedBullets.findIndex((b) => b.bullet === bullet);
+        const index = globalVar.firedBullets.findIndex(
+          (b) => b.bullet === bullet,
+        );
         if (index !== -1) {
-          const bullet = firedBullets[index];
+          const bullet = globalVar.firedBullets[index];
           bullet.hasHitted = true;
           // Explode the bullet
           explode(bullet);
-          damageRaycastPlayers(bullet, conn);
+          damageRaycastPlayers(bullet);
         }
       },
       calculateBulletHitTime(distance) * 600,
     );
   }
   // Calculate the rotation quaternion based on the direction vector
-  shootData.bulletRotation = new THREE.Quaternion().setFromUnitVectors(
-    new THREE.Vector3(0, 1, 0),
-    shootData.bulletDirection,
-  );
-  bullet.applyQuaternion(shootData.bulletRotation);
+  globalVar.shootData.bulletRotation =
+    new THREE.Quaternion().setFromUnitVectors(
+      new THREE.Vector3(0, 1, 0),
+      globalVar.shootData.bulletDirection,
+    );
+  bullet.applyQuaternion(globalVar.shootData.bulletRotation);
   // Send shoot data to the server
-  sendShootData(conn);
+  send.shootData();
   gunCoolDown();
-  firedBullets.push({
+  globalVar.firedBullets.push({
     bullet,
-    direction: shootData.bulletDirection,
+    direction: globalVar.shootData.bulletDirection,
     hasHitted: false,
-    shooter: carData.username,
+    shooterId: globalVar.carData.id,
   });
   scene.add(bullet);
 };
 
 function calculateBulletHitTime(distanceToObject: number) {
-  const time = distanceToObject / bulletSpeed;
+  const time = distanceToObject / globalVar.bulletSpeed;
   const timeInSeconds = time * (1 / 60);
   return timeInSeconds;
 }

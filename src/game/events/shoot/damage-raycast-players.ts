@@ -1,14 +1,11 @@
-import {
-  activePlayers,
-  type FiredBullet,
-  hpDamageData,
-} from "~/game/game-global";
+import { globalVar } from "~/game/global-var";
 import * as THREE from "three";
-import { sendHpDamageData } from "~/game/socket/send-hp-damage-data";
-export const damageRaycastPlayers = (data: FiredBullet, conn: WebSocket) => {
+import type * as type from "~/game/global-var/type";
+import { send } from "~/game/socket/send";
+export const damageRaycastPlayers = (data: type.FiredBullet) => {
   const raycaster = new THREE.Raycaster();
 
-  activePlayers.forEach((raySender) => {
+  globalVar.activePlayers.forEach((raySender) => {
     const carBody = raySender.car.children[4];
     const bodyPosition = new THREE.Vector3();
     carBody.getWorldPosition(bodyPosition);
@@ -20,14 +17,14 @@ export const damageRaycastPlayers = (data: FiredBullet, conn: WebSocket) => {
 
     const intersects = raycaster.intersectObject(data.bullet);
     if (intersects.length === 0) return;
-    hpDamageData.vitcimId = raySender.id;
-    hpDamageData.shooter = data.shooter;
+    globalVar.hpDamageData.vitcimId = raySender.id;
+    globalVar.hpDamageData.shooterId = data.shooterId;
     if (intersects[0].distance < 2) {
-      hpDamageData.damage = 30;
-      sendHpDamageData(conn);
+      globalVar.hpDamageData.damage = 30;
+      send.hpDamageData();
     } else if (intersects[0].distance < 5) {
-      hpDamageData.damage = 5;
-      sendHpDamageData(conn);
+      globalVar.hpDamageData.damage = 5;
+      send.hpDamageData();
     }
   });
 };

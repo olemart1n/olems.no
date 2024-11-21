@@ -2,11 +2,11 @@ import * as THREE from "three";
 import { TextGeometry } from "three/addons/geometries/TextGeometry.js";
 import { body } from "../../car";
 import { fontBrighter } from "../font-loader";
-
-export const addUsernameToCar = (username: string) => {
-  const geometry = new TextGeometry(username, {
+import { globalVar } from "~/game/global-var";
+export const addUsernameToCar = () => {
+  const geometry = new TextGeometry(globalVar.carData.username, {
     font: fontBrighter,
-    size: 2.5 / username.length,
+    size: 2.5 / globalVar.carData.username.length,
     depth: 0.05,
     // curveSegments: 2,
   });

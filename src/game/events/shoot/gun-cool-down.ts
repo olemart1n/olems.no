@@ -1,5 +1,5 @@
 import { mesh } from "~/game/three";
-import { gunState } from "~/game/game-global";
+import { globalVar } from "~/game/global-var";
 export const gunCoolDown = () => {
   const gun = mesh.gun;
   const gunAxle = mesh.gunAxle;
@@ -8,10 +8,10 @@ export const gunCoolDown = () => {
   gun.position.z = gun.position.z - 0.05;
   const returnPoint = gun.position.z - 0.7;
   let isReturningToStartZ = false;
-  gunState.isCooling = true;
+  globalVar.gunState.isCooling = true;
   setTimeout(() => {
     gunAxle.material.color.set(0x9ff275);
-    gunState.isCooling = false;
+    globalVar.gunState.isCooling = false;
   }, 1500);
 
   const gunInterval = setInterval(() => {

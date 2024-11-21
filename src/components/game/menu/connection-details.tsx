@@ -10,9 +10,11 @@ export const ConnectionDetails = component$(() => {
         import.meta.env.PUBLIC_ENV === "production"
           ? "https://api.olems.no/car-game-players"
           : "http://localhost:8080/car-game-players";
+
       fetch(serverURL)
         .then((data) => data.json())
-        .then((data) => (c.connectedPlayersLength = data.payload.length));
+        //connected_spectators
+        .then((data) => (c.connectedSpectators = data.payload));
     }),
   );
   return (
@@ -23,8 +25,10 @@ export const ConnectionDetails = component$(() => {
         <p>Ditt brukernavn:</p>
       )}
       <p>
-        Aktive spillere:{" "}
-        {c.connectedPlayersLength > 0 ? c.connectedPlayersLength : "Ingen"}
+        Personer tilstede:{" "}
+        {c.connectedSpectators.length > 0
+          ? c.connectedSpectators.length
+          : "Ingen"}
       </p>
     </>
   );

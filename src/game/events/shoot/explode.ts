@@ -1,13 +1,8 @@
 import * as THREE from "three";
-import { firedBullets, type FiredBullet } from "~/game/game-global";
+import { globalVar } from "~/game/global-var";
+import type * as type from "~/game/global-var/type";
 import { scene } from "~/game/three";
-// import { damageRaycastPlayers } from "./damage-raycast-players";
-// import type { GameContextStore } from "~/game/game-context";
-export const explode = (
-  data: FiredBullet,
-  // gameStore: GameContextStore,
-) => {
-  // damageRaycastPlayers(data, gameStore);
+export const explode = (data: type.FiredBullet) => {
   data.bullet.geometry = new THREE.SphereGeometry(1, 32, 32);
   let startOpacitity = 1;
   const startSize = data.bullet.scale.x;
@@ -25,7 +20,7 @@ export const explode = (
     material.opacity = startOpacitity;
 
     if (currentSize >= endSize) {
-      firedBullets.splice(firedBullets.indexOf(data), 1);
+      globalVar.firedBullets.splice(globalVar.firedBullets.indexOf(data), 1);
       scene.remove(data.bullet);
       clearInterval(explosionInterval);
     }

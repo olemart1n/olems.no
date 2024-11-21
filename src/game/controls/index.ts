@@ -2,23 +2,45 @@ import { gameMouseEvent } from "./game-mouse-event";
 import { events } from "../events";
 import { carDirectionControls } from "./car-direction-controls";
 import type { GameContextStore } from "../game-context";
+import { sendCarData } from "../socket/send/car-data";
 
-export const addControls = (conn: WebSocket, gameStore: GameContextStore) => {
-  const shootEvent = (e: PointerEvent) => events.shoot(e, conn);
+/**
+ * JSDoc comment
+ * Stops/Starts the interval that sends car data based on a condition
+ */
+export const addControls = (gameStore: GameContextStore) => {
+  const shootEvent = (e: PointerEvent) => events.shoot(e);
 
+  let intervalId: ReturnType<typeof setInterval> | null = null;
+
+  const startInterval = () => {
+    intervalId = setInterval(() => {
+      sendCarData();
+    }, 100);
+  };
+
+  const stopInterval = () => {
+    if (intervalId !== null) {
+      clearInterval(intervalId);
+      intervalId = null;
+    }
+  };
   document.addEventListener("pointerlockchange", () => {
     if (document.pointerLockElement === gameStore.mainEl.value) {
       document.addEventListener("keydown", carDirectionControls);
       document.addEventListener("keyup", carDirectionControls);
       gameStore.mainEl.value.addEventListener("mousemove", gameMouseEvent);
       gameStore.mainEl.value.addEventListener("pointerdown", shootEvent);
+      gameStore.isMenu.value = false;
+      startInterval();
     } else {
       // REMOVE GAME CONTROLS (MENY SHOULD BE VISIBLE)
       document.removeEventListener("keydown", carDirectionControls);
       document.removeEventListener("keyup", carDirectionControls);
       gameStore.mainEl.value?.removeEventListener("mousemove", gameMouseEvent);
       gameStore.mainEl.value?.removeEventListener("pointerdown", shootEvent);
+      gameStore.isMenu.value = true;
+      stopInterval();
     }
-    gameStore.isMenu.value = !gameStore.isMenu.value;
   });
 };

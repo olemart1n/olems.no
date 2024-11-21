@@ -1,9 +1,11 @@
 import { component$, useContext } from "@builder.io/qwik";
-import { Controllers } from "./controllers";
+// import { Controllers } from "./controllers";
+import { StartGameButton } from "./start-game-button";
 import { UsernameForm } from "./username-form";
 import { ConnectionDetails } from "./connection-details";
+import { CloseMenuButton } from "./close-menu-button";
 import gameContext from "~/game/game-context";
-
+import { Chat } from "./chat";
 export const Menu = component$(() => {
   const gameStore = useContext(gameContext);
 
@@ -24,22 +26,13 @@ export const Menu = component$(() => {
         <div class="text-center text-red-400">
           <p class="underline">under utvikling</p>
         </div>
-        <Controllers />
+        {/* <Controllers /> */}
+
         <UsernameForm />
-        <button
-          class={
-            "mx-auto mt-auto block rounded-sm bg-gray-400 px-2 py-1 text-black " +
-            (gameStore.isConnectedToSocket
-              ? "scale-110 cursor-pointer bg-yellow-400 outline outline-1"
-              : "scale-100 cursor-not-allowed bg-gray-400")
-          }
-          disabled={!gameStore.isConnectedToSocket}
-          onClick$={() => gameStore.mainEl.value?.requestPointerLock()}
-        >
-          Lukk meny
-        </button>
-        <div class="mt-auto bg-slate-100 p-2 text-slate-700">
+        {gameStore.isConnectedToSocket && <Chat />}
+        <div class="relative mt-auto bg-slate-100 p-2 text-slate-700">
           <ConnectionDetails />
+          {gameStore.isInGame ? <CloseMenuButton /> : <StartGameButton />}
         </div>
       </div>
     </div>

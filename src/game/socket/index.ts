@@ -1,7 +1,8 @@
-import { messageEvent } from "./message-event";
-import { openEvent } from "./open-event";
-import { closeEvent } from "./close-event";
-import { errorEvent } from "./error-event";
+import { globalVar } from "../global-var";
+import { open } from "./events/open";
+import { message } from "./events/message";
+import { close } from "./events/close";
+import { error } from "./events/error";
 import type { GameContextStore } from "../game-context";
 
 export const connectToSocket = (username: string, game: GameContextStore) => {
@@ -9,19 +10,22 @@ export const connectToSocket = (username: string, game: GameContextStore) => {
     import.meta.env.PUBLIC_ENV === "production"
       ? "wss://api.olems.no/car-game"
       : "ws://localhost:8080/car-game";
-  const conn = new WebSocket(`${serverSocketURL}?username=${username}`);
-  conn.addEventListener("error", (e) => {
-    errorEvent(e);
+  globalVar.conn.socket = new WebSocket(
+    `${serverSocketURL}?username=${username}`,
+  );
+  globalVar.carData.username = username!;
+  globalVar.conn.socket.addEventListener("error", (e) => {
+    error(e);
   });
 
-  conn.addEventListener("close", (e) => {
-    closeEvent(e, game, conn);
+  globalVar.conn.socket.addEventListener("close", (e) => {
+    close(e, game);
   });
 
-  conn.addEventListener("message", (e) => {
-    messageEvent(e, game);
+  globalVar.conn.socket.addEventListener("message", (e) => {
+    message(e, game);
   });
-  conn.addEventListener("open", (e) => {
-    openEvent(e, game, conn);
+  globalVar.conn.socket.addEventListener("open", (e) => {
+    open(e, game);
   });
 };

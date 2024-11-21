@@ -1,12 +1,12 @@
-import { firedBullets, bulletSpeed } from "../../game-global";
+import { globalVar } from "../../global-var";
 
 export function moveBullets() {
-  firedBullets.forEach((data) => {
+  globalVar.firedBullets.forEach((data) => {
     if (data.hasHitted) {
       return;
     }
     data.bullet.position.add(
-      data.direction.clone().multiplyScalar(bulletSpeed),
+      data.direction.clone().multiplyScalar(globalVar.bulletSpeed),
     );
   });
 }

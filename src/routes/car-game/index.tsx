@@ -26,7 +26,7 @@ export default component$(() => {
       ? "Ola" + Math.round(Math.random() * 100).toString()
       : "";
   const gameStore = useStore<GameContextStore>({
-    connectedPlayersLength: 0,
+    connectedSpectators: [],
     username: useSignal(username),
     isError: false,
     errorMessage: "",
@@ -36,8 +36,12 @@ export default component$(() => {
     isConnectedToSocket: false,
     mainEl: useSignal<HTMLElement | undefined>(),
     hpPercent: 100,
+    messages: [],
+    messageEndRefDiv: useSignal<HTMLDivElement | undefined>(),
+    isInGame: false,
   });
   useContextProvider(gameContext, gameStore);
+  const audioEl = useSignal<HTMLAudioElement | undefined>();
 
   useOnDocument(
     "DOMContentLoaded",
@@ -64,6 +68,9 @@ export default component$(() => {
       <ErrorMessage />
       <NotificationMessage />
       <HpBar hpPercent={gameStore.hpPercent} />
+      <audio ref={audioEl} loop preload="auto" style="display: none" autoplay>
+        <source src="/audio/bg-music.mp3" />
+      </audio>
     </main>
   );
 });

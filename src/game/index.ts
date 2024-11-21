@@ -1,5 +1,6 @@
 import * as THREE from "three";
-import { animateFunction, scene, carVariables, mesh } from "./three";
+import { scene, mesh } from "./three";
+import { animateFunction } from "./animate-function";
 import type { GameContextStore } from "./game-context";
 const game = (gameStore: GameContextStore) => {
   const camera = new THREE.PerspectiveCamera( // - - - CAMERA
@@ -26,4 +27,4 @@ const game = (gameStore: GameContextStore) => {
   });
 };
 
-export { mesh, game, carVariables };
+export { mesh, game };

@@ -1,35 +1,35 @@
-import { carVariables } from "../three";
+import { globalVar } from "../global-var";
 export const carDirectionControls = (e: KeyboardEvent) => {
   if (e.type === "keydown") {
     switch (e.key) {
       case "a":
-        carVariables.direction.left = true;
+        globalVar.carConfig.direction.left = true;
         break;
       case "d":
-        carVariables.direction.right = true;
+        globalVar.carConfig.direction.right = true;
         break;
       case "w":
-        carVariables.direction.forward = true;
+        globalVar.carConfig.direction.forward = true;
 
         break;
       case "s":
-        carVariables.direction.reverse = true;
+        globalVar.carConfig.direction.reverse = true;
         break;
     }
   }
   if (e.type === "keyup") {
     switch (e.key) {
       case "a":
-        carVariables.direction.left = false;
+        globalVar.carConfig.direction.left = false;
         break;
       case "d":
-        carVariables.direction.right = false;
+        globalVar.carConfig.direction.right = false;
         break;
       case "w":
-        carVariables.direction.forward = false;
+        globalVar.carConfig.direction.forward = false;
         break;
       case "s":
-        carVariables.direction.reverse = false;
+        globalVar.carConfig.direction.reverse = false;
         break;
     }
   }

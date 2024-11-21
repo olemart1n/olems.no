@@ -1,8 +1,8 @@
 import { createContextId } from "@builder.io/qwik";
 import type { Signal } from "@builder.io/qwik";
-
+import type * as type from "./global-var/type";
 export interface GameContextStore {
-  connectedPlayersLength: number;
+  connectedSpectators: type.BroadcastedPlayer[];
   username: Signal<string>;
   isError: boolean;
   errorMessage: string;
@@ -12,8 +12,17 @@ export interface GameContextStore {
   isConnectedToSocket: boolean;
   mainEl: Signal<HTMLElement | undefined>;
   hpPercent: number;
+  messages: Message[];
+  messageEndRefDiv: Signal<HTMLDivElement | undefined>;
+  isInGame: boolean;
 }
 
 const gameContext = createContextId<GameContextStore>("gameContext");
 
 export default gameContext;
+
+export interface Message {
+  senderUsername: string;
+  message: string;
+  senderId: string;
+}
