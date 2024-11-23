@@ -3,7 +3,8 @@ import { events } from "../events";
 import { carDirectionControls } from "./car-direction-controls";
 import type { GameContextStore } from "../game-context";
 import { sendCarData } from "../socket/send/car-data";
-
+import { scene } from "../scene";
+import { mesh } from "../three";
 /**
  * JSDoc comment
  * Stops/Starts the interval that sends car data based on a condition
@@ -12,7 +13,7 @@ export const addControls = (gameStore: GameContextStore) => {
   const shootEvent = (e: PointerEvent) => events.shoot(e);
 
   let intervalId: ReturnType<typeof setInterval> | null = null;
-
+  scene.add(mesh.car);
   const startInterval = () => {
     intervalId = setInterval(() => {
       sendCarData();

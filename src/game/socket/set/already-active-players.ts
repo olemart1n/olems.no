@@ -7,6 +7,10 @@ import { scene } from "~/game/three";
 export const alreadyActivePlayers = (players: types.Player[]) => {
   players.forEach((player) => {
     if (player.id === globalVar.carData.id) return;
+    const playerExists = globalVar.activePlayers.some(
+      (activePlayer) => activePlayer.id === player.id,
+    );
+    if (playerExists) return;
     const car = meshFactory.car();
     globalVar.activePlayers.push({
       car: car,
