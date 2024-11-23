@@ -2,28 +2,32 @@ import { globalVar } from "~/game/global-var";
 import type * as types from "~/game/global-var/type";
 import { type GameContextStore } from "~/game/game-context";
 
-export const hpDamageData = (data: types.HpDamageData, c: GameContextStore) => {
-  if (data.vitcimId === globalVar.carData.id) {
-    // If id is the id of this clients id, do differently
-    c.hpPercent -= data.damage;
-
-    c.isNotification.value = true;
-    c.notificationMesssage = `Du ble truffet av ${data.shooterId}`;
-    setTimeout(() => {
-      c.isNotification.value = false;
-    }, 2000);
-    return;
+export const hpDamageData = (
+  data: types.HpDamageData,
+  ctx: GameContextStore,
+) => {
+  if (data.victimId === globalVar.carData.id) {
+    ctx.hpPercent -= data.damage;
   }
 
-  const victim = globalVar.activePlayers.find(
-    (player) => player.id === data.vitcimId,
+  const { victim, shooter } = getVictimAndShooter(
+    data.victimId,
+    data.shooterId,
   );
-  if (!victim) return;
+
+  if (!victim || !shooter) return;
   victim.hp -= data.damage;
 
-  c.isNotification.value = true;
-  c.notificationMesssage = `${victim.username} ble truffet av ${data.shooterId}`;
+  ctx.isNotification.value = true;
+  ctx.notificationMesssage = `${victim.username} ble truffet av ${shooter.username}`;
+
   setTimeout(() => {
-    c.isNotification.value = false;
+    ctx.isNotification.value = false;
   }, 2000);
+};
+
+const getVictimAndShooter = (victimId: string, shooterId: string) => {
+  const shooter = globalVar.activePlayers.find((s) => s.id === shooterId);
+  const victim = globalVar.activePlayers.find((s) => s.id === victimId);
+  return { shooter, victim };
 };

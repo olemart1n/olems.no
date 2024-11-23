@@ -1,5 +1,6 @@
 import { globalVar } from "~/game/global-var";
 import type { GameContextStore } from "~/game/game-context";
+import { activePlayersRemovePlayer } from "../utils";
 import type * as type from "~/game/global-var/type";
 import { scene } from "~/game/three";
 import { mesh } from "~/game/three";
@@ -20,18 +21,11 @@ export const playerDied = (
     }, 2000);
     return;
   }
-  const index = globalVar.activePlayers.findIndex(
-    (player) => player.id === player.id,
-  );
-  const deadPlayer = globalVar.activePlayers.find(
-    (player) => player.id === player.id,
-  );
-
+  const deadPlayer = globalVar.activePlayers.find((p) => p.id === player.id);
   deadPlayer?.car && scene.remove(deadPlayer.car);
-  globalVar.activePlayers.splice(index, 1);
-
   game.notificationMesssage = player.username + " ble drept";
   game.isNotification.value = true;
+  activePlayersRemovePlayer(player.id);
   setTimeout(() => {
     game.isNotification.value = false;
   }, 2000);

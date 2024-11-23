@@ -17,7 +17,7 @@ export const damageRaycastPlayers = (data: type.FiredBullet) => {
 
     const intersects = raycaster.intersectObject(data.bullet);
     if (intersects.length === 0) return;
-    globalVar.hpDamageData.vitcimId = raySender.id;
+    globalVar.hpDamageData.victimId = raySender.id;
     globalVar.hpDamageData.shooterId = data.shooterId;
     if (intersects[0].distance < 2) {
       globalVar.hpDamageData.damage = 30;

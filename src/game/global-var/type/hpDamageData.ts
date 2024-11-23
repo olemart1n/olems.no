@@ -1,5 +1,5 @@
 export interface HpDamageData {
   damage: number;
-  vitcimId: string;
+  victimId: string;
   shooterId: string;
 }

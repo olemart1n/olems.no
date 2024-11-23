@@ -10,6 +10,28 @@ export const message = (e: MessageEvent, game: GameContextStore) => {
   }
   const data: Message = JSON.parse(e.data);
   switch (data.name) {
+    //________________
+    // SENT TO THE RELEVANT CLIENT
+    case "id":
+      globalVar.carData.id = data.payload;
+      break;
+    case "connected_spectators":
+      set.connectedSpectators(data.payload, game);
+      break;
+
+    case "already_active_players":
+      const players: type.Player[] = data.payload;
+      set.alreadyActivePlayers(players);
+      break;
+
+    //__________________
+    // BROADCASTED TO ALL EXCEPT SENDER
+    case "chat_message":
+      set.chatMessage(game, data.payload);
+      break;
+    case "spectator_joins":
+      set.spectatorJoins(data.payload, game);
+      break;
     case "car_data":
       const payload: type.CarData = data.payload;
       const player = globalVar.activePlayers.find(
@@ -25,35 +47,22 @@ export const message = (e: MessageEvent, game: GameContextStore) => {
       set.shootData(shootData);
       break;
 
-    case "already_active_players":
-      const players: type.Player[] = data.payload;
-      set.alreadyActivePlayers(players);
-      break;
-    case "hp_damage":
-      const damageData: type.HpDamageData = data.payload;
-      set.hpDamageData(damageData, game);
-      break;
+    //___________________
+    // BROADCASTED TO ALL
     case "player_joins":
       const newPlayer: type.Player = data.payload;
       set.playerJoins(newPlayer, game);
       break;
-    case "id":
-      globalVar.carData.id = data.payload;
-      break;
-    case "chat_message":
-      set.chatMessage(game, data.payload);
-      break;
     case "spectator_leaves":
-      set.chatMessage(game, data.payload);
+      set.spectatorLeaves(game, data.payload);
       break;
     case "player_died":
       set.playerDied(data.payload, game);
       break;
-    case "connected_spectators":
-      set.connectedSpectators(data.payload, game);
-      break;
-    case "spectator_joins":
-      set.spectatorJoins(data.payload, game);
+
+    case "hp_damage":
+      const damageData: type.HpDamageData = data.payload;
+      set.hpDamageData(damageData, game);
       break;
 
     default:

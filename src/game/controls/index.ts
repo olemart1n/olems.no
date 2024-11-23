@@ -34,13 +34,13 @@ export const addControls = (gameStore: GameContextStore) => {
       gameStore.isMenu.value = false;
       startInterval();
     } else {
-      // REMOVE GAME CONTROLS (MENY SHOULD BE VISIBLE)
       document.removeEventListener("keydown", carDirectionControls);
       document.removeEventListener("keyup", carDirectionControls);
       gameStore.mainEl.value?.removeEventListener("mousemove", gameMouseEvent);
       gameStore.mainEl.value?.removeEventListener("pointerdown", shootEvent);
       gameStore.isMenu.value = true;
       stopInterval();
+      // REMOVE GAME CONTROLS (MENY IS NOW VISIBLE)
     }
   });
 };

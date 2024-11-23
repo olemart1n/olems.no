@@ -41,7 +41,7 @@ export default component$(() => {
     isInGame: false,
   });
   useContextProvider(gameContext, gameStore);
-  const audioEl = useSignal<HTMLAudioElement | undefined>();
+  // const audioEl = useSignal<HTMLAudioElement | undefined>();
 
   useOnDocument(
     "DOMContentLoaded",
@@ -68,9 +68,9 @@ export default component$(() => {
       <ErrorMessage />
       <NotificationMessage />
       <HpBar hpPercent={gameStore.hpPercent} />
-      <audio ref={audioEl} loop preload="auto" style="display: none" autoplay>
+      {/* <audio ref={audioEl} loop preload="auto" style="display: none" autoplay>
         <source src="/audio/bg-music.mp3" />
-      </audio>
+      </audio> */}
     </main>
   );
 });
