@@ -1,7 +1,10 @@
 import type * as types from "~/game/global-var/type";
 import * as THREE from "three";
 
-export const setPlayerGunAxle = (car: THREE.Group, payload: types.CarData) => {
+export const setPlayerGunAxle = (
+  car: THREE.Object3D,
+  payload: types.CarData,
+) => {
   // SET THE gunAxles ROTATION
   payload.gunAxleWorldDirectionVector.y *= -1;
   const gunAxle = car.getObjectByName("gun-axle");
