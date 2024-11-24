@@ -1,11 +1,12 @@
 import { component$, useContext } from "@builder.io/qwik";
-// import { Controllers } from "./controllers";
+
 import { StartGameButton } from "./start-game-button";
 import { UsernameForm } from "./username-form";
 import { ConnectionDetails } from "./connection-details";
 import { CloseMenuButton } from "./close-menu-button";
 import gameContext from "~/game/game-context";
 import { Chat } from "./chat";
+import { Info } from "./info/info";
 export const Menu = component$(() => {
   const gameStore = useContext(gameContext);
 
@@ -21,10 +22,12 @@ export const Menu = component$(() => {
         <button class="absolute left-full top-1 ml-1 h-8 w-8 cursor-pointer rounded-sm bg-yellow-400 bg-opacity-80 text-xs font-bold text-slate-800 ">
           esc
         </button>
-
-        <h1 class="text-center text-xl">Bilspill</h1>
-        <div class="text-center text-red-400">
-          <p class="underline">under utvikling</p>
+        <div class="h-1/4 ">
+          <h1 class="text-center text-xl">Bilspill</h1>
+          <div class="text-center text-red-400">
+            <p class="underline">under utvikling</p>
+          </div>
+          <Info />
         </div>
         {/* <Controllers /> */}
 

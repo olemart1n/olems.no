@@ -39,13 +39,13 @@ export const Form = component$(() => {
   return (
     <form
       ref={chatInput}
-      class=" flex w-full items-center text-white"
+      class="flex h-1/6 w-full items-center text-white"
       preventdefault:submit
     >
       <input
         type="text"
         name="message"
-        class="focus:none mx-2 mb-2 flex-grow rounded border-none bg-black  bg-opacity-50 p-2 placeholder:text-center focus:outline-none"
+        class="focus:none mx-2 mb-2 mt-auto flex-grow rounded border-none bg-black  bg-opacity-50 p-2 placeholder:text-center focus:outline-none"
         placeholder="Send en melding .."
         autoComplete="off"
         autoCorrect="off"

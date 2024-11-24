@@ -1,5 +1,5 @@
 import * as THREE from "three";
-import { mesh } from "../../three/mesh";
+import { world } from "../../world";
 
 export const wheelRaycaster = (wheel: THREE.Mesh) => {
   const raycaster = new THREE.Raycaster();
@@ -9,7 +9,7 @@ export const wheelRaycaster = (wheel: THREE.Mesh) => {
   const rayOrigin = new THREE.Vector3(worldPosition.x, 5, worldPosition.z);
   raycaster.set(rayOrigin, downDirection);
 
-  const intersects = raycaster.intersectObject(mesh.moonSurface);
+  const intersects = raycaster.intersectObject(world.moonSurface);
   if (!intersects[0]) return;
   wheel.position.y = intersects[0].point.y + 0.3;
 };

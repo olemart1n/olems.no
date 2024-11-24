@@ -1,7 +1,6 @@
 import * as THREE from "three";
-import { gunAxle } from "~/game/three/mesh/car";
 import { scene } from "~/game/scene";
-import meshFactory from "~/game/three/mesh-factory";
+import { world } from "~/game/world";
 import { globalVar } from "../../global-var";
 import { explode } from "./explode";
 import { gunCoolDown } from "./gun-cool-down";
@@ -11,10 +10,10 @@ export const shoot = (e: PointerEvent) => {
   e.preventDefault();
   if (globalVar.gunState.isCooling) return;
 
-  const bullet = meshFactory.bullet();
-  gunAxle.getWorldPosition(globalVar.shootData.bulletPosition);
+  const bullet = world.factory.bullet();
+  world.thisCar.gunAxle.getWorldPosition(globalVar.shootData.bulletPosition);
   bullet.position.copy(globalVar.shootData.bulletPosition);
-  gunAxle.getWorldDirection(globalVar.shootData.bulletDirection);
+  world.thisCar.gunAxle.getWorldDirection(globalVar.shootData.bulletDirection);
   globalVar.shootData.shooter = globalVar.carData.username;
   // RAY
   const raycaster = new THREE.Raycaster(

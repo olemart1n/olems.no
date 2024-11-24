@@ -1,6 +1,6 @@
 import { addControls } from "../../controls";
 import { globalVar } from "../../global-var";
-import { addUsernameToCar } from "../../three/mesh/text/add-username-to-car.ts";
+import { addUsernameToCar } from "~/game/world/text/add-username-to-car.ts";
 import type { GameContextStore } from "../../game-context";
 
 export const playerJoins = (gameStore: GameContextStore) => {

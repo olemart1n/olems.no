@@ -2,7 +2,7 @@ import { globalVar } from "~/game/global-var";
 import type * as THREE from "three";
 
 export const activePlayersAddPlayer = (
-  car: THREE.Group,
+  car: THREE.Object3D,
   username: string,
   id: string,
 ) => {

@@ -1,8 +1,8 @@
 import * as THREE from "three";
-import { scene, mesh } from "./three";
+import { world } from "./world";
+import { scene } from "./scene";
 import { animateFunction } from "./animate-function";
 import type { GameContextStore } from "./game-context";
-import { globalVar } from "./global-var";
 const game = (gameStore: GameContextStore) => {
   const camera = new THREE.PerspectiveCamera( // - - - CAMERA
     75,
@@ -12,18 +12,15 @@ const game = (gameStore: GameContextStore) => {
   );
 
   const gunAxleRaycaster = new THREE.Raycaster();
-  const renderer = new THREE.WebGLRenderer(); //  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - RENDERER - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  const renderer = new THREE.WebGLRenderer(); //  - - - - - - - - - - - - - RENDERER
   renderer.setSize(
     gameStore.mainEl.value!.clientWidth,
     gameStore.mainEl.value!.clientHeight,
   );
   renderer.setPixelRatio(devicePixelRatio);
 
-  gameStore.mainEl.value?.appendChild(renderer.domElement); //  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - APPEND RENDERER
+  gameStore.mainEl.value?.appendChild(renderer.domElement); //  - - - - - APPEND RENDERER
 
-  setInterval(() => {
-    console.log(globalVar.activePlayers);
-  }, 6000);
   renderer.setAnimationLoop(() => {
     //  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - ANIMATION LOOP
     animateFunction(camera, gunAxleRaycaster);
@@ -31,4 +28,4 @@ const game = (gameStore: GameContextStore) => {
   });
 };
 
-export { mesh, game };
+export { world, game };

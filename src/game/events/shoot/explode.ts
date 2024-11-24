@@ -1,7 +1,7 @@
 import * as THREE from "three";
 import { globalVar } from "~/game/global-var";
 import type * as type from "~/game/global-var/type";
-import { scene } from "~/game/three";
+import { scene } from "~/game/scene";
 export const explode = (data: type.FiredBullet) => {
   data.bullet.geometry = new THREE.SphereGeometry(1, 32, 32);
   let startOpacitity = 1;

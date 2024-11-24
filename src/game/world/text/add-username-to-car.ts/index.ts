@@ -1,6 +1,6 @@
 import * as THREE from "three";
 import { TextGeometry } from "three/addons/geometries/TextGeometry.js";
-import { body } from "../../car";
+import { body } from "../../this-car/body";
 import { fontBrighter } from "../font-loader";
 import { globalVar } from "~/game/global-var";
 export const addUsernameToCar = () => {

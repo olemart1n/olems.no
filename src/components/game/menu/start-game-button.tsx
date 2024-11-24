@@ -16,7 +16,7 @@ export const StartGameButton = component$(() => {
         send.playerJoins(c);
       }}
     >
-      Bli med
+      Start
     </button>
   );
 });

@@ -3,7 +3,7 @@ import gameContext from "~/game/game-context";
 export const ErrorMessage = component$(() => {
   const c = useContext(gameContext);
   return (
-    <div class="absolute -top-1/4 h-1/2 w-full ">
+    <div class="absolute -top-1/4 left-1/2 h-1/2 w-1/2 -translate-x-1/2 ">
       <div
         class={
           "translate-y flex h-1/2 w-full transform duration-300 ease-in-out " +

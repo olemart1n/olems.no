@@ -7,8 +7,8 @@ import { globalVar } from "~/game/global-var";
 export const Chat = component$(() => {
   const c = useContext(gameContext);
   return (
-    <>
-      <div class="no-scrollbar h-5/6  overflow-y-scroll rounded p-2">
+    <div class="outline-1.5 m-2 h-full rounded p-2 outline outline-black">
+      <div class="no-scrollbar  h-5/6 overflow-y-scroll">
         <div ref={c.messageEndRefDiv}>
           {c.messages.map(
             ({ message, senderUsername, senderId }: Message, index: number) => {
@@ -36,6 +36,6 @@ export const Chat = component$(() => {
       </div>
 
       <Form />
-    </>
+    </div>
   );
 });

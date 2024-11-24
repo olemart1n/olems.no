@@ -1,9 +1,9 @@
 import { globalVar } from "../../global-var";
-import { mesh } from "../../three/mesh";
+import { world } from "../../world";
 import { wheelRaycaster } from "./wheel-raycaster";
 import { adjustBody } from "./body";
 import { adjustPoles } from "./poles";
-const wheels = mesh.wheels;
+const wheels = world.thisCar.wheels;
 
 let wheelRotation = 0;
 const carConfig = globalVar.carConfig;
@@ -43,11 +43,11 @@ export function moveCar() {
     const flip = carConfig.speed > 0 ? 1 : -1;
     if (carConfig.direction.left) {
       carConfig.angle += 0.03 * flip;
-      mesh.car.rotateY(0.03 * flip);
+      world.thisCar.car.rotateY(0.03 * flip);
     }
     if (carConfig.direction.right) {
       carConfig.angle -= 0.03 * flip;
-      mesh.car.rotateY(-0.03 * flip);
+      world.thisCar.car.rotateY(-0.03 * flip);
     }
   }
 
@@ -73,8 +73,8 @@ export function moveCar() {
     wheelRotation = 0;
   }
 
-  mesh.car.position.x -= Math.sin(carConfig.angle) * carConfig.speed;
-  mesh.car.position.z -= Math.cos(carConfig.angle) * carConfig.speed;
+  world.thisCar.car.position.x -= Math.sin(carConfig.angle) * carConfig.speed;
+  world.thisCar.car.position.z -= Math.cos(carConfig.angle) * carConfig.speed;
 
   adjustBody();
   wheelRaycaster(wheels.frontRight);

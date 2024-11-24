@@ -1,9 +1,8 @@
-import meshFactory from "~/game/three/mesh-factory";
 import { globalVar } from "~/game/global-var";
 import type * as type from "~/game/global-var/type";
 import type { GameContextStore } from "~/game/game-context";
-import { scene } from "~/game/three";
-import { mesh } from "~/game/three";
+import { world } from "~/game/world";
+import { scene } from "~/game/scene";
 import { activePlayersAddPlayer } from "../utils";
 import { send } from "../send";
 /**
@@ -20,10 +19,10 @@ export const playerJoins = (player: type.Player, game: GameContextStore) => {
 
   if (player.id === globalVar.carData.id) {
     // IF THE NEW PLAYER IS THIS CLIENT
-    activePlayersAddPlayer(mesh.car, player.username, player.id);
+    activePlayersAddPlayer(world.thisCar.car, player.username, player.id);
   } else {
     // IF THE PLAYER IS ANOTHER CLIENT
-    const car = meshFactory.car();
+    const car = world.factory.car();
     activePlayersAddPlayer(car, player.username, player.id);
     scene.add(car);
     send.carData();

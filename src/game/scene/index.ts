@@ -1,14 +1,13 @@
 import * as THREE from "three";
-import { mesh } from "../three/mesh";
-import { light } from "../three/light";
+import { world } from "../world";
 
 export const scene = new THREE.Scene();
 
-scene.add(mesh.landscape);
+scene.add(world.landscape);
 // scene.add(mesh.car); // FIX
-scene.add(light());
-scene.add(mesh.sky);
-scene.add(mesh.stars);
-scene.add(mesh.planet);
+scene.add(world.light);
+scene.add(world.sky);
+scene.add(world.stars);
+scene.add(world.planet);
 
 scene.fog = new THREE.Fog(0x000, 1, 200);

@@ -6,9 +6,9 @@ export const damageRaycastPlayers = (data: type.FiredBullet) => {
   const raycaster = new THREE.Raycaster();
 
   globalVar.activePlayers.forEach((raySender) => {
-    const carBody = raySender.car.children[4];
+    const car = raySender.car;
     const bodyPosition = new THREE.Vector3();
-    carBody.getWorldPosition(bodyPosition);
+    car.getWorldPosition(bodyPosition);
     const direction = data.bullet.position
       .clone()
       .sub(bodyPosition)

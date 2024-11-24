@@ -16,10 +16,6 @@ moonSurface.name = "moonSurface";
 // GROUP
 export const landscape = new THREE.Group();
 
-// landscape.castShadow = true;
-// landscape.receiveShadow = true;
-// landscape.raycast = THREE.Mesh.prototype.raycast;
-
 pyramid.position.set(40, 50, 0);
 
 landscape.name = "group: landscape";

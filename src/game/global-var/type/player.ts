@@ -1,6 +1,6 @@
 import type * as THREE from "three";
 export interface Player {
-  car: THREE.Group;
+  car: THREE.Object3D;
   username: string;
   hp: number;
   id: string;

@@ -2,8 +2,8 @@ import { globalVar } from "~/game/global-var";
 import type { GameContextStore } from "~/game/game-context";
 import { activePlayersRemovePlayer } from "../utils";
 import type * as type from "~/game/global-var/type";
-import { scene } from "~/game/three";
-import { mesh } from "~/game/three";
+import { world } from "~/game/world";
+import { scene } from "~/game/scene";
 export const playerDied = (
   player: type.BroadcastedPlayer,
   game: GameContextStore,
@@ -13,7 +13,7 @@ export const playerDied = (
     game.isNotification.value = true;
     game.isInGame = false;
     game.notificationMesssage = `Du ble drept av ${player.id}`;
-    scene.remove(mesh.car);
+    scene.remove(world.thisCar.car);
     document.exitPointerLock();
     game.isMenu.value = true;
     setTimeout(() => {

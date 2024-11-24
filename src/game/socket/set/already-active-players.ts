@@ -1,7 +1,7 @@
-import meshFactory from "~/game/three/mesh-factory";
+import { world } from "~/game/world";
 import { globalVar } from "~/game/global-var";
 import type * as types from "~/game/global-var/type";
-import { scene } from "~/game/three";
+import { scene } from "~/game/scene";
 
 // PLAYERS ALREADY IN THE GAME (CHECK SERVER)
 export const alreadyActivePlayers = (players: types.Player[]) => {
@@ -11,7 +11,7 @@ export const alreadyActivePlayers = (players: types.Player[]) => {
       (activePlayer) => activePlayer.id === player.id,
     );
     if (playerExists) return;
-    const car = meshFactory.car();
+    const car = world.factory.car();
     globalVar.activePlayers.push({
       car: car,
       username: player.username,

@@ -1,11 +1,11 @@
 import { globalVar } from "~/game/global-var";
 import type * as type from "~/game/global-var/type";
 import * as THREE from "three";
-import meshFactory from "~/game/three/mesh-factory";
-import { scene } from "~/game/three";
+import { world } from "~/game/world";
+import { scene } from "~/game/scene";
 import { explode } from "~/game/events/shoot/explode";
 export const shootData = (payload: type.ShootData) => {
-  const bullet = meshFactory.bullet();
+  const bullet = world.factory.bullet();
   const position = new THREE.Vector3(
     payload.bulletPosition.x,
     payload.bulletPosition.y,

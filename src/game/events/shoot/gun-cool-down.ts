@@ -1,8 +1,8 @@
-import { mesh } from "~/game/three";
+import { world } from "~/game/world";
 import { globalVar } from "~/game/global-var";
 export const gunCoolDown = () => {
-  const gun = mesh.gun;
-  const gunAxle = mesh.gunAxle;
+  const gun = world.thisCar.gun;
+  const gunAxle = world.thisCar.gunAxle;
   const startZ = gun.position.z;
   gunAxle.material.color.set(0xff0000);
   gun.position.z = gun.position.z - 0.05;

@@ -7,7 +7,7 @@ import {
   $,
 } from "@builder.io/qwik";
 import gameContext from "~/game/game-context";
-import { game, mesh } from "~/game";
+import { game, world } from "~/game";
 import {
   GunScope,
   Menu,
@@ -51,10 +51,11 @@ export default component$(() => {
         preLoader.value?.remove();
         const texture1Ratio = 3840 / 5760;
 
-        mesh.moonSurface.material.map = texture1;
-        mesh.moonSurface.material.map.repeat.x = 1 / texture1Ratio;
-        mesh.moonSurface.material.map.offset.x = -(1 - texture1Ratio) / (2 * 1);
-        mesh.moonSurface.material.map.needsUpdate = true;
+        world.moonSurface.material.map = texture1;
+        world.moonSurface.material.map.repeat.x = 1 / texture1Ratio;
+        world.moonSurface.material.map.offset.x =
+          -(1 - texture1Ratio) / (2 * 1);
+        world.moonSurface.material.map.needsUpdate = true;
         game(gameStore);
       });
     }),

@@ -1,15 +1,14 @@
 import * as THREE from "three";
-import { wheels } from "~/game/three/mesh/car";
-import { pole1, pole2 } from "~/game/three/mesh/car/poles";
+import { world } from "~/game/world";
 import { globalVar } from "~/game/global-var";
 
 export const adjustPoles = () => {
-  pole1.position.set(
+  world.thisCar.pole1.position.set(
     globalVar.carData.frontMidPoint.x,
     globalVar.carData.frontMidPoint.y,
     globalVar.carData.frontMidPoint.z,
   );
-  pole2.position.set(
+  world.thisCar.pole2.position.set(
     globalVar.carData.rearMidPoint.x,
     globalVar.carData.rearMidPoint.y,
     globalVar.carData.rearMidPoint.z,
@@ -17,12 +16,18 @@ export const adjustPoles = () => {
 
   const rearPoleDirection = new THREE.Vector3();
   rearPoleDirection
-    .subVectors(wheels.rearLeft.position, wheels.rearRight.position)
+    .subVectors(
+      world.thisCar.wheels.rearLeft.position,
+      world.thisCar.wheels.rearRight.position,
+    )
     .normalize();
 
   const frontPoleDirection = new THREE.Vector3();
   frontPoleDirection
-    .subVectors(wheels.frontLeft.position, wheels.frontRight.position)
+    .subVectors(
+      world.thisCar.wheels.frontLeft.position,
+      world.thisCar.wheels.frontRight.position,
+    )
     .normalize();
 
   // Create an up vector for the pole (assuming the pole's original direction is along y-axis)
@@ -38,6 +43,10 @@ export const adjustPoles = () => {
   );
 
   // Apply the quaternion rotation to the pole
-  pole1.setRotationFromQuaternion(globalVar.carData.poleFrontQuaternion);
-  pole2.setRotationFromQuaternion(globalVar.carData.poleBackQuaternion);
+  world.thisCar.pole1.setRotationFromQuaternion(
+    globalVar.carData.poleFrontQuaternion,
+  );
+  world.thisCar.pole2.setRotationFromQuaternion(
+    globalVar.carData.poleBackQuaternion,
+  );
 };

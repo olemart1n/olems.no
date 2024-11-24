@@ -1,6 +1,6 @@
 import * as THREE from "three";
 import { scene } from "../../scene";
-import { gunAxle } from "../../three/mesh/car";
+import { world } from "../../world";
 export const setGunAxleAim = (
   camera: THREE.PerspectiveCamera,
   raycaster: THREE.Raycaster,
@@ -9,6 +9,6 @@ export const setGunAxleAim = (
   raycaster.setFromCamera(crosshairNDC, camera);
   const interects = raycaster.intersectObjects(scene.children);
   if (interects.length > 0) {
-    gunAxle.lookAt(interects[0].point);
+    world.thisCar.gunAxle.lookAt(interects[0].point);
   }
 };

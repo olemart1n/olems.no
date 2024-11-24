@@ -3,7 +3,7 @@ import { wheels } from "./wheels";
 import { body } from "./body";
 
 const car = () => {
-  const car = new THREE.Group();
+  const car = new THREE.Object3D();
 
   // ADD WHEELS
   const w = wheels();
