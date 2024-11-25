@@ -6,6 +6,7 @@ import { explode } from "./explode";
 import { gunCoolDown } from "./gun-cool-down";
 import { send } from "~/game/socket/send";
 import { damageRaycastPlayers } from "./damage-raycast-players";
+
 export const shoot = (e: PointerEvent) => {
   e.preventDefault();
   if (globalVar.gunState.isCooling) return;
@@ -58,6 +59,11 @@ export const shoot = (e: PointerEvent) => {
     shooterId: globalVar.carData.id,
   });
   scene.add(bullet);
+  // PLAY SHOOT SOUND
+  const sound: THREE.Audio = globalVar.audio.get("shoot-sound");
+  if (sound.isPlaying) return;
+
+  sound.play();
 };
 
 function calculateBulletHitTime(distanceToObject: number) {

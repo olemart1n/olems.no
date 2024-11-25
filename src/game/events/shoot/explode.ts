@@ -12,6 +12,11 @@ export const explode = (data: type.FiredBullet) => {
   const scaleStep = startSize / (duration / interval);
   let currentSize = startSize;
 
+  // ADD SOUND TO BULLET
+  const sound = globalVar.audio.get("explosion-sound");
+  data.bullet.add(sound);
+  sound.play();
+
   const explosionInterval = setInterval(() => {
     startOpacitity -= 0.04;
     currentSize += scaleStep;

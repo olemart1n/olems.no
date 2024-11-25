@@ -10,8 +10,10 @@ import { gunState } from "./gun-state";
 import { hpDamageData } from "./hp-damage-data";
 import { shootData } from "./shoot-data";
 import { upVector } from "./up-vector";
+import { audio } from "./audio";
 import * as types from "./type";
 export const globalVar = {
+  audio,
   carConfig,
   activePlayers,
   firedBullets,

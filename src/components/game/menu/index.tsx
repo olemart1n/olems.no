@@ -1,5 +1,5 @@
 import { component$, useContext } from "@builder.io/qwik";
-
+import { Audio } from "./audio/audio";
 import { StartGameButton } from "./start-game-button";
 import { UsernameForm } from "./username-form";
 import { ConnectionDetails } from "./connection-details";
@@ -27,7 +27,10 @@ export const Menu = component$(() => {
           <div class="text-center text-red-400">
             <p class="underline">under utvikling</p>
           </div>
-          <Info />
+          <div class="ml-5 flex w-full gap-2">
+            <Info />
+            <Audio />
+          </div>
         </div>
         {/* <Controllers /> */}
 

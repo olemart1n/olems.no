@@ -3,7 +3,7 @@ import { LuInfo } from "@qwikest/icons/lucide";
 
 export const Info = component$(() => {
   return (
-    <div class="group relative ml-5 w-fit">
+    <div class="group relative w-fit">
       <LuInfo class="h-6 w-6  cursor-help group-hover:visible" />
       <div
         class={

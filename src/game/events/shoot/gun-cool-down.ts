@@ -12,7 +12,7 @@ export const gunCoolDown = () => {
   setTimeout(() => {
     gunAxle.material.color.set(0x9ff275);
     globalVar.gunState.isCooling = false;
-  }, 1500);
+  }, 3000);
 
   const gunInterval = setInterval(() => {
     if (gun.position.z >= returnPoint && !isReturningToStartZ) {

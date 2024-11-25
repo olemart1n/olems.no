@@ -42,4 +42,9 @@ export const shootData = (payload: type.ShootData) => {
     shooterId: payload.shooter,
   });
   scene.add(bullet);
+
+  // ADD SOUND TO BULLET
+  const sound = globalVar.audio.get("explosion-sound");
+  bullet.add(sound);
+  sound.play();
 };
