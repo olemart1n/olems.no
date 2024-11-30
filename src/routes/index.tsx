@@ -9,7 +9,7 @@ export default component$(() => {
           <ProfileImage />
         </div> */}
 
-        <h1 class="mt-6 text-2xl font-bold text-gray-800">Ole Martin</h1>
+        {/* <h1 class="mt-6 text-2xl font-bold text-gray-800">Ole Martin</h1>
         <p class="text-gray-600">Nett utvikler</p>
 
         <div class="animate-spin-slow absolute bottom-0 left-0 h-60 w-60 -translate-y-1/2 transform rounded-full bg-gradient-to-tr from-purple-400 to-blue-400 opacity-25 blur-3xl"></div>
@@ -23,7 +23,7 @@ export default component$(() => {
               www.handlelista.no
             </a>
           </ul>
-        </div>
+        </div> */}
       </div>
     </main>
   );
