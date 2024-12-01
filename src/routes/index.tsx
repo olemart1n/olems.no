@@ -1,20 +1,15 @@
 import { component$ } from "@builder.io/qwik";
 import type { DocumentHead } from "@builder.io/qwik-city";
+import { FancyCard } from "~/components";
 // import { ProfileImage } from "~/components/profile-image";
 export default component$(() => {
   return (
-    <main class="flex flex-col justify-around text-white">
-      <div class="relative mx-auto aspect-square max-w-sm overflow-hidden rounded bg-slate-100 text-center shadow-lg md:w-96">
-        {/* <div class="mx-auto mt-10 h-32 w-32 overflow-hidden rounded-full border-4 border-slate-200 shadow-lg">
-          <ProfileImage />
-        </div> */}
-
-        {/* <h1 class="mt-6 text-2xl font-bold text-gray-800">Ole Martin</h1>
-        <p class="text-gray-600">Nett utvikler</p>
-
-        <div class="animate-spin-slow absolute bottom-0 left-0 h-60 w-60 -translate-y-1/2 transform rounded-full bg-gradient-to-tr from-purple-400 to-blue-400 opacity-25 blur-3xl"></div>
-
-        <div class="px-6 pb-8 text-gray-700">
+    <main class="flex flex-col place-items-center justify-around text-white">
+      <FancyCard>
+        <h1 class="text-2xl">Ole Martin</h1>
+        <p class="text-xl">Nett utvikler</p>
+        <div class="mx-auto h-1 w-3/4 border-b border-slate-200"></div>
+        <div class=" text-lgd text-gray-400">
           <ul>
             <li>TypeScript</li>
             <li>Go-lang</li>
@@ -23,8 +18,8 @@ export default component$(() => {
               www.handlelista.no
             </a>
           </ul>
-        </div> */}
-      </div>
+        </div>
+      </FancyCard>
     </main>
   );
 });
