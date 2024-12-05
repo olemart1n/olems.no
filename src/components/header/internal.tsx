@@ -14,6 +14,16 @@ export const Internal = component$(() => {
       >
         Game
       </a>
+      <a
+        href="/ui"
+        class={
+          "block w-32 rounded-sm py-1 text-center hover:outline hover:outline-amber-300 " +
+          (loc.prevUrl?.pathname.includes("car-game") &&
+            " outline outline-amber-300")
+        }
+      >
+        UI
+      </a>
     </>
   );
 });

@@ -9,6 +9,9 @@ html {
 .bg-initial {
   background-color: rgb(30, 29, 29);
 }
+.bg-initial-dark {
+  background-color: rgb(15, 14, 14);
+}
 
 body {
   display: grid;
