@@ -1,12 +1,9 @@
-import { component$, Slot, useSignal, useTask$ } from "@builder.io/qwik";
+import { component$, Slot } from "@builder.io/qwik";
 import { Link, useLocation } from "@builder.io/qwik-city";
 export default component$(() => {
   const loc = useLocation();
-  const pathname = useSignal("");
-  useTask$(({ track }) => {
-    track(() => loc.url);
-    pathname.value = loc.url.pathname;
-  });
+  const pathname = loc.url.pathname;
+
   return (
     <main class="flex p-2">
       <div class="w-3/12">
@@ -14,12 +11,12 @@ export default component$(() => {
           <h1 class="my-1 text-center text-lg">Components</h1>
           <NavLink
             href="/ui/chat/"
-            isActive={pathname.value === "/ui/chat/"}
+            isActive={pathname === "/ui/chat/"}
             innerText="Chat"
           />
           <NavLink
             href="/ui/card/"
-            isActive={pathname.value === "/ui/card/"}
+            isActive={pathname === "/ui/card/"}
             innerText="Card"
           />
         </nav>

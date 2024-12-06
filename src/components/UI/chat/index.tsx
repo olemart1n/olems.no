@@ -9,7 +9,7 @@ interface ChatProps {
 export const Chat = component$<ChatProps>(({ messageStore }) => {
   // const messageStore = useStore<Message[]>([]);
   const clientId = Math.random().toString(36).substring(2, 10);
-  const clientUsername = faker.name.firstName();
+  const clientUsername = faker.person.firstName();
   const messageEndRefDiv = useSignal<HTMLDivElement>();
   return (
     <div
