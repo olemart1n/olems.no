@@ -3,9 +3,7 @@ import { component$ } from "@builder.io/qwik";
 import type { DocumentHead } from "@builder.io/qwik-city";
 
 export default component$(() => {
-  return (
-    <div class="p-1 text-slate-50">Components written in React and Qwik</div>
-  );
+  return <div class="p-1 text-slate-50">Components for Qwik</div>;
 });
 
 export const head: DocumentHead = {

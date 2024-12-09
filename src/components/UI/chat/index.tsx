@@ -13,7 +13,7 @@ export const Chat = component$<ChatProps>(({ messageStore }) => {
   const messageEndRefDiv = useSignal<HTMLDivElement>();
   return (
     <div
-      class="outline-1.5 chat m-2 h-60 min-h-full rounded p-2 outline outline-black"
+      class="outline-1.5 chat m-2 h-60 min-h-full rounded p-2 outline outline-black dark:outline-slate-200"
       style={{ display: "grid", gridTemplateRows: "90% 10%" }}
     >
       <div class="no-scrollbar overflow-y-scroll">
