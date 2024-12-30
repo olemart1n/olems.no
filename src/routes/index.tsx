@@ -12,6 +12,8 @@ export default component$(() => {
       canvasSig.value!.height = canvasSig.value!.clientHeight;
       canvasSig.value!.width = canvasSig.value!.clientWidth;
       const ctx = canvasSig.value!.getContext("2d")!;
+      const dpr = window.devicePixelRatio || 1;
+      ctx.scale(dpr, dpr);
       const audioCtx = new AudioContext();
       console.log(audioCtx);
       canvasSig.value?.addEventListener("click", (e) => {
