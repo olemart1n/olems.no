@@ -1,5 +1,5 @@
 import { playBrickFallSound } from "../audio";
-
+import { VAR } from "../variables";
 export class Brick {
   x: number;
   y: number;
@@ -35,7 +35,7 @@ export class Brick {
 
     this.offsetX = this.width / 2;
     this.offsetY = this.height / 2;
-    this.margin = 5;
+    this.margin = VAR.canvasWidth > 600 ? 5 : 2;
 
     //
     this.isSetToRemoval = false;
