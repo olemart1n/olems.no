@@ -28,7 +28,7 @@ export default component$(() => {
   );
 
   return (
-    <main class="bg-slate-300 p-5 dark:bg-gray-800 ">
+    <main class="bg-gray-800 p-5 ">
       <nav class=" rounded bg-slate-400  p-1 shadow-md dark:bg-gray-950">
         <h1 class="my-1 text-center text-lg ">Components</h1>
         <NavLink
