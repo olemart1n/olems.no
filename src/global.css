@@ -73,22 +73,24 @@ main {
   max-width: 490px;
 }
 
-@property --a {
-  syntax: "<angle>";
-  initial-value: 0deg;
-  inherits: false;
-}
-
 .former-wrapper {
   width: 95%;
-  padding: 1.2rem;
+  padding: 1rem;
   overflow: hidden;
   position: relative;
   border-radius: 0.1em;
   max-width: 520px;
+  background-color: #18062e;
 }
 
-.former-wrapper::before {
+/* 
+@property --a {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+} */
+
+/* .former-wrapper::before {
   position: absolute;
   z-index: -1;
   inset: -1.4em;
@@ -112,16 +114,13 @@ main {
   to {
     --a: 0.5turn;
   }
-}
+} */
 
 @media (max-width: 640px) {
   .former-wrapper {
-    padding: 0.8rem;
-  }
-  .former-wrapper {
     padding: 0.6rem;
   }
-  .former-wrapper::before {
+  /* .former-wrapper::before {
     inset: -1.9em;
-  }
+  } */
 }

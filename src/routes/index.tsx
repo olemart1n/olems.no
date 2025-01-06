@@ -7,12 +7,13 @@ export default component$(() => {
   useOnDocument(
     "DOMContentLoaded",
     $(() => {
-      VAR.canvasWidth = canvasSig.value!.clientWidth;
-      VAR.canvasHeight = canvasSig.value!.clientHeight;
+      const dpr = window.devicePixelRatio || 1;
+      VAR.canvasWidth = canvasSig.value!.clientWidth * dpr;
+      VAR.canvasHeight = canvasSig.value!.clientHeight * dpr;
       canvasSig.value!.height = canvasSig.value!.clientHeight;
       canvasSig.value!.width = canvasSig.value!.clientWidth;
       const ctx = canvasSig.value!.getContext("2d")!;
-      const dpr = window.devicePixelRatio || 1;
+
       ctx.scale(dpr, dpr);
       const audioCtx = new AudioContext();
       console.log(audioCtx);
