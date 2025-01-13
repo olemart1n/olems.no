@@ -1,33 +1,42 @@
 import { $, component$, useOnDocument, useSignal } from "@builder.io/qwik";
 import type { DocumentHead } from "@builder.io/qwik-city";
-import { clickEvent, former, VAR } from "~/former";
+import { Application, type Texture } from "pixi.js";
+
+import {
+  pixi,
+  NUMBER_OF_COLUMNS,
+  NUMBER_OF_ROWS,
+  fillGrid,
+  brickTextures,
+} from "~/pixi";
 export default component$(() => {
-  const canvasSig = useSignal<HTMLCanvasElement | undefined>(undefined);
+  const div = useSignal<HTMLDivElement | undefined>(undefined);
 
   useOnDocument(
     "DOMContentLoaded",
-    $(() => {
-      const dpr = window.devicePixelRatio || 1;
-      VAR.canvasWidth = canvasSig.value!.clientWidth * dpr;
-      VAR.canvasHeight = canvasSig.value!.clientHeight * dpr;
-      canvasSig.value!.height = canvasSig.value!.clientHeight;
-      canvasSig.value!.width = canvasSig.value!.clientWidth;
-      const ctx = canvasSig.value!.getContext("2d")!;
-
-      ctx.scale(dpr, dpr);
-      const audioCtx = new AudioContext();
-      console.log(audioCtx);
-      canvasSig.value?.addEventListener("click", (e) => {
-        clickEvent(e, canvasSig.value!, audioCtx);
+    $(async () => {
+      const dpr = window.devicePixelRatio;
+      pixi.app = new Application();
+      console.log(div.value);
+      await pixi.app.init({
+        width: div.value!.clientWidth,
+        height: div.value!.clientWidth * 1.3,
+        backgroundColor: 0x18062e,
+        antialias: true,
+        resolution: dpr,
       });
-      former(ctx, audioCtx);
+
+      div.value?.appendChild(pixi.app.canvas);
+      pixi.rowHeight = pixi.app.screen.height / NUMBER_OF_ROWS;
+      pixi.columnWidth = pixi.app.screen.width / NUMBER_OF_COLUMNS;
+      pixi.ticker = pixi.app.ticker;
+      const textures = brickTextures();
+      fillGrid(textures as Texture[]);
     }),
   );
   return (
-    <main class="flex flex-col place-items-center justify-around text-white">
-      <div class="former-wrapper">
-        <canvas ref={canvasSig} class="former"></canvas>
-      </div>
+    <main class="flex flex-col place-items-center  text-white">
+      <div ref={div} id="pixi-div"></div>
     </main>
   );
 });
