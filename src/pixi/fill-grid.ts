@@ -4,10 +4,12 @@ import Alea from "alea";
 import { pixi, BrickSprite, NUMBER_OF_COLUMNS } from "./index";
 
 // ALEA
-const seed = Math.floor(Date.now() / (24 * 60 * 60 * 1000));
-const random = Alea(seed); // Create a seeded random number generator
+let seed = Math.floor(Date.now() / (24 * 60 * 60 * 1000));
+let random = Alea(seed); // Create a seeded random number generator
 
 export const fillGrid = (textures: Texture[]) => {
+  seed = Math.floor(Date.now() / (24 * 60 * 60 * 1000));
+  random = Alea(seed);
   for (let i = 0; i < NUMBER_OF_COLUMNS; i++) {
     const container = new Container();
     container.x = pixi.columnWidth * i;

@@ -1,10 +1,9 @@
 import { Graphics } from "pixi.js";
-
 import { colors, pixi } from "./index";
 export const brickTextures = () => {
   const width = pixi.columnWidth;
   const height = pixi.rowHeight;
-  const margin = 10;
+  const margin = pixi.app!.screen.width > 400 ? 10 : 6;
   const halfMargin = margin / 2;
 
   const blueBrick = new Graphics().fill(colors.blue);
