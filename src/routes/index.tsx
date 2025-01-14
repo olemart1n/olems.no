@@ -26,12 +26,18 @@ export default component$(() => {
       );
 
       await pixi.app.init({
-        width: div.value!.clientWidth,
-        height: div.value!.clientWidth * 1.3,
+        width: div.value!.clientWidth - div.value!.clientWidth / 10,
+        height: div.value!.clientHeight - div.value!.clientHeight / 10,
         backgroundColor: 0x18062e,
+        backgroundAlpha: 0,
         antialias: true,
       });
       pixi.app!.renderer.resolution = resolution;
+      pixi.app!.renderer.resize(
+        div.value!.clientWidth - div.value!.clientWidth / 15,
+        div.value!.clientHeight - div.value!.clientHeight / 15,
+      );
+
       div.value?.appendChild(pixi.app.canvas);
 
       pixi.app.canvas.addEventListener("click", () => {
@@ -52,7 +58,7 @@ export default component$(() => {
   );
   return (
     <main class="flex flex-col place-items-center  text-white">
-      <div class=" flex h-full w-full items-center justify-evenly bg-purple-950 font-semibold">
+      <div class=" flex h-1/5 w-full items-center justify-evenly bg-purple-950 font-semibold">
         <div class="flex w-fit flex-col text-center">
           <h3 class=" text-center text-sm">TREKK</h3>
           <p class="h-8 w-14 rounded-sm border-2 border-yellow-600 bg-orange-900 text-lg">
@@ -68,8 +74,8 @@ export default component$(() => {
             <LuRotateCcw class="m-auto inline-block text-2xl" />
           </button>
         </div>
-      </div>
-      <div ref={div} id="pixi-div"></div>
+      </div>{" "}
+      <div ref={div} class="h-4/5 " id="pixi-div"></div>
     </main>
   );
 });

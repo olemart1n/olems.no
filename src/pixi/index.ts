@@ -49,8 +49,8 @@ export class BrickSprite extends Sprite {
     this.columnIndex = 0;
     this.indexInColumn = 0;
     this.pxAmountToFall = 0;
-    this.speed = 1.5;
-    this.acceleration = 0.04;
+    this.speed = 2;
+    this.acceleration = 0.05;
     this.falldown = () => {
       this.speed += this.acceleration;
       const moveBy = Math.min(this.speed, this.pxAmountToFall);
@@ -58,7 +58,7 @@ export class BrickSprite extends Sprite {
       this.pxAmountToFall -= moveBy;
       if (this.pxAmountToFall <= 0) {
         this.pxAmountToFall = 0;
-        this.speed = 1;
+        this.speed = 2;
         const index = pixi.bricks.setToFall.indexOf(this);
         if (index !== -1) {
           pixi.bricks.setToFall.splice(index, 1);

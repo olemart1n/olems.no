@@ -70,6 +70,12 @@ main {
   width: 100%;
   max-width: 490px;
   margin: auto;
+  background-color: #18062e;
+}
+#pixi-div canvas {
+  display: block;
+  margin: auto;
+  margin-top: 0.5rem;
 }
 .former {
   width: 100%;
