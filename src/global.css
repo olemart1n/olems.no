@@ -72,10 +72,10 @@ main {
   height: fit-content;
   margin: auto;
 }
-/* 
+
 .bg-purple-custom {
   background-color: #18062e;
-} */
+}
 #pixi-div canvas {
   display: block;
   margin: auto;
