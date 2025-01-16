@@ -3,61 +3,90 @@ import type { DocumentHead } from "@builder.io/qwik-city";
 import { Application, type Texture } from "pixi.js";
 import { LuRotateCcw } from "@qwikest/icons/lucide";
 import {
-  pixi,
   NUMBER_OF_COLUMNS,
   NUMBER_OF_ROWS,
-  fillGrid,
+  game,
+  iterations,
   brickTextures,
 } from "~/pixi";
 export default component$(() => {
-  const div = useSignal<HTMLDivElement | undefined>(undefined);
+  const divSig = useSignal<HTMLDivElement | undefined>(undefined);
   const moves = useSignal(0);
   const restartBtnSig = useSignal<HTMLButtonElement>();
 
   useOnDocument(
     "DOMContentLoaded",
     $(async () => {
-      const dpr = window.devicePixelRatio;
-      pixi.app = new Application();
-      const resolution = Math.min(
-        dpr,
-        window.innerWidth / div.value!.clientWidth,
-        (window.innerHeight / div.value!.clientWidth) * 1.3,
-      );
+      const width = divSig.value!.clientWidth;
 
-      await pixi.app.init({
-        width: div.value!.clientWidth - div.value!.clientWidth / 10,
-        height: div.value!.clientHeight - div.value!.clientHeight / 10,
-        backgroundColor: 0x18062e,
-        backgroundAlpha: 0,
+      const updateResolution = () => {
+        const dpr = window.devicePixelRatio;
+        const width = divSig.value!.clientWidth;
+        const resolution = Math.min(
+          dpr,
+          window.innerWidth / width,
+          (window.innerWidth / width) * 1.25,
+        );
+
+        game.app!.renderer.resolution = resolution;
+
+        game.rowHeight = game.app!.screen.height / NUMBER_OF_ROWS;
+        game.columnWidth = game.app!.screen.width / NUMBER_OF_COLUMNS;
+      };
+      game.app = new Application();
+
+      await game.app.init({
+        width: width - width / 10,
+        height: (width - width / 10) * 1.25,
+        backgroundColor: 0x18062e, // rgb(24, 6, 46)
         antialias: true,
       });
-      pixi.app!.renderer.resolution = resolution;
-      pixi.app!.renderer.resize(
-        div.value!.clientWidth - div.value!.clientWidth / 15,
-        div.value!.clientHeight - div.value!.clientHeight / 15,
+
+      updateResolution();
+      // window.addEventListener("resize", updateResolution);
+      divSig.value?.appendChild(game.app.canvas);
+
+      const textures = brickTextures();
+
+      const containers = iterations.createAndFillContainers(
+        textures as Texture[],
       );
 
-      div.value?.appendChild(pixi.app.canvas);
+      containers.forEach((container, i) => {
+        container.x = game.columnWidth * i;
+        container.y = 0;
 
-      pixi.app.canvas.addEventListener("click", () => {
+        game.app?.stage.addChild(container);
+      });
+
+      iterations.animateIntro();
+
+      game.app.canvas.addEventListener("click", () => {
         moves.value++;
       });
-      pixi.rowHeight = pixi.app.screen.height / NUMBER_OF_ROWS;
-      pixi.columnWidth = pixi.app.screen.width / NUMBER_OF_COLUMNS;
-      pixi.ticker = pixi.app.ticker;
-      const textures = brickTextures();
-      fillGrid(textures as Texture[]);
 
+      game.ticker = game.app.ticker;
       restartBtnSig.value?.addEventListener("click", () => {
         moves.value = 0;
-        pixi.app!.stage.removeChildren();
-        fillGrid(textures as Texture[]);
+        game.app!.stage.removeChildren();
+        iterations.createAndFillContainers(textures as Texture[]);
+
+        const containers = iterations.createAndFillContainers(
+          textures as Texture[],
+        );
+        containers.forEach((container, i) => {
+          container.x = game.columnWidth * i;
+          container.y = 0;
+
+          game.app?.stage.addChild(container);
+        });
+        iterations.animateIntro();
       });
     }),
   );
+
   return (
-    <main class="flex flex-col place-items-center  text-white">
+    <main class="bg-purple-custom flex flex-col  place-items-center text-white">
       <div class=" flex h-1/5 w-full items-center justify-evenly bg-purple-950 font-semibold">
         <div class="flex w-fit flex-col text-center">
           <h3 class=" text-center text-sm">TREKK</h3>
@@ -75,7 +104,7 @@ export default component$(() => {
           </button>
         </div>
       </div>{" "}
-      <div ref={div} class="h-4/5 " id="pixi-div"></div>
+      <div ref={divSig} class="h-4/5 " id="pixi-div"></div>
     </main>
   );
 });

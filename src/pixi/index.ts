@@ -1,69 +1,57 @@
-import { type Application, Sprite, type Texture, type Ticker } from "pixi.js";
-import { fillGrid } from "./fill-grid";
+import { type Application, type Ticker } from "pixi.js";
+import { type Brick } from "./brick";
 import { brickTextures } from "./brick-textures";
-export { fillGrid, brickTextures };
-interface Bricks {
-  toDestroy: BrickSprite[];
-  setToFall: BrickSprite[];
-}
-interface Pixi {
-  app: Application | null;
-  ticker: Ticker | null;
-  columnWidth: number;
-  rowHeight: number;
-  bricks: Bricks;
-}
-export const pixi: Pixi = {
-  app: null,
-  ticker: null,
-  columnWidth: 0,
-  rowHeight: 0,
-  bricks: {
-    toDestroy: [],
-    setToFall: [],
+import { iterations } from "./iterations";
+export { iterations, brickTextures };
+export const NUMBER_OF_COLUMNS = 7;
+export const NUMBER_OF_ROWS = 9;
+
+export const colors = {
+  blue: {
+    r: 53,
+    g: 177,
+    b: 231,
+  },
+  //0xf958ab
+  pink: {
+    r: 249,
+    g: 88,
+    b: 171,
+  },
+  green: {
+    r: 119,
+    g: 204,
+    b: 119,
+  },
+  orange: {
+    r: 255,
+    g: 156,
+    b: 84,
   },
 };
 
-export const NUMBER_OF_COLUMNS = 7;
-export const NUMBER_OF_ROWS = 9;
-export const colors = {
-  blue: 0x35b1e7,
-  pink: 0xf958ab,
-  green: 0x5dc479,
-  orange: 0xff9c54,
+interface PixiGame {
+  app: Application | null;
+  columnWidth: number;
+  rowHeight: number;
+  ticker: Ticker | null;
+}
+export const game: PixiGame = {
+  app: null,
+  columnWidth: 0,
+  rowHeight: 0,
+  ticker: null,
 };
 
-export class BrickSprite extends Sprite {
-  isSetToDestroy: boolean;
-  brickGroup: number;
-  columnIndex: number;
-  indexInColumn: number;
-  pxAmountToFall: number;
-  speed: number;
-  acceleration: number;
-  falldown: () => void;
-  constructor(texture: Texture) {
-    super(texture);
-    this.isSetToDestroy = false;
-    this.brickGroup = 0;
-    this.columnIndex = 0;
-    this.indexInColumn = 0;
-    this.pxAmountToFall = 0;
-    this.speed = 2;
-    this.acceleration = 0.05;
-    this.falldown = () => {
-      this.speed += this.acceleration;
-      const moveBy = Math.min(this.speed, this.pxAmountToFall);
-      this.y += moveBy;
-      this.pxAmountToFall -= moveBy;
-      if (this.pxAmountToFall <= 0) {
-        this.pxAmountToFall = 0;
-        this.speed = 2;
-        const index = pixi.bricks.setToFall.indexOf(this);
-        if (index !== -1) {
-          pixi.bricks.setToFall.splice(index, 1);
-        }
-      }
-    };
-  }
+interface Bricks {
+  setToDestroy: Brick[];
+  setToFall: Brick[];
+  jumping: Brick[];
+  isJumping: boolean;
 }
+export const bricks: Bricks = {
+  setToDestroy: [],
+  setToFall: [],
+  jumping: [],
+  isJumping: false,
+};
