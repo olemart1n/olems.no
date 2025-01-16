@@ -48,10 +48,12 @@ interface Bricks {
   setToFall: Brick[];
   jumping: Brick[];
   isJumping: boolean;
+  intro: Brick[];
 }
 export const bricks: Bricks = {
   setToDestroy: [],
   setToFall: [],
   jumping: [],
   isJumping: false,
+  intro: [],
 };

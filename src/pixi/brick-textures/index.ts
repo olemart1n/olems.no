@@ -4,7 +4,7 @@ import { graphics } from "./graphics";
 export const brickTextures = () => {
   const width = game.columnWidth;
   const height = game.rowHeight;
-  const margin = 10;
+  const margin = game.app!.screen.width < 500 ? 5 : 10;
   const { b, p, g, o } = graphics(width, height, margin); //
 
   const blue = game.app!.renderer.generateTexture(b);

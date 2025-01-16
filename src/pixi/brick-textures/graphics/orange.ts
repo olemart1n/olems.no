@@ -8,10 +8,16 @@ export const orange = (width: number, height: number, halfMargin: number) => {
   orangeBrick
     .beginPath()
     .moveTo(halfMargin, 0 + halfMargin)
-    .lineTo(width - 32, halfMargin)
-    .arcTo(width - 18, 0 + halfMargin, width, height - halfMargin, 15)
+    .lineTo(width - halfMargin * 6, halfMargin)
+    .arcTo(
+      width - halfMargin * 5,
+      0 + halfMargin,
+      width,
+      height - halfMargin,
+      8,
+    )
     .lineTo(width - halfMargin, height - halfMargin)
-    .lineTo(18, height - halfMargin);
+    .lineTo(halfMargin * 5, height - halfMargin);
 
   orangeBrick.fill();
 

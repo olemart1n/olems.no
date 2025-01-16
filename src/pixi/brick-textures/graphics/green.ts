@@ -13,7 +13,7 @@ export const green = (width: number, height: number, halfMargin: number) => {
     .lineTo(width / 4, height - halfMargin)
     .arcTo(0, height / 2, width / 4, 0 + halfMargin, 6)
     .closePath()
-    // .stroke(colors.green)
+    .stroke(colors.green)
     .fill(`rgb(${colors.green.r}, ${colors.green.g}, ${colors.green.b})`);
 
   return greenBrick;

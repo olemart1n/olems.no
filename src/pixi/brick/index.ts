@@ -135,6 +135,11 @@ export class Brick extends Sprite {
         this.rotation = 0;
         this.alpha = 1;
         this.intro = () => {}; // Stop the intro animation
+        // REMOVE THIS FROM brics.intro
+        const index = bricks.intro.indexOf(this);
+        if (index !== -1) {
+          bricks.intro.splice(index, 1);
+        }
       }
     }
   }
