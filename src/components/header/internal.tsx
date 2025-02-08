@@ -5,14 +5,14 @@ export const Internal = component$(() => {
   return (
     <>
       <a
-        href="/car-game"
+        href="/dapp"
         class={
           "block w-32 rounded-sm py-1 text-center hover:outline hover:outline-amber-300 " +
-          (loc.prevUrl?.pathname.includes("car-game") &&
+          (loc.prevUrl?.pathname.includes("dapp") &&
             " outline outline-amber-300")
         }
       >
-        Game
+        dapp
       </a>
       <a
         href="/ui"
