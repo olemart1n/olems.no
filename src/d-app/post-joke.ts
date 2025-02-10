@@ -11,6 +11,7 @@ export const postJoke = async (
   const wc = walletClient(); // runs only in the browser and does not perform requests to a server
   await wc.switchChain({ id: sepolia.id });
 
+  if (accountAddress.length === 0) return;
   const { request } = await publicClient.simulateContract({
     address: contract.address,
     abi: contract.abi,
@@ -18,6 +19,12 @@ export const postJoke = async (
     args: [setup, punchline],
     account: accountAddress,
   });
-  await wc.writeContract(request);
-  return true;
+
+  try {
+    await wc.writeContract(request);
+    return true;
+  } catch (e) {
+    console.log(e);
+    return false;
+  }
 };

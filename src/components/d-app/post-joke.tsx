@@ -10,6 +10,7 @@ export const PostJoke = component$<PostJokeProps>(({ jokes, creatorAddr }) => {
   const isFormOpenSig = useSignal(false);
 
   const submit = $(async (e: SubmitEvent) => {
+    const formEl = e.target as HTMLFormElement;
     const form = new FormData(e.target as HTMLFormElement);
     const data = Object.fromEntries(form.entries());
     const { setup, punchline } = data as { setup: string; punchline: string };
@@ -27,6 +28,8 @@ export const PostJoke = component$<PostJokeProps>(({ jokes, creatorAddr }) => {
     } else {
       console.log("error posting joke");
     }
+    isFormOpenSig.value = false;
+    formEl.reset();
   });
 
   useOn("submit", submit);
