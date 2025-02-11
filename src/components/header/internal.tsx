@@ -15,13 +15,13 @@ export const Internal = component$(() => {
         dapp
       </a>
       <a
-        href="/ui"
+        href="/sui-counter"
         class={
           "block w-32 rounded-sm py-1 text-center hover:outline hover:outline-amber-300 " +
           (loc.prevUrl?.pathname.includes("ui") && " outline outline-amber-300")
         }
       >
-        UI
+        sui-counter
       </a>
     </>
   );
