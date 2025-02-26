@@ -1,83 +1,83 @@
+@import url("https://fonts.googleapis.com/css2?family=Oregano:ital@0;1");
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-html {
-  background-color: rgb(30, 29, 29);
+.oregano-regular {
+    font-family: "Oregano", serif;
+    font-weight: 400;
+    font-style: normal;
 }
 
-.bg-initial {
-  background-color: rgb(30, 29, 29);
+.oregano-regular-italic {
+    font-family: "Oregano", serif;
+    font-weight: 400;
+    font-style: italic;
 }
-.bg-initial-dark {
-  background-color: rgb(15, 14, 14);
+
+html {
+    background-image: linear-gradient(
+        to right bottom,
+        rgb(33, 35, 42),
+        rgb(40, 40, 40)
+    );
 }
 
 body {
-  display: grid;
-  grid-template-rows: auto 1fr auto;
-  min-height: 100dvh;
-  max-width: 1700px;
-  margin: auto;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    min-height: 100dvh;
+    max-width: 1500px;
+    margin: auto;
 }
 
 main {
-  overflow-y: auto;
+    overflow-y: auto;
 }
 
-/* Add this CSS to your global styles or Tailwind's custom CSS file */
 .no-scrollbar::-webkit-scrollbar {
-  display: none; /* For Chrome, Safari, and Opera */
+    display: none; /* For Chrome, Safari, and Opera */
 }
 
 .no-scrollbar {
-  -ms-overflow-style: none; /* For Internet Explorer and Edge */
-  scrollbar-width: none; /* For Firefox */
-}
-
-@keyframes waveFade {
-  0% {
-    color: white;
-  }
-  50% {
-    color: rgb(198, 193, 193);
-  }
-  100% {
-    color: white;
-  }
-}
-
-.waveFade {
-  animation: waveFade 9s ease-in-out infinite;
-}
-
-.game-direction-button {
-  -webkit-user-select: none; /* Disable text selection on mobile (iOS/Android) */
-  -webkit-touch-callout: none; /* Disable long press context menu on iOS */
-  user-select: none; /* Disable text selection for all browsers */
-}
-
-@keyframes spin-slow {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
+    -ms-overflow-style: none; /* For Internet Explorer and Edge */
+    scrollbar-width: none; /* For Firefox */
 }
 
 #pixi-div {
-  width: 100%;
-  max-width: 490px;
-  height: fit-content;
-  margin: auto;
+    width: 100%;
+    max-width: 490px;
+    height: fit-content;
+    margin: auto;
 }
 
 .bg-purple-custom {
-  background-color: #18062e;
+    background-color: #18062e;
 }
 #pixi-div canvas {
-  display: block;
-  margin: auto;
-  margin-top: 0.5rem;
+    display: block;
+    margin: auto;
+    margin-top: 0.5rem;
+}
+
+.dusk-sky {
+    background-image: linear-gradient(
+        to right bottom,
+        #0963af,
+        #0860a9,
+        #075ca4,
+        #06599e,
+        #055699
+    );
+}
+
+.campfire {
+    background-image: linear-gradient(
+        to right bottom,
+        #777777,
+        #706d71,
+        #6b6368,
+        #67595d,
+        #635050
+    );
 }

@@ -32,6 +32,7 @@
     "@builder.io/qwik-city": "^1.9.1",
     "@mysten/wallet-standard": "^0.13.26",
     "@netlify/edge-functions": "^2.0.0",
+    "@qwik-ui/headless": "^0.6.5",
     "@qwikest/icons": "^0.0.13",
     "@types/eslint": "8.56.10",
     "@types/node": "20.14.11",
@@ -57,9 +58,6 @@
   },
   "dependencies": {
     "@faker-js/faker": "^9.3.0",
-    "@mysten/dapp-kit": "^0.14.50",
-    "@mysten/sui": "^1.21.2",
-    "pixi.js": "^8.6.6",
-    "viem": "^2.22.21"
+    "pixi.js": "^8.6.6"
   }
 }
