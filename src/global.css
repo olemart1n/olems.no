@@ -44,20 +44,11 @@ main {
     scrollbar-width: none; /* For Firefox */
 }
 
-#pixi-div {
-    width: 100%;
-    max-width: 490px;
-    height: fit-content;
-    margin: auto;
-}
-
 .bg-purple-custom {
     background-color: #18062e;
 }
-#pixi-div canvas {
-    display: block;
+canvas {
     margin: auto;
-    margin-top: 0.5rem;
 }
 
 .dusk-sky {

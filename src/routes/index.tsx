@@ -87,24 +87,24 @@ export default component$(() => {
 
     return (
         <main class="bg-purple-custom flex flex-col  place-items-center text-white">
-            <div class=" flex h-1/5 w-full items-center justify-evenly bg-purple-950 font-semibold">
+            <div class=" flex h-1/5 w-full items-center justify-evenly font-semibold md:w-1/2">
                 <div class="flex w-fit flex-col text-center">
                     <h3 class=" text-center text-sm">TREKK</h3>
-                    <p class="h-8 w-14 rounded-sm border-2 border-yellow-600 bg-orange-900 text-lg">
+                    <p class="h-8 w-14 rounded-sm border-2 border-slate-100 bg-cyan-500 text-lg">
                         {moves.value}
                     </p>
                 </div>
                 <div class="flex w-fit flex-col text-center">
                     <h3 class="  text-sm">RESTART</h3>
                     <button
-                        class="h-8 w-14 rounded-full border-2 border-yellow-600 bg-orange-900 text-lg"
+                        class="h-8 w-14 rounded-full border-2 border-yellow-300 text-lg hover:bg-slate-500"
                         ref={restartBtnSig}
                     >
                         <LuRotateCcw class="m-auto inline-block text-2xl" />
                     </button>
                 </div>
             </div>{" "}
-            <div ref={divSig} class="h-4/5 " id="pixi-div"></div>
+            <div ref={divSig} class="w-full max-w-3xl md:w-1/3 "></div>
         </main>
     );
 });
