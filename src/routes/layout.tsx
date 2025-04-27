@@ -18,8 +18,6 @@ export default component$(() => {
             <Header />
             <Slot />
             <footer class="oregano-regular bg-yellow-300 p-1 text-center text-xl">
-                <span class="underline">Fullstack developer</span> , blockchain
-                & game enthusiast.
                 <p class="text-sm">2025</p>
             </footer>
         </>
