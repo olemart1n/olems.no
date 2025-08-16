@@ -17,18 +17,9 @@ export default component$(() => {
     useOnDocument(
         "DOMContentLoaded",
         $(async () => {
-            const width = divSig.value!.clientWidth;
-
             const updateResolution = () => {
-                const dpr = window.devicePixelRatio;
-                const width = divSig.value!.clientWidth;
-                const resolution = Math.min(
-                    dpr,
-                    window.innerWidth / width,
-                    (window.innerWidth / width) * 1.25,
-                );
 
-                game.app!.renderer.resolution = resolution;
+                game.app!.renderer.resolution = window.devicePixelRatio;
 
                 game.rowHeight = game.app!.screen.height / NUMBER_OF_ROWS;
                 game.columnWidth = game.app!.screen.width / NUMBER_OF_COLUMNS;
@@ -36,14 +27,14 @@ export default component$(() => {
             game.app = new Application();
 
             await game.app.init({
-                width: width - width / 10,
-                height: (width - width / 10) * 1.25,
+                resizeTo: divSig.value!,
                 backgroundColor: 0x18062e, // rgb(24, 6, 46)
                 antialias: true,
             });
 
             updateResolution();
-            // window.addEventListener("resize", updateResolution);
+            window.addEventListener("resize", updateResolution);
+            game.app.canvas.classList.add("w-full")
             divSig.value?.appendChild(game.app.canvas);
 
             const textures = brickTextures();
@@ -104,7 +95,7 @@ export default component$(() => {
                     </button>
                 </div>
             </div>{" "}
-            <div ref={divSig} class="w-full max-w-3xl md:w-1/3 "></div>
+            <div ref={divSig} id="divforcanvas" class="w-10/12 mx-auto max-w-3xl md:w-1/3 relative"></div>
         </main>
     );
 });
