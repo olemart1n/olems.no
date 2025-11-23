@@ -28,7 +28,7 @@ export default component$(() => {
 
             await game.app.init({
                 resizeTo: divSig.value!,
-                backgroundColor: 0x18062e, // rgb(24, 6, 46)
+                backgroundAlpha: 0,
                 antialias: true,
             });
 
@@ -77,7 +77,7 @@ export default component$(() => {
     );
 
     return (
-        <main class="bg-purple-custom flex flex-col  place-items-center text-white">
+        <main class="flex flex-col  place-items-center text-white">
             <div class=" flex h-1/5 w-full items-center justify-evenly font-semibold md:w-1/2">
                 <div class="flex w-fit flex-col text-center">
                     <h3 class=" text-center text-sm">TREKK</h3>
@@ -95,7 +95,7 @@ export default component$(() => {
                     </button>
                 </div>
             </div>{" "}
-            <div ref={divSig} id="divforcanvas" class="w-10/12 mx-auto max-w-3xl md:w-1/3 relative"></div>
+            <div ref={divSig} class="w-10/12 mx-auto max-w-3xl md:w-1/3 relative"></div>
         </main>
     );
 });
