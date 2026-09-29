@@ -13,7 +13,7 @@ body {
     font-family: sans-serif;
     display: grid;
     grid-template-rows: auto 1fr auto;
-    min-height: 100dvh;
+    height: 100dvh;
     max-width: 1500px;
     margin: auto;
 }
@@ -71,8 +71,14 @@ footer {
     }
 }
  #gameCanvasContainer {
+     max-width: 700px;
+     padding: 0;
+     width: 95%;
      height: 100%;
  }
+canvas {
+    max-width: 100%;
+}
 .no-scrollbar::-webkit-scrollbar {
     display: none; /* For Chrome, Safari, and Opera */
 }

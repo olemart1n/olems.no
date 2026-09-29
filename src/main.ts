@@ -11,28 +11,30 @@ import {
     brickTextures,
 } from "./pixi";
 
-const gameCanvasContainer: HTMLDivElement | null = document.querySelector(
+const gameCanvasContainer: HTMLDivElement = document.querySelector(
     "#gameCanvasContainer",
-);
+)!;
+game.app = new Application();
+
+const brickSize = gameCanvasContainer.clientWidth / NUMBER_OF_COLUMNS;
+await game.app.init({
+    // resizeTo: gameCanvasContainer,
+    width: brickSize * NUMBER_OF_COLUMNS,
+    height: brickSize * NUMBER_OF_ROWS,
+    backgroundAlpha: 0,
+    antialias: true,
+    preference: "webgpu",
+});
+
 const moves = { count: 0 };
 const restartButton: HTMLButtonElement =
     document.querySelector("#restartButton")!;
 
 const updateResolution = () => {
     game.app!.renderer.resolution = window.devicePixelRatio;
-
     game.rowHeight = game.app!.screen.height / NUMBER_OF_ROWS;
     game.columnWidth = game.app!.screen.width / NUMBER_OF_COLUMNS;
 };
-
-game.app = new Application();
-
-await game.app.init({
-    resizeTo: gameCanvasContainer!,
-    backgroundAlpha: 0,
-    antialias: true,
-});
-
 updateResolution();
 
 window.addEventListener("resize", updateResolution);
