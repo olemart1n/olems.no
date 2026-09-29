@@ -1,0 +1,83 @@
+
+html {
+    background-image: linear-gradient(
+        to right bottom,
+        rgb(33, 35, 42),
+        rgb(40, 40, 40)
+    );
+}
+p, h3 {
+    font-size: 1rem;
+}
+body {
+    font-family: sans-serif;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    min-height: 100dvh;
+    max-width: 1500px;
+    margin: auto;
+}
+
+main {
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+        h1 { color: white;}
+
+}
+
+footer {
+    text-align: center;
+}
+
+#socials {
+    display: flex;
+    justify-content: space-between;
+    color: white;
+
+    a {
+        color: white;
+        padding: .2rem;
+    }
+}
+#gameMeta {
+    width: 80%;
+    display: flex;
+    justify-content: space-between;
+    color: white;
+    div {
+        display: flex;
+    justify-content: space-between;
+    }
+    button {
+        padding: .2rem .6rem;
+        margin:auto;
+        outline: 2px solid pink;
+        border: 0;
+        border-radius: 3px;
+        color: white;
+        background-color: transparent;
+    }
+
+    #moves {
+        margin-left:1rem;
+    }
+}
+ #gameCanvasContainer {
+     height: 100%;
+ }
+.no-scrollbar::-webkit-scrollbar {
+    display: none; /* For Chrome, Safari, and Opera */
+}
+
+.no-scrollbar {
+    -ms-overflow-style: none; /* For Internet Explorer and Edge */
+    scrollbar-width: none; /* For Firefox */
+}
